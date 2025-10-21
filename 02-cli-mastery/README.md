@@ -1,12 +1,13 @@
-# Chapter 2: Azure MCP Mastery
+# Chapter 2: Advanced Prompt Patterns with agent mode
 
-**Title**: Advanced Prompt Patterns for Complex Resource Creation
-**Focus**: Mastering Azure MCP for multi-step, conditional, and bulk operations
-**Prerequisites**: Chapters [0](../00-course-setup/README.md)-[1](../01-first-deployment/README.md)
+Mastering agent mode for complex multi-step deployments, conditional resource creation, and bulk operations. In this chapter, you'll learn advanced prompt engineering patterns that let you efficiently create multiple resources with dependencies, handle conditional logic, and perform bulk operations - all using natural language prompts with GitHub Copilot agent mode.
 
----
+## Prerequisites
 
-## Learning Objectives
+- Completed [Course Setup](../00-course-setup/README.md)
+- Completed [Chapter 1: First Deployment](../01-first-deployment/README.md)
+
+## 🎯 Learning Objectives
 
 - ✅ Master prompt engineering patterns for Azure MCP resource creation
 - ✅ Use Azure MCP for complex multi-step deployments
@@ -21,40 +22,34 @@
 
 ---
 
-## Part 1: Choosing the Right Azure MCP Mode
+## Part 1: Choosing the Right Mode
 
-Before diving into patterns, let's clarify when to use each of the three Azure MCP interaction modes you learned in Chapter 0.
+Before diving into patterns, let's clarify when to use agent mode versus ask mode.
 
 ### Mode Selection Decision Tree
 
 ```
 Do you need to CREATE, UPDATE, or DELETE Azure resources?
-  └─> YES → Use Mode 1: Direct Resource Creation (80% of use)
+  └─> YES → Use agent mode (80% of use)
       Example: "Create a storage account named mystorageacct..."
+      What happens: Generates code → Shows "Continue?" → Executes after approval
 
 Do you need ADVICE on architecture, service selection, or best practices?
-  └─> YES → Use Mode 2: Ask Questions (@azure)
+  └─> YES → Use ask mode with @azure
       Example: "@azure Which database should I use for..."
-
-Do you need to LEARN Azure CLI syntax or CREATE SCRIPTS?
-  └─> YES → Use Mode 3: Generate Commands (#azure_generate_azure_cli_command)
-      Example: "#azure_generate_azure_cli_command Create a storage..."
-
-Is something BROKEN and you need help?
-  └─> YES → Use Diagnostic Mode (#azure_diagnose_resource)
-      Example: "#azure_diagnose_resource My app is slow..."
+      What happens: Provides guidance and recommendations
 ```
 
 ### Quick Reference Table
 
-| Task | Mode | You Say | Azure MCP Does |
-|------|------|---------|----------------|
-| Create storage account | Mode 1 (Direct) | "Create storage account..." | Creates it immediately |
-| Which database to use? | Mode 2 (@azure) | "@azure Which database..." | Provides guidance |
-| Learn CLI syntax | Mode 3 (Commands) | "#azure_generate_azure_cli_command..." | Shows CLI commands |
-| App won't start | Diagnostic | "#azure_diagnose_resource..." | Analyzes and suggests fixes |
+| Task | Mode | You Say | What Happens |
+|------|------|---------|--------------|
+| Create storage account | agent mode | "Create storage account..." | Generates code → Approve → Executes |
+| Which database to use? | ask mode | "@azure Which database..." | Provides guidance |
+| Update existing resource | agent mode | "Update app service plan..." | Generates code → Approve → Executes |
+| Learn best practices | ask mode | "@azure What are best practices..." | Provides recommendations |
 
-**This chapter focuses on Mode 1 (Direct Resource Creation)** - the primary way you'll interact with Azure MCP.
+**This chapter focuses on agent mode** - the primary way you'll create and manage Azure resources.
 
 ---
 
@@ -70,14 +65,14 @@ with [SECURITY_OPTIONS]
 
 #### Example
 
-**Activate Agent Mode**, then use this prompt:
+**Activate agent mode**, then use this prompt:
 ```
 Create a storage account named learnstg2024 in East US using Standard_LRS
 with blob public access disabled and HTTPS-only enabled.
 Add tags: environment=dev, chapter=02
 ```
 
-**What happens in Agent Mode**:
+**What happens in agent mode**:
 1. Generates infrastructure code (Bicep or CLI commands)
 2. Shows "Continue?" button for you to review
 3. After approval, executes commands in terminal
@@ -103,7 +98,7 @@ Configure for soft-delete and purge protection.
 Tags: environment=dev, chapter=02, project=onboarding
 ```
 
-**Agent Mode will**:
+**agent mode will**:
 1. Generate code → Show "Continue?" → Execute after approval
 2. Create resource group if needed
 3. Create Key Vault with specified configuration
@@ -123,7 +118,7 @@ List all storage accounts in my subscription where location is East US
 and show the name, SKU, and tags
 ```
 
-**Agent Mode will** query and return filtered results.
+**agent mode will** query and return filtered results.
 
 ---
 
@@ -138,7 +133,7 @@ If it doesn't exist, create it in East US with tags environment=dev, chapter=02.
 If it exists, tell me its current configuration.
 ```
 
-**Agent Mode will**:
+**agent mode will**:
 1. Generate code → Show "Continue?" → Execute after approval
 2. Query for the resource group
 3. Create it if missing, or return details if it exists
@@ -156,7 +151,7 @@ Create 5 storage accounts for our development team:
 - Tags: environment=dev, chapter=02, team=engineering
 ```
 
-**Agent Mode will**:
+**agent mode will**:
 1. Generate code → Show "Continue?" → Execute after approval
 2. Create the resource group if needed
 3. Create all 5 storage accounts
@@ -176,7 +171,7 @@ Update my existing web app demo-app-dw-20241019 with:
 - HTTPS only enforced
 ```
 
-**Agent Mode will**:
+**agent mode will**:
 1. Generate code → Show "Continue?" → Execute after approval
 2. Update the web app configuration
 3. Apply all settings and restart the app if needed
@@ -200,7 +195,7 @@ Before creating an AKS cluster in East US, verify:
 If any check fails, tell me how to fix it.
 ```
 
-**Agent Mode will**:
+**agent mode will**:
 1. Generate diagnostic queries → Show "Continue?" → Execute after approval
 2. Run all validation checks
 3. Report on quota availability and verify provider registration
@@ -215,7 +210,7 @@ and their dependencies on each other.
 Which resources depend on the storage account devstg01?
 ```
 
-**Agent Mode will**:
+**agent mode will**:
 1. Generate analysis queries → Show "Continue?" → Execute after approval
 2. List all resources in the group
 3. Identify dependencies and help you understand deletion order
@@ -240,7 +235,7 @@ Configure with:
 - Secure defaults (HTTPS, private access where possible)
 ```
 
-**Agent Mode will**:
+**agent mode will**:
 1. Generate infrastructure code → Show "Continue?" → Execute after approval
 2. Create all 4 resources in correct order
 3. Configure security settings and apply consistent tagging
@@ -259,7 +254,7 @@ Create an identical environment for Jane Doe:
 - Update developer tag to jane
 ```
 
-**Agent Mode will**:
+**agent mode will**:
 1. Generate replication code → Show "Continue?" → Execute after approval
 2. Replicate the environment structure
 3. Update names and tags appropriately
@@ -313,7 +308,7 @@ OR if you created specific resource groups:
 Delete resource groups: john-dev-rg, jane-dev-rg, dev-storage-rg, dev-team-rg
 ```
 
-**Agent Mode will**:
+**agent mode will**:
 1. Generate deletion commands → Show "Continue?" → Execute after approval
 2. Delete all specified resource groups
 3. Remove all contained resources

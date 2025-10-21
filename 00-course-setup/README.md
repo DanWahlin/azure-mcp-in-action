@@ -135,7 +135,7 @@ az group show --name azure-copilot-course-[your-initials]
 
 The GitHub Copilot for Azure extension provides:
 
-**Agent Mode Capabilities:**
+**agent mode Capabilities:**
 - Create and manage Azure resources with natural language
 - Deploy applications and infrastructure
 - Configure security and networking
@@ -143,7 +143,7 @@ The GitHub Copilot for Azure extension provides:
 - Automatic tool selection based on your prompts
 - Generate and execute Azure CLI commands, Bicep, and Terraform templates
 
-**Ask Mode Capabilities:**
+**ask mode Capabilities:**
 - Query Microsoft Learn documentation with `@azure`
 - Get architectural guidance and best practices
 - Compare Azure services and pricing
@@ -156,11 +156,14 @@ The GitHub Copilot for Azure extension provides:
 
 ### Verification
 
+1. Open GitHub Copilot in "Ask" mode (change the drop-down to "Ask" at the bottom of the chat panel if needed)
+2. Try this prompt:
+
 ```
-Open GitHub Copilot in "Ask" mode (change the drop-down to "Ask" at the bottom of the chat panel if needed)
-Try this prompt: "@azure list my subscriptions"
-Expected: You should see your Azure subscription details
+@azure list my subscriptions
 ```
+
+**Expected**: You should see your Azure subscription details
 
 ### How to Access Azure MCP
 
@@ -176,7 +179,7 @@ Throughout this course, you'll interact with Azure MCP through **GitHub Copilot 
 
 GitHub Copilot for Azure supports two modes, each optimized for different tasks:
 
-### Agent Mode (Primary)
+### agent mode (Primary)
 
 **When to use**: Creating, deploying, managing, or troubleshooting Azure resources
 
@@ -204,7 +207,7 @@ with blob public access disabled and HTTPS-only enabled
 
 ---
 
-### Ask Mode (For Learning)
+### ask mode (For Learning)
 
 **When to use**: Getting Azure guidance, comparing services, learning best practices
 
@@ -241,7 +244,7 @@ with blob public access disabled and HTTPS-only enabled
 
 ---
 
-### Understanding the Agent Mode Workflow
+### Understanding the agent mode Workflow
 
 **The complete workflow looks like this**:
 
@@ -270,9 +273,9 @@ Agent: Reports success, shows resource details
 
 ## Part 3: Understanding How GitHub Copilot for Azure Works
 
-### ⚠️ CRITICAL CONCEPT: How Agent Mode Creates Resources
+### ⚠️ CRITICAL CONCEPT: How agent mode Creates Resources
 
-GitHub Copilot for Azure in **Agent Mode** creates Azure resources through a **Generate → Approve → Execute** workflow. Here's what actually happens:
+GitHub Copilot for Azure in **agent mode** creates Azure resources through a **Generate → Approve → Execute** workflow. Here's what actually happens:
 
 1. **Generate**: Agent creates infrastructure-as-code (Bicep, Terraform, CLI commands)
 2. **Approve**: You review and click "Allow" buttons to approve actions
@@ -281,12 +284,12 @@ GitHub Copilot for Azure in **Agent Mode** creates Azure resources through a **G
 
 **This is powerful and requires understanding the approval workflow.**
 
-### The Agent Mode Workflow
+### The agent mode Workflow
 
 ```
 You: "Create an Azure storage account named mystorageacct in East US"
   ↓
-Agent (in Agent Mode): Analyzes request, generates Bicep template
+Agent (in agent mode): Analyzes request, generates Bicep template
   ↓
 Agent: Shows you the template and asks "Allow?"
   ↓
@@ -301,9 +304,9 @@ You: Verify in Azure Portal and Azure CLI
 Resources: Live and running in your subscription
 ```
 
-### What Agent Mode Can Do
+### What agent mode Can Do
 
-When you're in Agent Mode with "Azure" in your prompt, the agent can:
+When you're in agent mode with "Azure" in your prompt, the agent can:
 
 **Resource Management**
 ```
@@ -327,7 +330,7 @@ My web app returns 500 errors - help me troubleshoot
 Investigate high costs in my subscription
 ```
 
-**Learning and Questions** (Switch to Ask Mode with `@azure` for better results)
+**Learning and Questions** (Switch to ask mode with `@azure` for better results)
 ```
 @azure What's the difference between AKS and Container Apps?
 @azure How do I choose the right App Service tier?
@@ -358,7 +361,7 @@ az storage account show --name mystorageacct
 az resource list --resource-group my-resource-group --output table
 ```
 
-**Method 3: Agent Mode Query** (Quick Check)
+**Method 3: agent mode Query** (Quick Check)
 ```
 List all resources in resource group my-resource-group
 Show details of storage account mystorageacct
@@ -366,8 +369,8 @@ Show details of storage account mystorageacct
 
 ### Course Convention
 
-- **All Chapters**: Use Agent Mode for creating and managing resources
-- **All Chapters**: Use Ask Mode (with `@azure`) for learning and questions
+- **All Chapters**: Use agent mode for creating and managing resources
+- **All Chapters**: Use ask mode (with `@azure`) for learning and questions
 - Always verify resources after creation (Portal, CLI, or Agent queries)
 - Always review what an Azure MCP tool will do before clicking "Allow" in agent mode
 - Practice safe approval habits in every chapter
@@ -405,23 +408,21 @@ Model Context Protocol is an open standard for connecting AI systems to tools an
 
 ## Part 5: First Hands-On Exercise
 
-### Exercise 1: Practice Agent Mode with Queries
+### Exercise 1: Practice agent mode with Queries
 
 Let's start with safe query operations that don't create any resources.
 
-#### Step 1: Activate Agent Mode
+#### Step 1: Activate agent mode
 
-```
 1. Open GitHub Copilot Chat (`Cmd+Shift+I` or `Ctrl+Shift+I`)
 2. Click the mode dropdown at the bottom of the chat panel
 3. Select "Agent"
-```
 
 #### Step 2: Query Your Subscription
 
-```
-Use this prompt in Agent Mode:
+Use this prompt in agent mode:
 
+```
 List all resource groups in my Azure subscription
 ```
 
@@ -441,9 +442,9 @@ Both methods should show the same resources!
 
 ---
 
-### Exercise 2: Practice Additional Agent Mode Queries
+### Exercise 2: Practice Additional agent mode Queries
 
-Try these query prompts in Agent Mode:
+Try these query prompts in agent mode:
 
 ```
 List all storage accounts in my Azure subscription
@@ -462,16 +463,14 @@ What Azure App Services are running in East US?
 
 ---
 
-### Exercise 3: Practice Ask Mode
+### Exercise 3: Practice ask mode
 
-Now let's try Ask Mode for learning and guidance.
+Now let's try ask mode for learning and guidance.
 
-#### Step 1: Switch to Ask Mode
+#### Step 1: Switch to ask mode
 
-```
 1. In GitHub Copilot Chat, click the mode dropdown
 2. Select "Ask"
-```
 
 #### Step 2: Ask Questions with @azure
 
@@ -496,8 +495,8 @@ Now let's try Ask Mode for learning and guidance.
 - [ ] GitHub Copilot for Azure extension installed and authenticated
 - [ ] Azure CLI installed and logged in
 - [ ] Course resource group created with proper naming
-- [ ] Successfully used Agent Mode to query Azure resources
-- [ ] Successfully used Ask Mode with @azure to get guidance
+- [ ] Successfully used agent mode to query Azure resources
+- [ ] Successfully used ask mode with @azure to get guidance
 - [ ] Understand how to switch between Agent and Ask modes
 
 ---
@@ -505,9 +504,9 @@ Now let's try Ask Mode for learning and guidance.
 ## Key Takeaways
 
 1. **Cost Alerts**: Ensure that cost alerts are setup
-2. **Chat Modes**: Agent Mode for actions, Ask Mode for learning
+2. **Chat Modes**: agent mode for actions, ask mode for learning
 3. **Understand the Workflow**: Generate → Approve ("Allow") → Execute → Verify
-4. **Agent Mode Auto-Selects Tools**: Just use natural language with "Azure" context
+4. **agent mode Auto-Selects Tools**: Just use natural language with "Azure" context
 5. **Review Before Approving**: Always read what the agent will do before clicking "Allow"
 
 ---
@@ -516,5 +515,5 @@ Now let's try Ask Mode for learning and guidance.
 
 **[Chapter 1: Your First AI-Generated Deployment](../01-first-deployment/README.md)**
 
-Now that your environment is safe and secure, you'll deploy your first Azure resource using Agent Mode. You'll learn the complete Generate → Approve → Execute → Verify workflow.
+Now that your environment is safe and secure, you'll deploy your first Azure resource using agent mode. You'll learn the complete Generate → Approve → Execute → Verify workflow.
 

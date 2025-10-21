@@ -11,7 +11,7 @@ Master Azure deployments using GitHub Copilot for Azure and AI-assisted infrastr
 
 ## 🎯 What You'll Learn
 
-This course teaches you to deploy Azure infrastructure using **GitHub Copilot for Azure in Agent Mode**. Agent Mode **generates infrastructure code and executes deployment commands** through natural language prompts with approval gates - you review the code, approve execution, and verify results. You'll leverage AI to accelerate your Azure development from hours to minutes.
+This course teaches you to deploy Azure infrastructure using **GitHub Copilot for Azure in agent mode**. agent mode **generates infrastructure code and executes deployment commands** through natural language prompts with approval gates - you review the code, approve execution, and verify results. You'll leverage AI to accelerate your Azure development from hours to minutes.
 
 ### Real-World Projects You'll Deploy
 
@@ -26,8 +26,8 @@ By the end of this course, you'll have deployed:
 
 ### Core Skills
 
-- ✅ **Prompt Engineering for Infrastructure** - Create Azure resources through natural language with Agent Mode
-- ✅ **Agent Mode Mastery** - Generate, approve, execute, and verify deployments with AI assistance
+- ✅ **Prompt Engineering for Infrastructure** - Create Azure resources through natural language with agent mode
+- ✅ **agent mode Mastery** - Generate, approve, execute, and verify deployments with AI assistance
 - ✅ **Infrastructure-as-Code** - Bicep and Terraform template generation
 - ✅ **Container Orchestration** - Container Apps and AKS deployments
 - ✅ **Data Services** - SQL, Cosmos DB, Blob Storage, and BI platforms
@@ -44,8 +44,8 @@ Most Azure courses teach services in isolation. This course teaches **production
 ### AI-Assisted Learning
 
 - **Generate → Approve → Execute → Verify** workflow for rapid deployment
-- Agent Mode generates code and executes commands with approval checkpoints
-- Two interaction modes: Agent Mode (for actions), Ask Mode (for learning)
+- agent mode generates code and executes commands with approval checkpoints
+- Two interaction modes: agent mode (for actions), ask mode (for learning)
 - Accelerate learning by 10x with AI assistance
 - Focus on understanding, not memorization
 
@@ -204,7 +204,7 @@ You don't deploy "Hello World" apps. You deploy **production-grade platforms** u
 
 ### 2. AI-Assisted Workflow
 
-Every deployment uses GitHub Copilot Agent Mode:
+Every deployment uses GitHub Copilot agent mode:
 - **Generate and execute deployment code** with natural language prompts and approval gates
 - Query Azure state and documentation on-demand
 - Diagnose and troubleshoot issues with AI assistance

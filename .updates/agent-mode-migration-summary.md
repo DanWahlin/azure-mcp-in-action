@@ -1,4 +1,4 @@
-# Agent Mode Migration Summary
+# agent mode Migration Summary
 
 ## Completed Updates
 
@@ -6,7 +6,7 @@
 - ✅ **00-course-setup/README.md** - Chapter 0 fully updated
   - Part 2a: Two modes (Agent/Ask) with activation instructions
   - Part 3: Generate → Approve → Execute → Verify workflow
-  - Part 8: Exercises using Agent Mode
+  - Part 8: Exercises using agent mode
   - All references to tool-specific commands removed
 
 - ✅ **AGENTS.md** - AI agent guidance fully updated
@@ -23,17 +23,17 @@
 ### Chapter Files (Partially Complete)
 - ✅ **01-first-deployment/README.md** - Fully updated
   - Real-world scenario updated
-  - Part 2: Agent Mode activation instructions added
+  - Part 2: agent mode activation instructions added
   - Part 3: Workflow explanation updated
   - Success criteria and key takeaways updated
 
 - ✅ **02-cli-mastery/README.md** - Partially updated
-  - Pattern 1 example updated with Agent Mode workflow
+  - Pattern 1 example updated with agent mode workflow
   - Remaining: ~9 more "Azure MCP will" instances
 
 - ✅ **05-simple-web-app/README.md** - Partially updated
   - Real-world scenario updated
-  - Part 1: Ask Mode instructions added
+  - Part 1: ask mode instructions added
   - Remaining: ~6 "Azure MCP will" instances
 
 ## Remaining Updates Needed
@@ -50,7 +50,7 @@
 
 **NEW Pattern:**
 ```markdown
-**What happens in Agent Mode**:
+**What happens in agent mode**:
 1. Generates infrastructure code (Bicep or CLI commands)
 2. Shows "Continue?" button for you to review
 3. After approval, executes commands in terminal
@@ -60,7 +60,7 @@
 
 **OR Shorter Version:**
 ```markdown
-**Agent Mode will**:
+**agent mode will**:
 1. Generate code → Ask "Continue?" → Execute after approval
 2. Create the resource with your settings
 3. Return confirmation
@@ -106,12 +106,12 @@ grep -rn "#azure_generate_azure_cli_command" --include="*.md"
 
 | Old Term | New Term |
 |----------|----------|
-| "Azure MCP directly creates" | "Agent Mode generates code, you approve, agent executes commands that create" |
-| "Azure MCP will" | "Agent Mode will" or "What happens in Agent Mode" |
+| "Azure MCP directly creates" | "agent mode generates code, you approve, agent executes commands that create" |
+| "Azure MCP will" | "agent mode will" or "What happens in agent mode" |
 | "Three modes" | "Two modes" |
-| "Mode 1: Direct Resource Creation" | "Agent Mode" |
-| "Mode 2: Ask Questions" | "Ask Mode" |
-| "Mode 3: Generate Commands" | (Removed - not needed in Agent Mode) |
+| "Mode 1: Direct Resource Creation" | "agent mode" |
+| "Mode 2: Ask Questions" | "ask mode" |
+| "Mode 3: Generate Commands" | (Removed - not needed in agent mode) |
 | "Prompt → Create → Verify" | "Generate → Approve → Execute → Verify" |
 
 ## Instructions for Remaining Updates
@@ -119,18 +119,18 @@ grep -rn "#azure_generate_azure_cli_command" --include="*.md"
 For each file:
 
 1. Search for "Azure MCP will"
-2. Replace with Agent Mode workflow (see patterns above)
+2. Replace with agent mode workflow (see patterns above)
 3. Add mode activation instructions where missing
 4. Update any "directly creates" language
-5. Remove references to `#azure_generate_azure_cli_command` in Agent Mode sections
-6. Keep `@azure` only for Ask Mode examples
+5. Remove references to `#azure_generate_azure_cli_command` in agent mode sections
+6. Keep `@azure` only for ask mode examples
 
 ## Verification Checklist
 
 After updating each file, verify:
 - [ ] No mentions of "Azure MCP directly creates"
 - [ ] No "Azure MCP will" without clarification
-- [ ] Agent Mode activation instructions included
+- [ ] agent mode activation instructions included
 - [ ] Approval workflow ("Continue?" buttons) mentioned
 - [ ] Two modes clearly distinguished (Agent vs Ask)
-- [ ] No tool-specific commands in Agent Mode examples
+- [ ] No tool-specific commands in agent mode examples

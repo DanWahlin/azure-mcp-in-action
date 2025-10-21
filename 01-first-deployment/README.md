@@ -1,28 +1,22 @@
 # Chapter 1: Your First AI-Generated Azure Deployment
 
-**Title**: From Prompt to Production: Your First App Service
-**Focus**: Azure MCP direct resource creation with verification workflow
-**Prerequisites**: Completed [Course Setup](../00-course-setup/README.md)
+Welcome to your first hands-on Azure deployment using GitHub Copilot agent mode! In this chapter, you'll learn the fundamental **Generate → Approve → Execute → Verify** workflow that you'll use throughout the course. You'll start by querying your Azure subscription, then deploy a simple Node.js web app to Azure App Service using natural language prompts. Agent mode will generate the infrastructure code, ask for your approval with "Continue" buttons, execute the deployment commands, and you'll verify the results in both the Azure Portal and Azure CLI. This practical introduction shows how AI can accelerate your Azure development while maintaining full control through approval gates.
 
----
+## Prerequisites
 
-## Learning Objectives
+- Completed [Course Setup](../00-course-setup/README.md)
 
-- ✅ Use Azure MCP to query existing resources (read-only practice)
-- ✅ Understand Azure MCP's direct resource creation capabilities
-- ✅ Use Azure MCP to create your first Azure web app
+## 🎯 Learning Objectives
+
+By the end of this chapter, you'll be able to:
+
+- ✅ Practice querying Azure resources with agent mode
+- ✅ Understand the Generate → Approve → Execute workflow
+- ✅ Create your first Azure web app with agent mode
 - ✅ Verify deployment success in Azure Portal and Azure CLI
-- ✅ Learn command generation for educational purposes
-- ✅ Clean up resources using Azure MCP
+- ✅ Review generated code before approving execution
+- ✅ Clean up resources using agent mode
 - ✅ Understand cost implications before deployment
-
-## Real-World Scenario
-
-> Your team needs a quick demo environment for a client presentation tomorrow. Instead of spending hours reading Azure documentation, you'll use GitHub Copilot Agent Mode to generate and execute deployment commands through natural language prompts. You'll deploy a simple Node.js app to Azure App Service using the Free tier.
-
-## Why This Chapter Matters
-
-This chapter teaches the fundamental workflow you'll use throughout the course: **Generate → Approve → Execute → Verify**. You'll see how Agent Mode generates infrastructure code, asks for your approval, executes deployment commands, and then you verify the results in Azure Portal and Azure CLI. This pattern ensures you understand what's being created while leveraging AI to accelerate deployment.
 
 ---
 
@@ -39,42 +33,39 @@ Azure App Service (Node.js LTS)
 ```
 
 **Cost Estimate**: $0 (using Free tier)
-**Deployment Time**: ~5 minutes
-**Cleanup Time**: ~1 minute
 
 ---
 
-## Part 2: Practice Read-Only Queries (Safe Learning)
+## Part 2: Practice Querying Azure Resources
 
-Before creating resources, let's practice querying Azure safely:
+Before creating resources, let's practice querying your Azure subscription:
 
 ### Exercise: Query Existing Resources
 
-**Step 1: Activate Agent Mode**
-```
+**Step 1: Activate agent mode**
+
 1. Open GitHub Copilot Chat (Cmd+Shift+I or Ctrl+Shift+I)
 2. Select "Agent" from the mode dropdown at the bottom
-```
 
 **Step 2: Query Your Subscription**
-```
-Use these prompts in Agent Mode:
 
-List all resource groups in my subscription
+Use these prompts in agent mode:
+
+```
 Show all App Services in East US region
-What storage accounts exist in my subscription?
+What storage accounts exist in my Azure subscription?
 ```
 
-**What happens**: Agent Mode queries your subscription and returns results - no resources are created. Verify the results match what you see in Azure Portal.
+**What happens**: Agent mode queries your subscription and returns results - no resources are created. Verify the results match what you see in Azure Portal.
 
 ### Cost Validation (Ask Questions)
 
-**Step 1: Switch to Ask Mode**
-```
-1. In GitHub Copilot Chat, select "Ask" from the mode dropdown
-```
+**Step 1: Switch to ask mode**
+
+In GitHub Copilot Chat, select "Ask" from the mode dropdown
 
 **Step 2: Ask Questions with @azure**
+
 ```
 @azure What is the monthly cost of an F1 App Service plan?
 @azure How many free App Services can I have per subscription?
@@ -85,15 +76,13 @@ What storage accounts exist in my subscription?
 
 ---
 
-## Part 3: Create Resources with Agent Mode
+## Part 3: Create Resources with agent mode
 
-Now let's use Agent Mode to generate and execute deployment commands:
+Now let's use agent mode to generate and execute deployment commands:
 
-### Activate Agent Mode
+### Activate agent mode
 
-```
-1. In GitHub Copilot Chat, select "Agent" from the mode dropdown
-```
+In GitHub Copilot Chat, select "Agent" from the mode dropdown
 
 ### Prompt to Agent
 
@@ -109,7 +98,7 @@ Requirements:
 - Ensure all prerequisites are created in correct order
 ```
 
-### What Happens in Agent Mode
+### What Happens in agent mode
 
 The workflow will be:
 1. **Generate**: Agent generates infrastructure code (Bicep templates or Azure CLI commands)
@@ -156,7 +145,7 @@ az webapp show \
   --output table
 ```
 
-### Method 3: Azure MCP Query
+### Method 3: agent mode Query
 
 ```
 Show details of web app demo-app-dw-20241019
@@ -274,19 +263,19 @@ Use Azure MCP to complete these tasks:
 1. Create a Python 3.11 web app using the same workflow
 2. Use a different region (West US or your closest region)
 3. Deploy sample Python code from Azure samples
-4. Verify the deployment using all three methods (Portal, CLI, MCP query)
+4. Verify the deployment using all three methods (Portal, CLI, agent mode query)
 5. Calculate total deployment time
-6. Clean up all resources using Azure MCP
+6. Clean up all resources using agent mode
 
 ### Success Criteria
 
-- ✅ Activated Agent Mode in GitHub Copilot Chat
-- ✅ Used Agent Mode to generate and execute deployment commands
+- ✅ Activated agent mode in GitHub Copilot Chat
+- ✅ Used agent mode to generate and execute deployment commands
 - ✅ Reviewed code before clicking "Continue" buttons
 - ✅ Successfully deployed Python web app
 - ✅ App accessible via HTTPS URL
-- ✅ Verified deployment using Portal, CLI, and Agent queries
-- ✅ Cleaned up all resources using Agent Mode
+- ✅ Verified deployment using Portal, CLI, and agent mode queries
+- ✅ Cleaned up all resources using agent mode
 - ✅ Cost remained $0 (Free tier)
 - ✅ Understand the Generate → Approve → Execute → Verify workflow
 
@@ -294,10 +283,10 @@ Use Azure MCP to complete these tasks:
 
 ## Key Takeaways
 
-1. **Agent Mode Workflow**: Generate code → Approve with "Continue" → Execute commands → Verify results
-2. **Verification is Critical**: Always verify resources using Portal, Azure CLI, and Agent queries
+1. **Agent mode workflow**: Generate code → Approve with "Continue" → Execute commands → Verify results
+2. **Verification is Critical**: Always verify resources using Portal, Azure CLI, and agent mode queries
 3. **Review Before Approving**: Always read what the agent will do before clicking "Continue"
-4. **Two Modes for Different Tasks**: Agent Mode for actions, Ask Mode for learning
+4. **Two Modes for Different Tasks**: agent mode for actions, ask mode for learning
 5. **Free Tiers Exist**: Many Azure services have Free tiers for learning (F1 App Service is $0/month)
 6. **Cleanup is Mandatory**: Always delete resources after practicing to avoid charges
 

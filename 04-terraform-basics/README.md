@@ -1,12 +1,15 @@
 # Chapter 4: Terraform Basics with AI Assistance
 
-**Title**: AI-Generated Terraform for Multi-Cloud Readiness
-**Focus**: Terraform configuration generation
-**Prerequisites**: Chapters [0](../00-course-setup/README.md)-[3](../03-bicep-templates/README.md)
+Master AI-generated Terraform configurations for multi-cloud infrastructure deployments. In this chapter, you'll learn how to use agent mode to generate Terraform code, understand when to use Terraform versus Bicep, and manage infrastructure state across different cloud providers.
 
----
+## Prerequisites
 
-## Learning Objectives
+- Completed [Course Setup](../00-course-setup/README.md)
+- Completed [Chapter 1: First Deployment](../01-first-deployment/README.md)
+- Completed [Chapter 2: Advanced Prompt Patterns](../02-cli-mastery/README.md)
+- Completed [Chapter 3: Infrastructure-as-Code with Bicep](../03-bicep-templates/README.md)
+
+## 🎯 Learning Objectives
 
 - ✅ Understand Terraform vs Bicep vs Azure CLI
 - ✅ Generate Terraform configurations using Azure MCP
@@ -188,7 +191,7 @@ Delete all resource groups with tag managed_by=terraform
 List them first, then delete: terraform-demo-rg, terraform-dev-rg, terraform-staging-rg, terraform-prod-rg
 ```
 
-**Agent Mode will**:
+**agent mode will**:
 1. Generate deletion commands → Show "Continue?" → Execute after approval
 2. List all Terraform-managed resource groups
 3. Delete each resource group

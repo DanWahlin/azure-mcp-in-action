@@ -8,10 +8,10 @@ Educational course repository teaching Azure deployment via Azure MCP and AI-fir
 
 ## Core Principles
 
-1. **Generate → Approve → Execute → Verify**: GitHub Copilot Agent Mode generates infrastructure code, gets approval, executes commands, then students verify
+1. **Generate → Approve → Execute → Verify**: GitHub Copilot agent mode generates infrastructure code, gets approval, executes commands, then students verify
 2. **Cost-Aware**: Every deployment includes cost estimates and mandatory cleanup instructions
 3. **Real-World Projects**: Deploy production OSS apps (Ghost, n8n, Superset, Metabase, Supabase, Strapi), not toy examples
-4. **AI-First Interface**: Students use Agent Mode in GitHub Copilot for Azure to generate and execute deployment commands with approval gates
+4. **AI-First Interface**: Students use agent mode in GitHub Copilot for Azure to generate and execute deployment commands with approval gates
 5. **Portfolio-Driven**: Each chapter provides resume-worthy credentials
 
 ## Repository Structure
@@ -43,11 +43,11 @@ XX-chapter-name/
 **DO:**
 - Start every chapter with a real-world scenario ("Your team needs...")
 - Include cost estimates upfront (`$0` with cleanup vs `$35/month` if running)
-- Provide examples of both modes: Agent Mode (for actions), Ask Mode with `@azure` (for learning)
-- Add mandatory cleanup section with explicit Agent Mode prompts
+- Provide examples of both modes: agent mode (for actions), ask mode with `@azure` (for learning)
+- Add mandatory cleanup section with explicit agent mode prompts
 - Use three verification methods (Portal, CLI, Agent queries) after resource creation
 - Reference specific OSS projects when applicable (chapters 5-9)
-- Include instructions for activating Agent Mode (select from dropdown)
+- Include instructions for activating agent mode (select from dropdown)
 - Emphasize the approval workflow (review code before clicking "Continue")
 
 **DON'T:**
@@ -55,7 +55,7 @@ XX-chapter-name/
 - Use generic placeholders instead of specific examples (use `demo-app-dw-20241019` not `<app-name>`)
 - Assume deep Azure knowledge (explain service choices)
 - Skip cost transparency
-- Use tool-specific commands like `#azure_generate_azure_cli_command` in Agent Mode examples
+- Use tool-specific commands like `#azure_generate_azure_cli_command` in agent mode examples
 
 ### When Generating Azure Commands
 
@@ -77,7 +77,7 @@ XX-chapter-name/
 
 **Standard Verification Checklist:**
 ```
-✓ Agent Mode showed approval prompt before executing
+✓ agent mode showed approval prompt before executing
 ✓ Student reviewed code before clicking "Continue"
 ✓ Unique resource names (initials + date)
 ✓ Correct region specified
@@ -90,7 +90,7 @@ XX-chapter-name/
 
 ## GitHub Copilot Prompt Patterns
 
-### Agent Mode (Primary - 80% of use)
+### agent mode (Primary - 80% of use)
 
 **Activation**: Select "Agent" from the mode dropdown in GitHub Copilot Chat
 
@@ -121,7 +121,7 @@ Use resource group: [name] in [region]
 
 **Important**: Always include "Azure" in your prompt so the agent selects Azure tools.
 
-### Ask Mode (For Learning & Planning)
+### ask mode (For Learning & Planning)
 
 **Activation**: Select "Ask" from the mode dropdown in GitHub Copilot Chat
 
@@ -137,9 +137,9 @@ Consider: team size, complexity, cost, and management overhead.
 Which Azure storage service should I use and what tier?
 ```
 
-**Important**: Use `@azure` prefix in Ask Mode to scope questions to Azure.
+**Important**: Use `@azure` prefix in ask mode to scope questions to Azure.
 
-### Troubleshooting in Agent Mode
+### Troubleshooting in agent mode
 
 **Pattern**:
 ```
@@ -239,11 +239,11 @@ Include:
 - Cost estimate (monthly if running)
 - Time to deploy
 - Portfolio value statement
-- Step-by-step prompts using Agent Mode with natural language
+- Step-by-step prompts using agent mode with natural language
 
 ## Two GitHub Copilot Interaction Modes
 
-### Agent Mode (Primary - 80% of interactions)
+### agent mode (Primary - 80% of interactions)
 **Purpose**: Create, update, delete Azure resources; troubleshoot issues
 **Activation**: Select "Agent" from mode dropdown in Copilot Chat
 **How to use**: Natural language prompts with "Azure" in the text
@@ -260,7 +260,7 @@ with blob public access disabled and HTTPS-only enabled
 - After approval, executes terminal commands
 - Commands create actual Azure resources
 
-### Ask Mode (For Learning)
+### ask mode (For Learning)
 **Purpose**: Architecture questions, service selection, guidance, learning
 **Activation**: Select "Ask" from mode dropdown in Copilot Chat
 **How to use**: Use `@azure` prefix for Azure-scoped questions
@@ -279,8 +279,8 @@ Consider: team size, complexity, cost, and management overhead.
 ## Common Workflows
 
 ### Workflow 1: New Deployment
-1. Ask Mode (`@azure`): Get architecture advice and service selection guidance
-2. Agent Mode: Prompt with natural language to create resources
+1. ask mode (`@azure`): Get architecture advice and service selection guidance
+2. agent mode: Prompt with natural language to create resources
 3. Review: Check generated code when "Continue?" appears
 4. Approve: Click "Continue" to execute commands
 5. Execute: Agent runs terminal commands that create resources
@@ -288,16 +288,16 @@ Consider: team size, complexity, cost, and management overhead.
 7. Document: Note what was created and cleanup prompts
 
 ### Workflow 2: Troubleshooting
-1. Agent Mode: Describe the problem with natural language
+1. agent mode: Describe the problem with natural language
 2. Review: Agent analyzes and provides diagnostic findings
-3. Agent Mode: Prompt to apply fixes
+3. agent mode: Prompt to apply fixes
 4. Review: Check fix code when "Continue?" appears
 5. Approve: Click "Continue" to implement fixes
 6. Verify: Confirm resolution in Portal/CLI
-7. Agent Mode: Set up monitoring alerts to prevent recurrence
+7. agent mode: Set up monitoring alerts to prevent recurrence
 
 ### Workflow 3: Cleanup (CRITICAL)
-1. Agent Mode: Prompt to delete chapter resources
+1. agent mode: Prompt to delete chapter resources
 2. Review: Check deletion commands when "Continue?" appears
 3. Approve: Click "Continue" to execute deletions
 4. Verify: Check Azure Portal and CLI (all resources gone)
@@ -330,7 +330,7 @@ Dual notifications: Email + SMS
 
 ## Key Concepts to Reinforce
 
-1. **AI Acceleration**: Agent Mode generates and executes deployment code - learn 10x faster than manual work
+1. **AI Acceleration**: agent mode generates and executes deployment code - learn 10x faster than manual work
 2. **Generate → Approve → Execute → Verify**: Agent creates code, you approve, agent executes, you verify
 3. **Approval Gates**: Always review code before clicking "Continue" - you control what gets executed
 4. **Progressive Complexity**: Chapters 0-4 foundation → 5-9 real deployments → 10 capstone
@@ -341,8 +341,8 @@ Dual notifications: Email + SMS
 
 - `README.md`: Course overview, prerequisites, quick start
 - `00-course-setup/README.md`: **Start here** - billing protection critical
-- `01-first-deployment/README.md`: Core Generate→Approve→Execute→Verify pattern with Agent Mode
-- `02-cli-mastery/README.md`: Agent Mode prompt engineering techniques catalog
+- `01-first-deployment/README.md`: Core Generate→Approve→Execute→Verify pattern with agent mode
+- `02-cli-mastery/README.md`: agent mode prompt engineering techniques catalog
 - `05-09/README.md`: Real OSS deployments (Ghost, n8n, Superset, Metabase, Supabase, Strapi)
 
 ## When Students Ask For Help
@@ -350,16 +350,16 @@ Dual notifications: Email + SMS
 ### "How do I deploy X?"
 1. Determine chapter relevance (which OSS app or Azure service?)
 2. Guide to relevant chapter README
-3. Show appropriate Agent Mode prompt pattern
-4. Remind to activate Agent Mode (select from dropdown)
+3. Show appropriate agent mode prompt pattern
+4. Remind to activate agent mode (select from dropdown)
 5. Emphasize reviewing code before clicking "Continue"
 6. Remind about cleanup
 
 ### "My deployment failed"
-1. Use Agent Mode with natural language to diagnose the problem
+1. Use agent mode with natural language to diagnose the problem
 2. Check common issues: naming conflicts, quota limits, region availability
 3. Review verification checklist (was Azure Portal/CLI verification done?)
-4. Use Agent Mode to apply fixes (review code before approving)
+4. Use agent mode to apply fixes (review code before approving)
 5. Document issue for future students
 
 ### "How much will this cost?"
@@ -383,16 +383,16 @@ Dual notifications: Email + SMS
 ## Success Metrics
 
 Students should be able to:
-- ✅ Use Agent Mode to create and manage complex Azure infrastructure
+- ✅ Use agent mode to create and manage complex Azure infrastructure
 - ✅ Understand the Generate → Approve → Execute → Verify workflow
 - ✅ Review generated code before approving execution
-- ✅ Switch between Agent Mode and Ask Mode as needed
+- ✅ Switch between agent mode and ask mode as needed
 - ✅ Verify resources using three methods (Portal, CLI, Agent queries)
 - ✅ Deploy 6+ production OSS applications to Azure
-- ✅ Troubleshoot issues using Agent Mode with natural language
+- ✅ Troubleshoot issues using agent mode with natural language
 - ✅ Create portfolio-worthy infrastructure projects
 - ✅ Keep total course cost under $50 (with proper cleanup)
 
 ---
 
-**Remember**: This course teaches Azure through GitHub Copilot Agent Mode. Agent Mode **generates code and executes commands with approval gates** - it's not fully autonomous. Keep the "Generate → Approve → Execute → Verify" workflow central to all guidance, emphasizing that students review code before approving. Never sacrifice safety or cost awareness for speed.
+**Remember**: This course teaches Azure through GitHub Copilot agent mode. agent mode **generates code and executes commands with approval gates** - it's not fully autonomous. Keep the "Generate → Approve → Execute → Verify" workflow central to all guidance, emphasizing that students review code before approving. Never sacrifice safety or cost awareness for speed.

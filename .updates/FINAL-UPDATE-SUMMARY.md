@@ -2,7 +2,7 @@
 
 ## ✅ All Updates Completed Successfully
 
-All course materials have been successfully updated to reflect the correct GitHub Copilot Agent Mode workflow.
+All course materials have been successfully updated to reflect the correct GitHub Copilot agent mode workflow.
 
 ---
 
@@ -45,12 +45,12 @@ All course materials have been successfully updated to reflect the correct GitHu
 
 | Old Term | New Term |
 |----------|----------|
-| Azure MCP directly creates | Agent Mode generates → you approve → agent executes |
+| Azure MCP directly creates | agent mode generates → you approve → agent executes |
 | Three modes | Two modes (Agent and Ask) |
-| Mode 1: Direct Resource Creation | Agent Mode |
-| Mode 2: Ask Questions | Ask Mode (with @azure) |
+| Mode 1: Direct Resource Creation | agent mode |
+| Mode 2: Ask Questions | ask mode (with @azure) |
 | Mode 3: Generate Commands | Removed (not needed) |
-| Azure MCP will | Agent Mode will |
+| Azure MCP will | agent mode will |
 | Prompt → Create → Verify | Generate → Approve → Execute → Verify |
 
 ---
@@ -60,7 +60,7 @@ All course materials have been successfully updated to reflect the correct GitHu
 ### Chapter 0: Course Setup
 - ✅ Removed all time estimates (9 instances)
 - ✅ Rewrote Part 2a: Three modes → Two modes
-- ✅ Added Agent/Ask Mode activation instructions
+- ✅ Added Agent/ask mode activation instructions
 - ✅ Updated Part 3 with approval workflow
 - ✅ Rewrote Part 8 exercises
 - ✅ Updated success criteria and key takeaways
@@ -79,7 +79,7 @@ All course materials have been successfully updated to reflect the correct GitHu
 
 ### Chapter 5: Simple Web App
 - ✅ Updated deployment workflows (6 instances)
-- ✅ Added Ask Mode instructions
+- ✅ Added ask mode instructions
 
 ### Chapter 6: Containerized Apps
 - ✅ Updated all deployment steps (5 instances)
@@ -113,7 +113,7 @@ All course materials have been successfully updated to reflect the correct GitHu
 
 **After:**
 ```markdown
-**Agent Mode will**:
+**agent mode will**:
 1. Generate infrastructure code → Show "Continue?" → Execute after approval
 2. Create the resource with your settings
 3. Configure settings and return confirmation
@@ -139,18 +139,18 @@ grep -r "directly creates" --include="*.md" -i
 
 ## Course Now Accurately Reflects
 
-1. ✅ **Agent Mode** is the primary mode for actions
-2. ✅ **Ask Mode** (with `@azure`) is for learning
+1. ✅ **agent mode** is the primary mode for actions
+2. ✅ **ask mode** (with `@azure`) is for learning
 3. ✅ **Approval gates** ("Continue" buttons) are required
 4. ✅ **Generate → Approve → Execute → Verify** workflow
 5. ✅ Users review code before execution
-6. ✅ No tool-specific commands needed in Agent Mode
+6. ✅ No tool-specific commands needed in agent mode
 7. ✅ Natural language with "Azure" context automatically selects tools
 
 ---
 
 ## Migration Complete
 
-All course materials now accurately reflect how GitHub Copilot for Azure Agent Mode actually works, based on official Microsoft documentation research completed on 2025-10-20.
+All course materials now accurately reflect how GitHub Copilot for Azure agent mode actually works, based on official Microsoft documentation research completed on 2025-10-20.
 
 The course is ready for students to learn the correct workflow with proper expectations about approval gates and the code review process.

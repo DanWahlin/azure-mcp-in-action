@@ -1,12 +1,21 @@
 # Chapter 10: Production-Ready Deployment (Capstone)
 
-**Title**: Complete Production Deployment with All Best Practices
-**Focus**: Combining all course knowledge into production system
-**Prerequisites**: Chapters [0](../00-course-setup/README.md)-[9](../09-multi-service-architecture/README.md)
+Apply everything you've learned to deploy a complete production-ready SaaS application with all best practices. In this capstone project, you'll combine all course knowledge to build a multi-tenant application with enterprise-grade security, comprehensive monitoring, disaster recovery, CI/CD pipelines, and cost optimization.
 
----
+## Prerequisites
 
-## Learning Objectives
+- Completed [Course Setup](../00-course-setup/README.md)
+- Completed [Chapter 1: First Deployment](../01-first-deployment/README.md)
+- Completed [Chapter 2: Advanced Prompt Patterns](../02-cli-mastery/README.md)
+- Completed [Chapter 3: Infrastructure-as-Code with Bicep](../03-bicep-templates/README.md)
+- Completed [Chapter 4: Terraform Basics](../04-terraform-basics/README.md)
+- Completed [Chapter 5: Production Web Application](../05-simple-web-app/README.md)
+- Completed [Chapter 6: Containerized Applications](../06-containerized-apps/README.md)
+- Completed [Chapter 7: Data Storage Solutions](../07-data-storage/README.md)
+- Completed [Chapter 8: Diagnostics and Troubleshooting](../08-diagnostics-troubleshooting/README.md)
+- Completed [Chapter 9: Multi-Service Architecture](../09-multi-service-architecture/README.md)
+
+## 🎯 Learning Objectives
 
 - ✅ Deploy production-ready multi-tier application
 - ✅ Implement all security best practices
@@ -95,7 +104,7 @@ Resource group: saas-app-prod-rg in East US 2
 Tags: chapter=10, project=capstone, environment=production
 ```
 
-**Agent Mode will**:
+**agent mode will**:
 1. Generate infrastructure code → Show "Continue?" → Execute after approval
 2. Create complete production infrastructure
 3. Configure all networking and security
@@ -210,7 +219,7 @@ Harden security for production:
 Implement all recommendations for saas-app-prod-rg
 ```
 
-**Agent Mode will**:
+**agent mode will**:
 1. Generate security configuration code → Show "Continue?" → Execute after approval
 2. Configure all security hardening measures
 3. Apply least-privilege security policies
@@ -295,7 +304,7 @@ Scale down saas-app-prod-rg resources to minimal tiers:
 Target cost: $20-30/month for portfolio showcase
 ```
 
-**Agent Mode will** generate downgrade commands → ask "Continue?" → downgrade all resources to minimal tiers while keeping the application functional.
+**agent mode will** generate downgrade commands → ask "Continue?" → downgrade all resources to minimal tiers while keeping the application functional.
 
 #### Option B: Complete Deletion
 
@@ -309,7 +318,7 @@ BEFORE deleting, help me:
 Then delete all resources in saas-app-prod-rg and saas-app-dr-rg
 ```
 
-**Agent Mode will**:
+**agent mode will**:
 1. Generate deletion plan → Show "Continue?" → Execute after approval
 2. Guide you through data export
 3. Help document what to preserve

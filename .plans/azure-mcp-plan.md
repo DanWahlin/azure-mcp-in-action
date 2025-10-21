@@ -287,7 +287,7 @@ Expected: You should see your Azure subscription details
 
 ---
 
-**Part 3: Understanding Agent Mode vs Ask Mode**
+**Part 3: Understanding agent mode vs ask mode**
 
 **⚠️ CRITICAL CONCEPT**: How GitHub Copilot for Azure Actually Works
 
@@ -306,7 +306,7 @@ You: Execute commands manually (with --dry-run first)
 Azure: Creates resources based on your executed commands
 ```
 
-**Agent Mode** - For generating infrastructure code:
+**agent mode** - For generating infrastructure code:
 ```
 Examples:
 #azure_generate_azure_cli_command Create storage account in East US
@@ -315,7 +315,7 @@ Examples:
 ```
 **When to use**: Generating commands, templates, diagnostics
 
-**Ask Mode** - For learning and questions:
+**ask mode** - For learning and questions:
 ```
 Examples:
 @azure What's the difference between AKS and Container Apps?
@@ -326,15 +326,15 @@ Examples:
 
 **Decision Tree**:
 ```
-Do I need executable code? → Use Agent Mode (#azure_generate_azure_cli_command)
-Am I asking a question? → Use Ask Mode (@azure)
-Do I need troubleshooting? → Use Agent Mode (#azure_diagnose_resource)
-Do I need documentation? → Use Agent Mode (#azure_query_learn)
+Do I need executable code? → Use agent mode (#azure_generate_azure_cli_command)
+Am I asking a question? → Use ask mode (@azure)
+Do I need troubleshooting? → Use agent mode (#azure_diagnose_resource)
+Do I need documentation? → Use agent mode (#azure_query_learn)
 ```
 
 **Course Convention**:
-- All hands-on examples use **Agent Mode** tools
-- Questions and explanations use **Ask Mode**
+- All hands-on examples use **agent mode** tools
+- Questions and explanations use **ask mode**
 - Every prompt shows which mode to use
 - Practice both modes in every chapter
 
@@ -348,7 +348,7 @@ Model Context Protocol is an open standard for connecting AI systems to tools an
 
 **MCP in GitHub Copilot for Azure**:
 - GitHub Copilot for Azure implements MCP under the hood
-- You interact through Agent Mode tools (e.g., `#azure_generate_azure_cli_command`)
+- You interact through agent mode tools (e.g., `#azure_generate_azure_cli_command`)
 - MCP handles the communication between Copilot and Azure APIs
 - This abstraction makes Azure expertise accessible through natural language
 
@@ -551,7 +551,7 @@ terraform version
 
 **Exercise: Generate Your First Azure CLI Command**
 
-**Step 1: Use Agent Mode to Generate a Command**
+**Step 1: Use agent mode to Generate a Command**
 ```
 Open GitHub Copilot Chat
 Use this prompt:
@@ -583,9 +583,9 @@ az group list --output table
 # (the one you created earlier for the course)
 ```
 
-**Step 4: Try Ask Mode**
+**Step 4: Try ask mode**
 ```
-Switch to Ask Mode in GitHub Copilot Chat:
+Switch to ask mode in GitHub Copilot Chat:
 
 @azure What is the difference between a resource group and a subscription?
 ```
@@ -616,8 +616,8 @@ Switch to Ask Mode in GitHub Copilot Chat:
 5. Enable Azure Advisor recommendations for your subscription
 
 **Success Criteria**:
-- ✅ Can generate Azure CLI commands using Agent Mode
-- ✅ Can ask questions using Ask Mode
+- ✅ Can generate Azure CLI commands using agent mode
+- ✅ Can ask questions using ask mode
 - ✅ Have cost protection in place (will receive alerts before overspending)
 - ✅ Have security defaults configured
 - ✅ Have cleanup scripts ready to use
@@ -653,7 +653,7 @@ Switch to Ask Mode in GitHub Copilot Chat:
 
 1. **Safety First**: Cost alerts and cleanup scripts aren't optional
 2. **Understand the Workflow**: AI generates → You validate → You execute
-3. **Agent Mode vs Ask Mode**: Know when to use each
+3. **agent mode vs ask mode**: Know when to use each
 4. **Tags Are Your Friend**: Every resource needs proper tags
 5. **Security by Default**: Use managed identities, private endpoints, HTTPS
 6. **Test Cleanup Scripts**: Practice deleting resources safely
@@ -717,7 +717,7 @@ Azure App Service (Node.js 18)
 
 **Part 2: Generating Azure CLI Commands**
 
-**Prompt (Agent Mode)**:
+**Prompt (agent mode)**:
 ```
 #azure_generate_azure_cli_command
 Create a resource group named learning-rg-[YOUR-INITIALS] in East US,
@@ -765,7 +765,7 @@ az webapp create \
 - [ ] Tags are included for tracking
 - [ ] No dangerous flags (--force, --yes without confirmation)
 
-**Cost Validation (Ask Mode)**:
+**Cost Validation (ask mode)**:
 ```
 @azure What is the monthly cost of an F1 App Service plan?
 Expected answer: $0/month (Free tier)
@@ -827,7 +827,7 @@ az webapp show \
 
 **Part 6: Deploy Sample Application**
 
-**Generate Deployment Command (Agent Mode)**:
+**Generate Deployment Command (agent mode)**:
 ```
 #azure_generate_azure_cli_command
 Deploy sample Node.js Hello World app from Azure samples GitHub repo
@@ -863,7 +863,7 @@ az webapp log tail \
 
 **Part 8: Cleanup (CRITICAL)**
 
-**Generate Cleanup Command (Agent Mode)**:
+**Generate Cleanup Command (agent mode)**:
 ```
 #azure_generate_azure_cli_command
 Delete all resources in resource group learning-rg-dw
@@ -1071,7 +1071,7 @@ This chapter had you create multiple resources for practicing prompt patterns. C
 
 **Method 1: Use Azure MCP Prompt (RECOMMENDED)**
 
-**Generate Cleanup Commands (Agent Mode)**:
+**Generate Cleanup Commands (agent mode)**:
 ```
 #azure_generate_azure_cli_command
 Delete all resources tagged with chapter=02 in my subscription
@@ -1161,7 +1161,7 @@ az consumption usage list --start-date $(date -d "7 days ago" +%Y-%m-%d)
 
 **Part 2: Generating Your First Bicep Template**
 
-**Prompt (Agent Mode)**:
+**Prompt (agent mode)**:
 ```
 Generate a Bicep template that creates:
 - App Service plan (B1 SKU)
@@ -1274,7 +1274,7 @@ az deployment group list \
 
 This chapter had you deploy resources using Bicep templates. The resources need to be deleted, but **keep your Bicep template files** for future reference.
 
-**Generate Cleanup Commands (Agent Mode)**:
+**Generate Cleanup Commands (agent mode)**:
 ```
 #azure_generate_azure_cli_command
 Delete all resource groups created in Chapter 3: bicep-demo-rg
@@ -1363,7 +1363,7 @@ az resource list --tag chapter=03 --output table
 
 **Part 2: Generating Terraform Configurations**
 
-**Prompt (Agent Mode)**:
+**Prompt (agent mode)**:
 ```
 Generate Terraform configuration for Azure that creates:
 - Resource group in East US
@@ -1567,7 +1567,7 @@ az group list --output table | grep terraform
 
 **Part 1: Architecture Planning**
 
-**Ask Mode for Architecture Guidance**:
+**ask mode for Architecture Guidance**:
 ```
 @azure I need to deploy a Node.js API that:
 - Handles 10,000 req/day
@@ -1581,7 +1581,7 @@ What Azure services should I use and why?
 
 **Part 2: Generate Complete Deployment**
 
-**Prompt (Agent Mode)**:
+**Prompt (agent mode)**:
 ```
 #azure_generate_azure_cli_command
 Deploy a production-ready Node.js API with:
@@ -1779,7 +1779,7 @@ This chapter deployed a production-ready web application with multiple services.
 
 **Method 1: Use Azure MCP Prompt (RECOMMENDED)**
 
-**Generate Cleanup Commands (Agent Mode)**:
+**Generate Cleanup Commands (agent mode)**:
 ```
 #azure_generate_azure_cli_command
 Delete all resources in resource group ecommerce-api-rg including:
@@ -1905,7 +1905,7 @@ az consumption usage list --start-date $(date -d "today" +%Y-%m-%d)
 
 **Part 1: Understanding Container Apps vs AKS**
 
-**Ask Mode**:
+**ask mode**:
 ```
 @azure When should I use Azure Container Apps vs AKS?
 Consider: team size, complexity, cost, and management overhead.
@@ -2297,7 +2297,7 @@ Container Apps environments can cost $30+/month if left running. Clean up immedi
 
 **Method 1: Use Azure MCP Prompt (RECOMMENDED)**
 
-**Generate Cleanup Commands (Agent Mode)**:
+**Generate Cleanup Commands (agent mode)**:
 ```
 #azure_generate_azure_cli_command
 Delete all resources in resource group containerapp-demo-rg including:
@@ -2388,7 +2388,7 @@ az consumption usage list --start-date $(date -d "today" +%Y-%m-%d)
 
 **Part 1: Storage Decision Matrix**
 
-**Ask Mode**:
+**ask mode**:
 ```
 @azure Help me choose Azure storage for:
 1. User accounts (ACID transactions required)
@@ -2586,7 +2586,7 @@ az group delete --name metabase-bi-rg --yes --no-wait
 
 **Method 1: Use Azure MCP Prompt (RECOMMENDED)**
 
-**Generate Cleanup Commands (Agent Mode)**:
+**Generate Cleanup Commands (agent mode)**:
 ```
 #azure_generate_azure_cli_command
 Delete all resources in resource group storage-demo-rg including:
@@ -2809,7 +2809,7 @@ This chapter had you create test resources for diagnostics practice. Clean them 
 
 **Method 1: Use Azure MCP Prompt (RECOMMENDED)**
 
-**Generate Cleanup Commands (Agent Mode)**:
+**Generate Cleanup Commands (agent mode)**:
 ```
 #azure_generate_azure_cli_command
 Delete all resources created in Chapter 8 for diagnostics testing:
@@ -2920,7 +2920,7 @@ az webapp list --query "[?name=='slowapp']" -o table
 
 **Part 1: Architecture Planning**
 
-**Ask Mode**:
+**ask mode**:
 ```
 @azure Help me design architecture for video streaming platform with:
 - Frontend: React SPA (1M users/month)
@@ -3379,7 +3379,7 @@ az group delete --name strapi-cms-rg --yes --no-wait
 
 **Method 1: Use Azure MCP Prompt (RECOMMENDED)**
 
-**Generate Cleanup Commands (Agent Mode)**:
+**Generate Cleanup Commands (agent mode)**:
 ```
 #azure_generate_azure_cli_command
 Delete all resources in resource group streaming-platform-rg including:
@@ -3554,7 +3554,7 @@ Deploy a complete SaaS application with:
 
 **Part 1: Requirements Analysis**
 
-**Ask Mode - Architecture Planning**:
+**ask mode - Architecture Planning**:
 ```
 @azure Help me architect a SaaS application with these requirements:
 
@@ -3823,7 +3823,7 @@ Keep application running but minimize costs to $0-20/month
 
 **Method 1: Use Azure MCP Prompt (RECOMMENDED)**
 
-**Generate Cleanup Commands (Agent Mode)**:
+**Generate Cleanup Commands (agent mode)**:
 ```
 #azure_generate_azure_cli_command
 Delete all resources in resource group saas-production-rg including:
@@ -4111,8 +4111,8 @@ You've completed the Azure Infrastructure with AI Assistance course. You now hav
 **Required Sections**:
 
 1. **GitHub Copilot for Azure Terms** (25+ entries)
-   - Agent Mode
-   - Ask Mode
+   - agent mode
+   - ask mode
    - `#azure_generate_azure_cli_command`
    - `#azure_query_learn`
    - `#azure_diagnose_resource`
@@ -4218,13 +4218,13 @@ You've completed the Azure Infrastructure with AI Assistance course. You now hav
 
 **Example Entry**:
 ```markdown
-### Agent Mode
+### agent mode
 
 **Definition**: A mode in GitHub Copilot for Azure where specialized tools automatically assist with Azure-related tasks by generating executable code, querying documentation, or diagnosing resources.
 
 **Why it matters**: Agent mode is how you generate Azure CLI commands, Bicep templates, and Terraform configurations. Understanding when to use agent mode vs ask mode is fundamental to the course workflow.
 
-**Tools in Agent Mode**:
+**Tools in agent mode**:
 - `#azure_generate_azure_cli_command` - Generate Azure CLI commands
 - `#azure_query_learn` - Query Microsoft Learn documentation
 - `#azure_diagnose_resource` - Troubleshoot Azure resources
@@ -4235,10 +4235,10 @@ Create a storage account named mystorageacct in East US using Standard_LRS
 with blob public access disabled and HTTPS-only enabled
 
 
-**Related concepts**: [Ask Mode](#ask-mode), [MCP](#model-context-protocol), [Prompt Engineering](#prompt-engineering)
+**Related concepts**: [ask mode](#ask-mode), [MCP](#model-context-protocol), [Prompt Engineering](#prompt-engineering)
 
 **Used in**:
-- Chapter 0: Part 3 - Understanding Agent Mode vs Ask Mode
+- Chapter 0: Part 3 - Understanding agent mode vs ask mode
 - Chapter 1: Generating Your First Azure CLI Command
 - All subsequent chapters for code generation
 

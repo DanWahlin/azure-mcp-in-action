@@ -1,12 +1,16 @@
-# Chapter 5: Simple Web Application Deployment (Ghost CMS)
+# Chapter 5: Production Web Application Deployment (Ghost CMS)
 
-**Title**: End-to-End Web App Deployment with AI Assistance
-**Focus**: Complete deployment workflow for production-ready app
-**Prerequisites**: Chapters [0](../00-course-setup/README.md)-[4](../04-terraform-basics/README.md)
+Deploy a complete production-ready web application with custom domains, SSL, monitoring, and auto-scaling. In this chapter, you'll move beyond Hello World and deploy Ghost CMS (a real-world Node.js application) with all the infrastructure needed for production use, including database, storage, and deployment slots.
 
----
+## Prerequisites
 
-## Learning Objectives
+- Completed [Course Setup](../00-course-setup/README.md)
+- Completed [Chapter 1: First Deployment](../01-first-deployment/README.md)
+- Completed [Chapter 2: Advanced Prompt Patterns](../02-cli-mastery/README.md)
+- Completed [Chapter 3: Infrastructure-as-Code with Bicep](../03-bicep-templates/README.md)
+- Completed [Chapter 4: Terraform Basics](../04-terraform-basics/README.md)
+
+## 🎯 Learning Objectives
 
 - ✅ Deploy a complete web application (not just Hello World)
 - ✅ Configure custom domains and SSL
@@ -17,18 +21,17 @@
 
 ## Real-World Scenario
 
-> Your team built a Node.js e-commerce API that needs to handle 10,000 requests/day. You need to deploy it to Azure with proper monitoring, auto-scaling, and zero-downtime deployments. You'll use GitHub Copilot Agent Mode to generate and execute deployment commands for all the necessary infrastructure.
+> Your team built a Node.js e-commerce API that needs to handle 10,000 requests/day. You need to deploy it to Azure with proper monitoring, auto-scaling, and zero-downtime deployments. You'll use GitHub Copilot agent mode to generate and execute deployment commands for all the necessary infrastructure.
 
 ---
 
 ## Part 1: Architecture Planning
 
-### Ask for Guidance with Ask Mode
+### Ask for Guidance with ask mode
 
-**Step 1: Switch to Ask Mode**
-```
-1. In GitHub Copilot Chat, select "Ask" from the mode dropdown
-```
+**Step 1: Switch to ask mode**
+
+In GitHub Copilot Chat, select "Ask" from the mode dropdown
 
 **Step 2: Ask with @azure**
 ```
@@ -42,7 +45,7 @@
 What Azure services should I use and why?
 ```
 
-**What happens**: Ask Mode provides architectural recommendations with reasoning - no code generation or execution.
+**What happens**: ask mode provides architectural recommendations with reasoning - no code generation or execution.
 
 ---
 
@@ -65,7 +68,7 @@ Resource group: ecommerce-api-rg in East US
 Tags: environment=production, project=ecommerce, chapter=05
 ```
 
-**Agent Mode will**:
+**agent mode will**:
 1. Generate infrastructure code → Show "Continue?" → Execute after approval
 2. Create all resources in the correct order
 3. Configure dependencies automatically
@@ -95,7 +98,7 @@ Configure Application Insights alerts for my App Service [APP-NAME]:
 Send alerts to: alerts@company.com
 ```
 
-**Agent Mode will**:
+**agent mode will**:
 1. Generate configuration code → Show "Continue?" → Execute after approval
 2. Create alert rules in Application Insights
 3. Configure action groups for email notifications
@@ -164,7 +167,7 @@ Deploy Ghost CMS to Azure with:
 - Tags: project=ghost, chapter=05, environment=production
 ```
 
-**Agent Mode will**:
+**agent mode will**:
 1. Generate infrastructure code → Show "Continue?" → Execute after approval
 2. Create all infrastructure resources
 3. Configure MySQL database with Ghost schema
@@ -186,7 +189,7 @@ Configure app settings for ghost-app-[MYINITIALS]:
 - url=https://ghost-app-[MYINITIALS].azurewebsites.net
 ```
 
-**Agent Mode will** generate config updates → ask "Continue?" → execute to update the App Service configuration with all Ghost settings.
+**agent mode will** generate config updates → ask "Continue?" → execute to update the App Service configuration with all Ghost settings.
 
 #### Step 3: Deploy Ghost Container
 
@@ -198,7 +201,7 @@ Deploy Ghost 5 to App Service ghost-app-[MYINITIALS]:
 - Enable continuous deployment
 ```
 
-**Agent Mode will** generate deployment config → ask "Continue?" → execute to configure the App Service to run the Ghost container.
+**agent mode will** generate deployment config → ask "Continue?" → execute to configure the App Service to run the Ghost container.
 
 #### Step 4: Configure Custom Domain (Optional)
 
@@ -287,7 +290,7 @@ Show all resources in ecommerce-api-rg
 Delete resource groups: ghost-rg-[MYINITIALS], ecommerce-api-rg
 ```
 
-**Agent Mode will**:
+**agent mode will**:
 1. Generate deletion commands → Show "Continue?" → Execute after approval
 2. Delete all resource groups
 3. Remove all contained resources (App Service, databases, storage)

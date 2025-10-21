@@ -1,12 +1,18 @@
 # Chapter 7: Data Storage Solutions (Metabase)
 
-**Title**: Databases, Blob Storage, and Data Management with BI Platform
-**Focus**: Choosing and deploying Azure data services
-**Prerequisites**: Chapters [0](../00-course-setup/README.md)-[6](../06-containerized-apps/README.md)
+Master Azure data storage by deploying Metabase, a business intelligence platform that requires multiple storage types. In this chapter, you'll learn to choose and configure the right Azure storage services (SQL Database, Cosmos DB, Blob Storage) for different data needs, implementing backup strategies and cost optimization.
 
----
+## Prerequisites
 
-## Learning Objectives
+- Completed [Course Setup](../00-course-setup/README.md)
+- Completed [Chapter 1: First Deployment](../01-first-deployment/README.md)
+- Completed [Chapter 2: Advanced Prompt Patterns](../02-cli-mastery/README.md)
+- Completed [Chapter 3: Infrastructure-as-Code with Bicep](../03-bicep-templates/README.md)
+- Completed [Chapter 4: Terraform Basics](../04-terraform-basics/README.md)
+- Completed [Chapter 5: Production Web Application](../05-simple-web-app/README.md)
+- Completed [Chapter 6: Containerized Applications](../06-containerized-apps/README.md)
+
+## 🎯 Learning Objectives
 
 - ✅ Choose appropriate Azure storage service for use case
 - ✅ Deploy and configure Azure SQL Database
@@ -55,7 +61,7 @@ Resource group: storage-demo-rg in East US
 Tags: chapter=07, project=storage-demo
 ```
 
-**Agent Mode will**:
+**agent mode will**:
 1. Generate infrastructure code → Show "Continue?" → Execute after approval
 2. Create all storage resources in the correct order
 3. Configure backup policies for databases
@@ -124,7 +130,7 @@ Deploy Metabase BI platform:
 - Tag resources with chapter=07 project=metabase
 ```
 
-**Agent Mode will**:
+**agent mode will**:
 1. Generate infrastructure code → Show "Continue?" → Execute after approval
 2. Create App Service and App Service Plan
 3. Create PostgreSQL Flexible Server with database
@@ -149,7 +155,7 @@ Configure App Service metabase-app-[MYINITIALS] for Metabase:
 - Enable HTTPS only
 ```
 
-**Agent Mode will**:
+**agent mode will**:
 1. Generate configuration code → Show "Continue?" → Execute after approval
 2. Configure App Service to run Metabase container
 3. Set all environment variables
@@ -223,7 +229,7 @@ Check: firewall rules, connection strings, SSL requirements
 Diagnose connectivity issues
 ```
 
-**Agent Mode will** generate diagnostic queries → ask "Continue?" → analyze firewall rules, connection strings, and provide diagnostic steps.
+**agent mode will** generate diagnostic queries → ask "Continue?" → analyze firewall rules, connection strings, and provide diagnostic steps.
 
 ---
 
@@ -247,7 +253,7 @@ Use Azure MCP and Metabase to:
 Delete resource group metabase-bi-rg and all resources inside it
 ```
 
-**Agent Mode will** generate deletion commands → ask "Continue?" → delete Metabase App Service, PostgreSQL, and all related resources.
+**agent mode will** generate deletion commands → ask "Continue?" → delete Metabase App Service, PostgreSQL, and all related resources.
 
 **Manual alternative**:
 ```bash

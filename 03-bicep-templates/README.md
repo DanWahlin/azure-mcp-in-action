@@ -1,12 +1,14 @@
 # Chapter 3: Infrastructure-as-Code with Bicep
 
-**Title**: AI-Generated Bicep Templates for Reproducible Deployments
-**Focus**: Bicep template generation using Azure MCP
-**Prerequisites**: Chapters [0](../00-course-setup/README.md)-[2](../02-cli-mastery/README.md)
+Learn how to use agent mode to generate Bicep templates for reproducible, multi-environment Azure deployments. In this chapter, you'll master AI-generated infrastructure-as-code, creating reusable templates that can deploy identical environments across multiple regions with just parameter changes.
 
----
+## Prerequisites
 
-## Learning Objectives
+- Completed [Course Setup](../00-course-setup/README.md)
+- Completed [Chapter 1: First Deployment](../01-first-deployment/README.md)
+- Completed [Chapter 2: Advanced Prompt Patterns](../02-cli-mastery/README.md)
+
+## 🎯 Learning Objectives
 
 - ✅ Understand Bicep vs Azure CLI commands
 - ✅ Generate Bicep templates using Azure MCP
@@ -170,7 +172,7 @@ List all resources tagged with chapter=03
 Delete all resources tagged with chapter=03
 ```
 
-**Agent Mode will**:
+**agent mode will**:
 1. Generate deletion commands → Show "Continue?" → Execute after approval
 2. Delete all specified resource groups
 3. Remove all contained resources

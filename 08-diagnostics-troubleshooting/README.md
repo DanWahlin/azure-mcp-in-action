@@ -1,13 +1,19 @@
 # Chapter 8: Diagnostics and Troubleshooting
 
-**Title**: AI-Assisted Azure Troubleshooting
-**Focus**: Using Azure MCP to diagnose and fix issues
-**Estimated Time**: 90 minutes
-**Prerequisites**: Chapters 0-7
+Use agent mode to diagnose and fix Azure infrastructure issues quickly. In this chapter, you'll learn AI-assisted troubleshooting techniques to identify performance bottlenecks, analyze Application Insights telemetry, resolve deployment failures, and optimize resource performance.
 
----
+## Prerequisites
 
-## Learning Objectives
+- Completed [Course Setup](../00-course-setup/README.md)
+- Completed [Chapter 1: First Deployment](../01-first-deployment/README.md)
+- Completed [Chapter 2: Advanced Prompt Patterns](../02-cli-mastery/README.md)
+- Completed [Chapter 3: Infrastructure-as-Code with Bicep](../03-bicep-templates/README.md)
+- Completed [Chapter 4: Terraform Basics](../04-terraform-basics/README.md)
+- Completed [Chapter 5: Production Web Application](../05-simple-web-app/README.md)
+- Completed [Chapter 6: Containerized Applications](../06-containerized-apps/README.md)
+- Completed [Chapter 7: Data Storage Solutions](../07-data-storage/README.md)
+
+## 🎯 Learning Objectives
 
 - ✅ Use `#azure_diagnose_resource` for troubleshooting
 - ✅ Query Azure Monitor logs effectively
@@ -59,7 +65,7 @@ perform these optimizations:
 4. Enable caching with Azure Cache for Redis Basic tier
 ```
 
-**Agent Mode will**:
+**agent mode will**:
 1. Generate scaling/optimization code → Show "Continue?" → Execute after approval
 2. Scale up the App Service Plan
 3. Configure auto-scaling rules
@@ -106,7 +112,7 @@ Delete all resources created in Chapter 8:
 - Resource group: diagnostics-demo-rg
 ```
 
-**Agent Mode will**:
+**agent mode will**:
 1. Generate deletion commands → Show "Continue?" → Execute after approval
 2. Delete all diagnostics test resources
 3. Remove resource group and contained resources

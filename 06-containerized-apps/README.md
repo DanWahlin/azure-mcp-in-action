@@ -1,12 +1,17 @@
 # Chapter 6: Containerized Applications (n8n, Apache Superset)
 
-**Title**: Container Deployments to Azure Container Apps & AKS
-**Focus**: Container orchestration without Kubernetes complexity
-**Prerequisites**: Chapters [0](../00-course-setup/README.md)-[5](../05-simple-web-app/README.md)
+Deploy containerized applications to Azure Container Apps and Azure Kubernetes Service (AKS). In this chapter, you'll learn container orchestration without Kubernetes complexity by deploying n8n (workflow automation) and Apache Superset (data visualization) using agent mode to handle all the infrastructure setup.
 
----
+## Prerequisites
 
-## Learning Objectives
+- Completed [Course Setup](../00-course-setup/README.md)
+- Completed [Chapter 1: First Deployment](../01-first-deployment/README.md)
+- Completed [Chapter 2: Advanced Prompt Patterns](../02-cli-mastery/README.md)
+- Completed [Chapter 3: Infrastructure-as-Code with Bicep](../03-bicep-templates/README.md)
+- Completed [Chapter 4: Terraform Basics](../04-terraform-basics/README.md)
+- Completed [Chapter 5: Production Web Application](../05-simple-web-app/README.md)
+
+## 🎯 Learning Objectives
 
 - ✅ Containerize applications with Docker
 - ✅ Deploy to Azure Container Registry
@@ -48,7 +53,7 @@ Resource group: containerapp-demo-rg in East US
 Tags: chapter=06, project=containerapp-demo
 ```
 
-**Agent Mode will**:
+**agent mode will**:
 1. Generate infrastructure code → Show "Continue?" → Execute after approval
 2. Create Container Apps environment with Log Analytics
 3. Deploy the container with specified configuration
@@ -116,7 +121,7 @@ Deploy n8n workflow automation platform:
 - Tags: chapter=06, project=n8n
 ```
 
-**Agent Mode will**:
+**agent mode will**:
 1. Generate infrastructure code → Show "Continue?" → Execute after approval
 2. Create all infrastructure resources
 3. Configure PostgreSQL with proper firewall rules
@@ -143,7 +148,7 @@ Deploy n8n to Container Apps:
   - DB_POSTGRESDB_PASSWORD=[SECURE-PASSWORD]
 ```
 
-**Agent Mode will**:
+**agent mode will**:
 1. Generate deployment code → Show "Continue?" → Execute after approval
 2. Deploy n8n container
 3. Configure all environment variables and set up auto-scaling
@@ -218,7 +223,7 @@ Use Azure MCP to:
 Delete resource group n8n-automation-rg and all resources inside it
 ```
 
-**Agent Mode will** generate deletion commands → ask "Continue?" → execute to delete all n8n resources including Container Apps environment, PostgreSQL, and storage.
+**agent mode will** generate deletion commands → ask "Continue?" → execute to delete all n8n resources including Container Apps environment, PostgreSQL, and storage.
 
 **Manual alternative**:
 ```bash
@@ -476,7 +481,7 @@ Delete resource groups: containerapp-demo-rg, n8n-automation-rg, superset-aks-rg
 List all resources in each group first, then delete all groups
 ```
 
-**Agent Mode will**:
+**agent mode will**:
 1. Generate deletion commands → Show "Continue?" → Execute after approval
 2. List all resources in each group
 3. Delete all container apps, environments, AKS clusters, databases

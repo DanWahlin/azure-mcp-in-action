@@ -1,12 +1,20 @@
 # Chapter 9: Multi-Service Architecture (Supabase, Strapi)
 
-**Title**: Complex Application with Multiple Azure Services
-**Focus**: Integrating multiple services into cohesive architecture
-**Prerequisites**: Chapters [0](../00-course-setup/README.md)-[8](../08-diagnostics-troubleshooting/README.md)
+Deploy complex applications with multiple interconnected Azure services by setting up Supabase and Strapi. In this chapter, you'll learn to architect and deploy multi-tier applications that integrate 5+ Azure services including Container Apps, Functions, Blob Storage, Cosmos DB, and Redis, with proper service-to-service authentication and centralized monitoring.
 
----
+## Prerequisites
 
-## Learning Objectives
+- Completed [Course Setup](../00-course-setup/README.md)
+- Completed [Chapter 1: First Deployment](../01-first-deployment/README.md)
+- Completed [Chapter 2: Advanced Prompt Patterns](../02-cli-mastery/README.md)
+- Completed [Chapter 3: Infrastructure-as-Code with Bicep](../03-bicep-templates/README.md)
+- Completed [Chapter 4: Terraform Basics](../04-terraform-basics/README.md)
+- Completed [Chapter 5: Production Web Application](../05-simple-web-app/README.md)
+- Completed [Chapter 6: Containerized Applications](../06-containerized-apps/README.md)
+- Completed [Chapter 7: Data Storage Solutions](../07-data-storage/README.md)
+- Completed [Chapter 8: Diagnostics and Troubleshooting](../08-diagnostics-troubleshooting/README.md)
+
+## 🎯 Learning Objectives
 
 - ✅ Design multi-tier application architecture
 - ✅ Deploy 5+ interconnected Azure services
@@ -121,7 +129,7 @@ Deploy PostgreSQL for Supabase backend:
 - Tag with chapter=09 project=supabase
 ```
 
-**Agent Mode will** generate infrastructure code → ask "Continue?" → create PostgreSQL server with Supabase-required extensions and HA configuration.
+**agent mode will** generate infrastructure code → ask "Continue?" → create PostgreSQL server with Supabase-required extensions and HA configuration.
 
 #### Step 2: Deploy Container Apps Environment
 
@@ -134,7 +142,7 @@ Create Container Apps environment for Supabase microservices:
 - Internal network isolation
 ```
 
-**Agent Mode will** generate infrastructure code → ask "Continue?" → create the Container Apps environment for hosting Supabase services.
+**agent mode will** generate infrastructure code → ask "Continue?" → create the Container Apps environment for hosting Supabase services.
 
 #### Step 3: Deploy Supabase Kong (API Gateway)
 
@@ -149,7 +157,7 @@ Deploy Kong API Gateway to Container Apps:
 - Scale: 2-4 replicas
 ```
 
-**Agent Mode will** generate deployment code → ask "Continue?" → deploy Kong gateway and configure it to route Supabase API requests.
+**agent mode will** generate deployment code → ask "Continue?" → deploy Kong gateway and configure it to route Supabase API requests.
 
 #### Prompt 4: Deploy Supabase Auth Service
 
@@ -443,7 +451,7 @@ Delete resource groups: streaming-platform-rg, supabase-rg, strapi-rg
 List all resources in each group first, then delete all groups
 ```
 
-**Agent Mode will**:
+**agent mode will**:
 1. Generate deletion commands → Show "Continue?" → Execute after approval
 2. List all resources in each group
 3. Delete all multi-service architecture resources
