@@ -162,7 +162,6 @@ Deploy Kong API Gateway to Container Apps:
 #### Prompt 4: Deploy Supabase Auth Service
 
 ```
-#azure_generate_azure_cli_command
 Deploy Supabase GoTrue auth service:
 - Container App: supabase-auth
 - Image: supabase/gotrue:latest
@@ -175,7 +174,6 @@ Deploy Supabase GoTrue auth service:
 #### Prompt 5: Deploy PostgREST API
 
 ```
-#azure_generate_azure_cli_command
 Deploy PostgREST for auto-generated REST API:
 - Container App: supabase-rest
 - Image: postgrest/postgrest:latest
@@ -187,7 +185,6 @@ Deploy PostgREST for auto-generated REST API:
 #### Prompt 6: Deploy Realtime Service
 
 ```
-#azure_generate_azure_cli_command
 Deploy Supabase Realtime for WebSocket subscriptions:
 - Container App: supabase-realtime
 - Image: supabase/realtime:latest
@@ -199,7 +196,6 @@ Deploy Supabase Realtime for WebSocket subscriptions:
 #### Prompt 7: Deploy Storage Service
 
 ```
-#azure_generate_azure_cli_command
 Deploy Supabase Storage with Azure Blob backend:
 - Container App: supabase-storage
 - Image: supabase/storage-api:latest
@@ -211,7 +207,6 @@ Deploy Supabase Storage with Azure Blob backend:
 #### Prompt 8: Configure Redis for Realtime
 
 ```
-#azure_generate_azure_cli_command
 Deploy Azure Cache for Redis for Supabase:
 - Name: supabase-redis-[MYINITIALS]
 - SKU: Basic C0 (cost-effective for learning)
@@ -255,7 +250,6 @@ Provide diagnostic commands
 #### Issue: Kong Gateway Returns 502
 
 ```
-#azure_generate_azure_cli_command
 Debug Supabase Kong gateway connectivity
 Check: backend service health, routing configuration, container logs
 Generate troubleshooting commands
@@ -280,7 +274,6 @@ Use Azure MCP and Supabase to:
 ### Cleanup Prompt
 
 ```
-#azure_generate_azure_cli_command
 Delete Supabase deployment completely:
 - All Container Apps in supabase-env
 - PostgreSQL database
@@ -327,7 +320,6 @@ Leading open-source headless CMS. Build APIs fast. Perfect for content-driven ap
 #### Prompt 1: Deploy Strapi Infrastructure
 
 ```
-#azure_generate_azure_cli_command
 Deploy Strapi CMS:
 - Resource group: strapi-cms-rg in East US
 - App Service B2 Linux with Node.js LTS runtime named strapi-app-[MYINITIALS]
@@ -340,7 +332,6 @@ Deploy Strapi CMS:
 #### Prompt 2: Configure Strapi Environment
 
 ```
-#azure_generate_azure_cli_command
 Configure App Service strapi-app-[MYINITIALS] for Strapi:
 - NODE_ENV=production
 - DATABASE_CLIENT=postgres
@@ -359,7 +350,6 @@ Configure App Service strapi-app-[MYINITIALS] for Strapi:
 #### Prompt 3: Deploy Strapi Application
 
 ```
-#azure_generate_azure_cli_command
 Deploy Strapi to App Service:
 - Use Docker image: strapi/strapi:latest
 - Or deploy from Git repository
@@ -417,7 +407,6 @@ Use Azure MCP and Strapi to:
 ### Cleanup Prompt
 
 ```
-#azure_generate_azure_cli_command
 Delete Strapi deployment:
 - Resource group strapi-cms-rg
 - All App Services, PostgreSQL, Storage
@@ -437,9 +426,8 @@ az group delete --name strapi-cms-rg --yes --no-wait
 
 ## Cleanup Using Azure MCP
 
-**⚠️ CRITICAL**: Complete this cleanup to avoid unexpected Azure charges
-
-**THIS IS THE MOST EXPENSIVE CHAPTER** - deploying 8+ services can cost $200+/month if left running!
+> [!CAUTION]
+> Complete this cleanup to avoid unexpected Azure charges. **THIS IS THE MOST EXPENSIVE CHAPTER** - deploying 8+ services can cost $200+/month if left running!
 
 **📌 IMPORTANT NOTE**: If you plan to complete Chapter 10 (Capstone Project) immediately, you may want to **reuse some of these resources**. Read the "Optional: Selective Cleanup" section below.
 

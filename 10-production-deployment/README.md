@@ -284,7 +284,8 @@ Create comprehensive documentation:
 
 **🎉 CONGRATULATIONS ON COMPLETING THE CAPSTONE!**
 
-**⚠️ CRITICAL**: This is a complete production environment. The cleanup process is more complex.
+> [!CAUTION]
+> This is a complete production environment. The cleanup process is more complex.
 
 ### Decision Point: Keep or Delete?
 

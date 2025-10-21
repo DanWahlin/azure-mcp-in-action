@@ -89,7 +89,7 @@ Create a dedicated resource group to keep all your course resources organized an
 3. Click **+ Create** at the top
 4. Fill in the form:
    - **Subscription**: Select your subscription
-   - **Resource group name**: `azure-copilot-course-[your-initials]` (e.g., `azure-copilot-course-dw`)
+   - **Resource group name**: `azure-copilot-course-[YOUR-INITIALS]`
    - **Region**: Select your closest region (e.g., East US, West Europe)
 5. Click **Review + create**
 6. Click **Create**
@@ -273,9 +273,9 @@ Agent: Reports success, shows resource details
 
 ## Part 3: Understanding How GitHub Copilot for Azure Works
 
-### ⚠️ CRITICAL CONCEPT: How agent mode Creates Resources
+### How agent mode Creates Resources
 
-GitHub Copilot for Azure in **agent mode** creates Azure resources through a **Generate → Approve → Execute** workflow. Here's what actually happens:
+GitHub Copilot for Azure in **agent mode** creates Azure resources through a **Generate → Approve → Execute** workflow:
 
 1. **Generate**: Agent creates infrastructure-as-code (Bicep, Terraform, CLI commands)
 2. **Approve**: You review and click "Allow" buttons to approve actions
@@ -386,8 +386,8 @@ Model Context Protocol is an open standard for connecting AI systems to tools an
 ### MCP in GitHub Copilot for Azure
 
 - GitHub Copilot for Azure implements MCP under the hood
-- You interact primarily through **direct natural language prompts** (Mode 1: Direct Resource Creation)
-- You can also use @azure for questions (Mode 2) or #azure_generate_azure_cli_command for learning CLI syntax (Mode 3)
+- You interact primarily through **agent mode** with direct natural language prompts
+- You can also use **ask mode** with @azure for questions and architectural guidance
 - MCP handles the communication between Copilot and Azure APIs
 - This abstraction makes Azure expertise accessible through natural language
 

@@ -157,7 +157,6 @@ Deploy n8n to Container Apps:
 #### Step 3: Configure Persistent Storage (Optional)
 
 ```
-#azure_generate_azure_cli_command
 Add Azure Files persistent volume to n8n-app:
 - Storage account name: n8nstorage[MYINITIALS]
 - File share name: n8n-data
@@ -196,7 +195,6 @@ Provide diagnostic commands
 #### Issue: Workflows Don't Save
 
 ```
-#azure_generate_azure_cli_command
 Check PostgreSQL connection for n8n-app
 Verify database credentials and network access
 Generate connection test commands
@@ -295,7 +293,6 @@ Create Azure Kubernetes Service cluster for Superset:
 #### Prompt 2: Get Cluster Credentials
 
 ```
-#azure_generate_azure_cli_command
 Get AKS credentials for superset-aks cluster
 Configure kubectl to connect to cluster
 Verify nodes are ready
@@ -435,7 +432,6 @@ Use kubectl and Azure MCP to:
 ### Cleanup Prompt
 
 ```
-#azure_generate_azure_cli_command
 Delete complete AKS cluster and Superset deployment:
 - Delete all Helm releases
 - Delete AKS cluster superset-aks
@@ -461,7 +457,8 @@ az group delete --name superset-aks-rg --yes --no-wait
 
 **Cost After Deletion**: $0/month
 
-**⚠️ IMPORTANT**: AKS costs $70-100/month. Delete immediately after practice!
+> [!IMPORTANT]
+> AKS costs $70-100/month. Delete immediately after practice!
 
 **Portfolio Impact**: Adding "Deployed applications to AKS" to your resume is HUGE. Very few junior developers have Kubernetes experience.
 
@@ -469,9 +466,8 @@ az group delete --name superset-aks-rg --yes --no-wait
 
 ## Cleanup Using Azure MCP
 
-**⚠️ IMPORTANT**: Complete this cleanup to avoid unexpected Azure charges
-
-Container Apps environments can cost $30+/month if left running. Clean up immediately after completing the chapter.
+> [!IMPORTANT]
+> Complete this cleanup to avoid unexpected Azure charges. Container Apps environments can cost $30+/month if left running. Clean up immediately after completing the chapter.
 
 ### Method 1: Use Azure MCP (RECOMMENDED)
 

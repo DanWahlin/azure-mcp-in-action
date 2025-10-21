@@ -141,7 +141,8 @@ Begin with [Chapter 0](./00-course-setup/README.md) to set up your environment s
 
 ## 💰 Cost Management
 
-**CRITICAL**: This course teaches you to deploy production-grade infrastructure. **Proper cleanup is mandatory** to avoid unexpected charges.
+> [!CAUTION]
+> This course teaches you to deploy production-grade infrastructure. **Proper cleanup is mandatory** to avoid unexpected charges.
 
 ### Cost Estimates by Chapter
 

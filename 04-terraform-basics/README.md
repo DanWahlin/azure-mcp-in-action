@@ -159,9 +159,8 @@ terraform destroy
 
 ## Cleanup Using Terraform and Azure MCP
 
-**⚠️ IMPORTANT**: Complete this cleanup to avoid unexpected Azure charges
-
-This chapter had you deploy resources using Terraform. The **preferred cleanup method is using Terraform's destroy command**, as it properly manages state.
+> [!IMPORTANT]
+> Complete this cleanup to avoid unexpected Azure charges. This chapter had you deploy resources using Terraform. The **preferred cleanup method is using Terraform's destroy command**, as it properly manages state.
 
 ### Method 1: Terraform Destroy (RECOMMENDED)
 

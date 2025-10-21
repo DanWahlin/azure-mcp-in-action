@@ -15,7 +15,7 @@ Use agent mode to diagnose and fix Azure infrastructure issues quickly. In this 
 
 ## 🎯 Learning Objectives
 
-- ✅ Use `#azure_diagnose_resource` for troubleshooting
+- ✅ Use agent mode for troubleshooting Azure resources
 - ✅ Query Azure Monitor logs effectively
 - ✅ Analyze Application Insights telemetry
 - ✅ Identify performance bottlenecks
@@ -33,7 +33,6 @@ Use agent mode to diagnose and fix Azure infrastructure issues quickly. In this 
 ### Issue: Slow Response Times
 
 ```
-#azure_diagnose_resource
 Investigate why my App Service 'slowapp' has response times > 5 seconds.
 Check: CPU usage, memory, database queries, external API calls, and network latency.
 Generate diagnostic commands and analysis.
@@ -42,7 +41,6 @@ Generate diagnostic commands and analysis.
 ### Issue: Intermittent 500 Errors
 
 ```
-#azure_diagnose_resource
 My web app returns 500 errors randomly. Analyze:
 - Application logs for exceptions
 - App Service metrics
@@ -96,9 +94,8 @@ perform these optimizations:
 
 ## Cleanup Using Azure MCP
 
-**⚠️ IMPORTANT**: Complete this cleanup to avoid unexpected Azure charges
-
-This chapter had you create test resources for diagnostics practice. Clean them up promptly.
+> [!IMPORTANT]
+> Complete this cleanup to avoid unexpected Azure charges. This chapter had you create test resources for diagnostics practice. Clean them up promptly.
 
 ### Method 1: Use Azure MCP (RECOMMENDED)
 
@@ -189,7 +186,7 @@ az webapp list --query "[?name=='slowapp']" -o table
 
 ## Key Takeaways
 
-1. **AI-Assisted Diagnostics**: Use `#azure_diagnose_resource` to quickly identify issues
+1. **AI-Assisted Diagnostics**: Use agent mode to quickly identify and troubleshoot issues
 2. **Logs Are Critical**: Application Insights and Log Analytics provide deep insights
 3. **Performance Optimization**: Identify bottlenecks before scaling resources
 4. **Preventive Monitoring**: Set up alerts to catch issues before users complain

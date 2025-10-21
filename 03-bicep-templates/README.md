@@ -156,9 +156,8 @@ az deployment group list \
 
 ## Cleanup Using Azure MCP
 
-**⚠️ IMPORTANT**: Complete this cleanup to avoid unexpected Azure charges
-
-This chapter had you deploy resources using Bicep templates. The resources need to be deleted, but **keep your Bicep template files** for future reference.
+> [!IMPORTANT]
+> Complete this cleanup to avoid unexpected Azure charges. This chapter had you deploy resources using Bicep templates. The resources need to be deleted, but **keep your Bicep template files** for future reference.
 
 ### Method 1: Use Azure MCP (RECOMMENDED)
 

@@ -112,9 +112,11 @@ The workflow will be:
 
 ## Part 4: Verify Resource Creation
 
-**CRITICAL**: Always verify resources were created correctly!
+> **Note**: Always verify resources were created correctly!
 
 ### Method 1: Azure Portal Verification
+
+You can use the Azure Portal to visually confirm resources:
 
 1. Open [Azure Portal](https://portal.azure.com)
 2. Navigate to **Resource Groups**
@@ -122,35 +124,36 @@ The workflow will be:
 4. Verify you see:
    - App Service plan (Free tier F1)
    - Web App (Node.js LTS runtime)
-   - Tags are applied correctly
 
 ### Method 2: Azure CLI Verification
 
+You can also verify using Azure CLI commands:
+
 ```bash
 # Verify resource group
-az group show --name learning-rg-dw --output table
+az group show --name learning-rg-[YOUR-INITIALS] --output table
 
 # Verify App Service plan
 az appservice plan show \
-  --name demo-plan-dw \
-  --resource-group learning-rg-dw \
+  --name demo-plan-[YOUR-INITIALS] \
+  --resource-group learning-rg-[YOUR-INITIALS] \
   --query "{Name:name, SKU:sku.name, Location:location}" \
   --output table
 
 # Verify web app
 az webapp show \
-  --name demo-app-dw-20241019 \
-  --resource-group learning-rg-dw \
+  --name demo-app-[YOUR-INITIALS] \
+  --resource-group learning-rg-[YOUR-INITIALS] \
   --query "{Name:name, URL:defaultHostName, State:state, Runtime:siteConfig.linuxFxVersion}" \
   --output table
 ```
 
-### Method 3: agent mode Query
+### Method 3: Agent mode Query
 
 ```
-Show details of web app demo-app-dw-20241019
-List all resources in resource group learning-rg-dw
-What's the status of my App Service plan demo-plan-dw?
+Show details of web app demo-app-[YOUR-INITIALS]
+List all resources in resource group learning-rg-[YOUR-INITIALS]
+What's the status of my App Service plan demo-plan-[YOUR-INITIALS]?
 ```
 
 ---
@@ -163,8 +166,8 @@ Now let's deploy a sample Node.js application to the web app:
 
 ```
 Deploy the sample Node.js Hello World app from Azure samples
-(https://github.com/Azure-Samples/nodejs-docs-hello-world)
-to my web app demo-app-dw-20241019 in resource group learning-rg-dw
+- https://github.com/Azure-Samples/nodejs-docs-hello-world
+to my web app demo-app-[YOUR-INITIALS] in resource group learning-rg-[YOUR-INITIALS]
 ```
 
 **Azure MCP will configure the deployment source and trigger the deployment.**
@@ -172,7 +175,7 @@ to my web app demo-app-dw-20241019 in resource group learning-rg-dw
 ### Verify Deployment
 
 1. **Azure Portal**: Navigate to your web app → Click "Browse" button
-2. **Direct URL**: Visit `https://demo-app-dw-20241019.azurewebsites.net`
+2. **Direct URL**: Visit `https://demo-app-[YOUR-INITIALS]-[DATE].azurewebsites.net`
 3. **Expected**: You should see "Hello World!" displayed
 
 ### Monitor Deployment (Optional)
@@ -180,47 +183,21 @@ to my web app demo-app-dw-20241019 in resource group learning-rg-dw
 ```bash
 # Watch deployment logs in real-time
 az webapp log tail \
-  --name demo-app-dw-20241019 \
-  --resource-group learning-rg-dw
+  --name demo-app-[YOUR-INITIALS] \
+  --resource-group learning-rg-[YOUR-INITIALS]
 ```
-
----
-
-## Part 6: Learning Exercise - Command Generation
-
-**Optional**: See how Azure MCP can generate commands for learning purposes:
-
-### Prompt
-
-```
-#azure_generate_azure_cli_command
-Generate the Azure CLI commands to create:
-1. Resource group in East US
-2. Free tier App Service plan for Linux
-3. Node.js web app
-
-Show me the commands I would run manually.
-```
-
-### Why This Is Useful
-
-- **Learning CLI syntax**: Understand Azure CLI structure
-- **Creating scripts**: Build automation scripts
-- **Documentation**: Document infrastructure as code
-- **Troubleshooting**: See exact commands for manual execution
-
-**Note**: In this course, we primarily use Azure MCP's direct creation capability. Command generation is a secondary learning tool.
 
 ---
 
 ## Part 7: Cleanup (CRITICAL)
 
-**⚠️ IMPORTANT**: Complete this cleanup to avoid unexpected Azure charges (even though F1 is free, it's good practice!)
+> [!IMPORTANT]
+> Complete this cleanup to avoid unexpected Azure charges (even though F1 is free, it's good practice!)
 
 ### Cleanup Using Azure MCP
 
 ```
-Delete resource group learning-rg-dw and all resources inside it
+Delete resource group learning-rg-[YOUR-INITIALS] and all resources inside it
 ```
 
 **Azure MCP will directly delete the resource group and all contained resources.**
@@ -231,12 +208,12 @@ After Azure MCP completes the deletion, verify using Azure CLI:
 
 ```bash
 # Verify resource group is gone
-az group list --output table | grep learning-rg
+az group list --output table | grep learning-rg-[YOUR-INITIALS]
 # Should return nothing
 
 # Or use Azure MCP to verify
-List all resource groups in my subscription
-# learning-rg-dw should not appear
+List all resource groups in my Azure subscription
+# learning-rg-[YOUR-INITIALS] should not appear
 ```
 
 ### Alternative: Manual Cleanup with Azure CLI
@@ -245,10 +222,10 @@ If needed, you can also delete manually:
 
 ```bash
 # List what will be deleted
-az resource list --resource-group learning-rg-dw --output table
+az resource list --resource-group learning-rg-[YOUR-INITIALS] --output table
 
 # Delete resource group
-az group delete --name learning-rg-dw --yes --no-wait
+az group delete --name learning-rg-[YOUR-INITIALS] --yes --no-wait
 
 # Verify deletion
 az group list --output table | grep learning-rg
@@ -260,7 +237,7 @@ az group list --output table | grep learning-rg
 
 Use Azure MCP to complete these tasks:
 
-1. Create a Python 3.11 web app using the same workflow
+1. Create a Python 3.14 web app using the same workflow
 2. Use a different region (West US or your closest region)
 3. Deploy sample Python code from Azure samples
 4. Verify the deployment using all three methods (Portal, CLI, agent mode query)

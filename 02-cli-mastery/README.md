@@ -92,7 +92,7 @@ Include all prerequisite resources. Use tags: [TAG_LIST]
 #### Example
 
 ```
-Create an Azure Key Vault named learn-kv-dw-2024 in West US.
+Create an Azure Key Vault named learn-kv-[YOUR-INITIALS] in West US.
 Include resource group learn-kv-rg if it doesn't exist.
 Configure for soft-delete and purge protection.
 Tags: environment=dev, chapter=02, project=onboarding
@@ -164,7 +164,7 @@ Create 5 storage accounts for our development team:
 
 **Prompt to Azure MCP**:
 ```
-Update my existing web app demo-app-dw-20241019 with:
+Update my existing web app demo-app-[YOUR-INITIALS] with:
 - Node.js 20 runtime
 - Always On enabled
 - Minimum TLS version 1.2
@@ -177,7 +177,7 @@ Update my existing web app demo-app-dw-20241019 with:
 3. Apply all settings and restart the app if needed
 4. Return updated configuration details
 
-**Verify**: `az webapp config show --name demo-app-dw-20241019 --resource-group learning-rg-dw`
+**Verify**: `az webapp config show --name demo-app-[YOUR-INITIALS] --resource-group learning-rg-[YOUR-INITIALS]`
 
 ---
 
@@ -286,9 +286,8 @@ Use Azure MCP to complete these tasks:
 
 ## Cleanup Using Azure MCP
 
-**⚠️ IMPORTANT**: Complete this cleanup to avoid unexpected Azure charges
-
-This chapter had you create multiple resource groups and resources. Clean them all up before proceeding to Chapter 3.
+> [!IMPORTANT]
+> Complete this cleanup to avoid unexpected Azure charges. This chapter had you create multiple resource groups and resources. Clean them all up before proceeding to Chapter 3.
 
 ### Method 1: Use Azure MCP (RECOMMENDED)
 

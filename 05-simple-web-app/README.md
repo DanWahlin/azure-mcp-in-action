@@ -273,9 +273,8 @@ Use Azure MCP to:
 
 ### Cleanup Using Azure MCP
 
-**⚠️ IMPORTANT**: Complete this cleanup to avoid unexpected Azure charges
-
-This chapter deployed production web applications with databases. **This is NOT free tier** - leaving resources running can cost $50+/month.
+> [!IMPORTANT]
+> Complete this cleanup to avoid unexpected Azure charges. This chapter deployed production web applications with databases. **This is NOT free tier** - leaving resources running can cost $50+/month.
 
 ### Method 1: Use Azure MCP (RECOMMENDED)
 

@@ -268,11 +268,11 @@ az group delete --name metabase-bi-rg --yes --no-wait
 
 ## Cleanup Using Azure MCP
 
-**⚠️ CRITICAL**: Complete this cleanup to avoid unexpected Azure charges
+> [!CAUTION]
+> Complete this cleanup to avoid unexpected Azure charges. **DATABASES AND STORAGE ARE THE MOST EXPENSIVE RESOURCES.** Leaving an Azure SQL Database and Cosmos DB running can cost $100+/month.
 
-**DATABASES AND STORAGE ARE THE MOST EXPENSIVE RESOURCES.** Leaving an Azure SQL Database and Cosmos DB running can cost $100+/month.
-
-**⚠️ DATA LOSS WARNING**: Once you delete these resources, **ALL DATA IS PERMANENTLY GONE**. Backup first!
+> [!CAUTION]
+> **DATA LOSS WARNING**: Once you delete these resources, **ALL DATA IS PERMANENTLY GONE**. Backup first!
 
 ### BEFORE YOU DELETE ANYTHING
 
@@ -285,7 +285,6 @@ az group delete --name metabase-bi-rg --yes --no-wait
 ### Method 1: Use Azure MCP Prompt (RECOMMENDED)
 
 ```
-#azure_generate_azure_cli_command
 Delete all resources in resource group storage-demo-rg including:
 - Azure SQL Database and SQL Server
 - Cosmos DB account
