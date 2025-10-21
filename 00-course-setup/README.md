@@ -403,180 +403,7 @@ Model Context Protocol is an open standard for connecting AI systems to tools an
 
 ---
 
-## Part 5: Safety and Cost Management Setup
-
-### Cost Management Dashboard Setup
-
-```
-1. Navigate to: Cost Management + Billing
-2. Enable: Cost Analysis (shows current spending)
-3. Enable: Cost Alerts (email + SMS notifications)
-4. Set up: Daily cost review habit (check every morning)
-5. Download: Azure mobile app for spending alerts
-```
-
-### Cleanup Script Template
-
-```bash
-#!/bin/bash
-# cleanup-chapter-01.sh
-# Run this after completing Chapter 1 to delete all resources
-
-echo "⚠️  WARNING: This will DELETE all resources with chapter='01' tag"
-echo "Press Ctrl+C to cancel, or Enter to continue..."
-read
-
-# List resources to be deleted
-az resource list \
-  --tag chapter=01 \
-  --query "[].{Name:name, Type:type, ResourceGroup:resourceGroup}" \
-  --output table
-
-# Confirm deletion
-echo ""
-echo "Delete these resources? (yes/no)"
-read confirmation
-
-if [ "$confirmation" == "yes" ]; then
-  # Delete tagged resources
-  az resource list --tag chapter=01 --query "[].id" --output tsv | \
-    xargs -I {} az resource delete --ids {} --verbose
-  echo "✅ Cleanup complete"
-else
-  echo "❌ Cleanup cancelled"
-fi
-```
-
-### Emergency Cleanup Procedure
-
-```bash
-# If you need to delete EVERYTHING immediately:
-
-# 1. List all resource groups
-az group list --output table
-
-# 2. Delete course resource group (DANGER: irreversible!)
-az group delete \
-  --name azure-copilot-course-[your-initials] \
-  --yes \
-  --no-wait
-
-# 3. Verify deletion
-az group list --output table
-# The course resource group should not appear
-
-# This deletes ALL resources in that group
-# Use only in emergencies or after course completion
-```
-
----
-
-## Part 6: Security Baseline Configuration
-
-### Security Principles for Course
-
-1. **Least Privilege**
-   - Use managed identities instead of passwords
-   - Grant minimum required permissions
-   - Never hardcode credentials
-
-2. **Defense in Depth**
-   - Private endpoints by default
-   - Network security groups for VM access
-   - Azure Key Vault for secrets
-
-3. **Audit and Monitor**
-   - Enable Azure Monitor for all resources
-   - Set up security alerts
-   - Review activity logs regularly
-
-### Secure Defaults Template
-
-```bash
-# When creating resources, always include security settings:
-
-# Example: Storage Account with secure defaults
-az storage account create \
-  --name mystorageaccount \
-  --resource-group my-rg \
-  --location eastus \
-  --sku Standard_LRS \
-  --allow-blob-public-access false \          # No public access
-  --https-only true \                         # HTTPS only
-  --min-tls-version TLS1_2 \                  # Modern TLS
-  --enable-hierarchical-namespace false
-
-# Example: Web App with secure defaults
-az webapp create \
-  --name my-web-app \
-  --resource-group my-rg \
-  --plan my-plan \
-  --runtime "NODE|LTS" \
-  --assign-identity \                         # Managed identity
-  --https-only true                           # HTTPS only
-```
-
-### Security Checklist (use for every deployment)
-
-- [ ] No hardcoded passwords or keys
-- [ ] HTTPS-only enabled
-- [ ] Public access disabled unless required
-- [ ] Managed identities used for authentication
-- [ ] Network security groups configured
-- [ ] Azure Key Vault for sensitive data
-- [ ] Monitoring and alerts enabled
-- [ ] Tags for resource tracking
-
----
-
-## Part 7: Development Environment Setup
-
-### Required Tools
-
-```bash
-# Azure CLI (command-line interface)
-# macOS:
-brew install azure-cli
-
-# Windows:
-winget install Microsoft.AzureCLI
-
-# Linux:
-curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
-
-# Verify installation:
-az --version
-az login
-```
-
-### Recommended Tools
-
-```bash
-# Bicep CLI (infrastructure-as-code)
-az bicep install
-az bicep version
-
-# Terraform (alternative to Bicep)
-# macOS:
-brew install terraform
-
-# Windows:
-choco install terraform
-
-# Verify:
-terraform version
-```
-
-### VS Code Extensions
-
-- GitHub Copilot for Azure (required)
-- Azure Account
-- Azure CLI Tools
-- Bicep (for template editing)
-
----
-
-## Part 8: First Hands-On Exercise
+## Part 5: First Hands-On Exercise
 
 ### Exercise 1: Practice Agent Mode with Queries
 
@@ -595,10 +422,12 @@ Let's start with safe query operations that don't create any resources.
 ```
 Use this prompt in Agent Mode:
 
-List all resource groups in my subscription
+List all resource groups in my Azure subscription
 ```
 
 **What happens**: Agent mode will query your Azure subscription and return the results.
+
+**Tool limit exceeded error?**: If you see a message about tool limits, select the `tools` icon at the bottom of the chat panel and deselect any unnecessary tools.
 
 #### Step 3: Review the Results
 
