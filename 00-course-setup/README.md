@@ -195,12 +195,12 @@ with blob public access disabled and HTTPS-only enabled
 
 **What happens**:
 1. Agent generates infrastructure-as-code (Bicep templates, Azure CLI commands, etc.)
-2. Agent asks for your approval with a "Continue" button
+2. Agent asks for your approval with a "Allow" button
 3. After approval, agent automatically executes terminal commands
 4. Commands create/modify Azure resources in your subscription
 5. Agent reports success and shows what was created
 
-**Important**: You'll see "Continue" buttons before major actions. Always review what the agent plans to do before clicking Continue.
+**Important**: You'll see "Allow" buttons before major actions. Always review what the agent plans to do before clicking Allow.
 
 ---
 
@@ -250,9 +250,9 @@ You: "Create an Azure storage account in East US"
   ↓
 Agent: Analyzes request, generates Bicep template
   ↓
-Agent: Shows preview and asks "Continue?"
+Agent: Shows preview and asks "Allow?"
   ↓
-You: Review and click "Continue"
+You: Review and click "Allow"
   ↓
 Agent: Executes `az deployment create...` in terminal
   ↓
@@ -263,7 +263,7 @@ Agent: Reports success, shows resource details
 
 **Key Points**:
 - Agent mode generates code AND executes it (with your approval)
-- You control when actions happen via "Continue" buttons
+- You control when actions happen via "Allow" buttons
 - Agent automatically selects the right Azure tools based on your prompt
 
 ---
@@ -275,7 +275,7 @@ Agent: Reports success, shows resource details
 GitHub Copilot for Azure in **Agent Mode** creates Azure resources through a **Generate → Approve → Execute** workflow. Here's what actually happens:
 
 1. **Generate**: Agent creates infrastructure-as-code (Bicep, Terraform, CLI commands)
-2. **Approve**: You review and click "Continue" buttons to approve actions
+2. **Approve**: You review and click "Allow" buttons to approve actions
 3. **Execute**: Agent runs terminal commands that create resources in Azure
 4. **Verify**: You confirm resources were created correctly
 
@@ -288,9 +288,9 @@ You: "Create an Azure storage account named mystorageacct in East US"
   ↓
 Agent (in Agent Mode): Analyzes request, generates Bicep template
   ↓
-Agent: Shows you the template and asks "Continue?"
+Agent: Shows you the template and asks "Allow?"
   ↓
-You: Review the code and click "Continue"
+You: Review the code and click "Allow"
   ↓
 Agent: Executes `az deployment create...` in your terminal
   ↓
@@ -369,7 +369,7 @@ Show details of storage account mystorageacct
 - **All Chapters**: Use Agent Mode for creating and managing resources
 - **All Chapters**: Use Ask Mode (with `@azure`) for learning and questions
 - Always verify resources after creation (Portal, CLI, or Agent queries)
-- Always review what an Azure MCP tool will do before clicking "Continue" in agent mode
+- Always review what an Azure MCP tool will do before clicking "Allow" in agent mode
 - Practice safe approval habits in every chapter
 
 ---
@@ -437,30 +437,20 @@ The agent will show you:
 - Tags (if any)
 - Subscription information
 
-#### Step 4: Verify with Azure CLI
-
-```bash
-az group list --output table
-```
-
 Both methods should show the same resources!
-
-**Key Learning**: Agent mode can query Azure resources without needing `#azure_generate_azure_cli_command` or other tool prefixes.
 
 ---
 
 ### Exercise 2: Practice Additional Agent Mode Queries
 
-Try these safe query prompts in Agent Mode:
+Try these query prompts in Agent Mode:
 
 ```
-List all storage accounts in my subscription
+List all storage accounts in my Azure subscription
 
 Show details of resource group [YOUR-RG-NAME]
 
-What App Services are running in East US?
-
-Show me all resources tagged with environment=learning
+What Azure App Services are running in East US?
 ```
 
 **These queries don't create or modify anything - perfect for learning!**
@@ -488,8 +478,6 @@ Now let's try Ask Mode for learning and guidance.
 ```
 @azure What is the difference between a resource group and a subscription?
 
-@azure What's the cost of Azure App Service B1 tier?
-
 @azure Should I use AKS or Container Apps for microservices?
 
 @azure What are best practices for securing storage accounts?
@@ -501,112 +489,26 @@ Now let's try Ask Mode for learning and guidance.
 
 ---
 
-### Exercise 4: Understanding the Difference
-
-Practice switching between modes to understand when to use each:
-
-**Agent Mode** (for actions):
-```
-Mode: Agent
-Prompt: List all resource groups in my subscription
-Result: Executes query and returns results
-```
-
-**Ask Mode** (for learning):
-```
-Mode: Ask
-Prompt: @azure What is a resource group?
-Result: Explanation only, no execution
-```
-
----
-
-## Assignment: Build Your Personal Setup Checklist
-
-### Requirements
+## Setup Checklist
 
 - [ ] Azure account created with $200 credit activated
 - [ ] Billing alerts configured ($10, $50, $100 thresholds)
 - [ ] GitHub Copilot for Azure extension installed and authenticated
 - [ ] Azure CLI installed and logged in
 - [ ] Course resource group created with proper naming
-- [ ] Emergency cleanup script created and tested (on empty resource group)
-- [ ] Security checklist downloaded and reviewed
 - [ ] Successfully used Agent Mode to query Azure resources
 - [ ] Successfully used Ask Mode with @azure to get guidance
 - [ ] Understand how to switch between Agent and Ask modes
-- [ ] Cost Management dashboard bookmarked
-
-### Bonus Challenges
-
-1. Set up Azure mobile app for push notifications on spending
-2. Create a custom tag taxonomy for your learning projects
-3. Use Agent Mode to generate a list of all resources and their estimated costs
-4. Configure Azure Key Vault for storing any secrets you'll use
-5. Enable Azure Advisor recommendations for your subscription
-
-### Success Criteria
-
-- ✅ Can use Agent Mode to query and manage Azure resources
-- ✅ Can use Ask Mode with @azure to get guidance and learn
-- ✅ Understand the difference between Agent Mode and Ask Mode
-- ✅ Know how to activate each mode in GitHub Copilot Chat
-- ✅ Have cost protection in place (will receive alerts before overspending)
-- ✅ Have security defaults configured
-- ✅ Have cleanup scripts ready to use
-- ✅ Understand the Generate → Approve → Execute → Verify workflow
-
----
-
-## Common Mistakes and Troubleshooting
-
-### Mistake #1: Skipping billing alerts
-
-- **Symptom**: Unexpected charges at end of month
-- **Fix**: Stop everything and set up alerts NOW (see Part 5)
-
-### Mistake #2: Using production-like names
-
-- **Bad**: `--name my-app` (too generic)
-- **Good**: `--name learning-app-dw-20241019` (unique, identifiable)
-
-### Mistake #3: Forgetting to add tags
-
-- **Symptom**: Can't find your resources later, difficult cleanup
-- **Fix**: Use the tagging template from Part 5 for EVERY resource
-
-### Mistake #4: Not testing cleanup scripts
-
-- **Symptom**: Resources left running, unexpected costs
-- **Fix**: Test your cleanup script on an empty resource group first
-
-### Mistake #5: Not verifying resource creation
-
-- **Symptom**: Unsure if resources were created correctly, hard to troubleshoot
-- **Fix**: Always verify in Azure Portal and Azure CLI after agent mode creates resources
-
-### Mistake #6: Clicking "Continue" without reviewing
-
-- **Symptom**: Resources created that you didn't intend, unexpected configurations
-- **Fix**: Always read what the agent plans to do before clicking "Continue"
-
-### Mistake #7: Using the wrong mode
-
-- **Symptom**: Getting explanations when you wanted actions, or vice versa
-- **Fix**: Use Agent Mode for actions, Ask Mode (with @azure) for learning
 
 ---
 
 ## Key Takeaways
 
-1. **Safety First**: Cost alerts and cleanup scripts aren't optional
-2. **Two Modes**: Agent Mode for actions, Ask Mode for learning
-3. **Understand the Workflow**: Generate → Approve ("Continue") → Execute → Verify
+1. **Cost Alerts**: Ensure that cost alerts are setup
+2. **Chat Modes**: Agent Mode for actions, Ask Mode for learning
+3. **Understand the Workflow**: Generate → Approve ("Allow") → Execute → Verify
 4. **Agent Mode Auto-Selects Tools**: Just use natural language with "Azure" context
-5. **Tags Are Your Friend**: Every resource needs proper tags
-6. **Security by Default**: Use managed identities, private endpoints, HTTPS
-7. **Test Cleanup Scripts**: Practice deleting resources safely
-8. **Review Before Approving**: Always read what the agent will do before clicking "Continue"
+5. **Review Before Approving**: Always read what the agent will do before clicking "Allow"
 
 ---
 
@@ -615,3 +517,4 @@ Result: Explanation only, no execution
 **[Chapter 1: Your First AI-Generated Deployment](../01-first-deployment/README.md)**
 
 Now that your environment is safe and secure, you'll deploy your first Azure resource using Agent Mode. You'll learn the complete Generate → Approve → Execute → Verify workflow.
+
