@@ -94,7 +94,6 @@ Create the following Azure resources:
 
 Requirements:
 - Use secure defaults (HTTPS only)
-- Add tags: environment=learning, course=azure-copilot, chapter=01
 - Ensure all prerequisites are created in correct order
 ```
 
@@ -204,14 +203,22 @@ Delete resource group learning-rg-[YOUR-INITIALS] and all resources inside it
 
 ### Verify Deletion
 
-After Azure MCP completes the deletion, verify using Azure CLI:
+After Azure MCP completes the deletion, verify:
 
+**Using Azure CLI (Bash/macOS/Linux):**
 ```bash
-# Verify resource group is gone
-az group list --output table | grep learning-rg-[YOUR-INITIALS]
+az group list --output table | grep learning-rg
 # Should return nothing
+```
 
-# Or use Azure MCP to verify
+**Using Azure CLI (PowerShell/Windows):**
+```powershell
+az group list --output table | Select-String "learning-rg"
+# Should return nothing
+```
+
+**Or use agent mode:**
+```
 List all resource groups in my Azure subscription
 # learning-rg-[YOUR-INITIALS] should not appear
 ```
@@ -226,9 +233,16 @@ az resource list --resource-group learning-rg-[YOUR-INITIALS] --output table
 
 # Delete resource group
 az group delete --name learning-rg-[YOUR-INITIALS] --yes --no-wait
+```
 
-# Verify deletion
+**Verify deletion (Bash/macOS/Linux):**
+```bash
 az group list --output table | grep learning-rg
+```
+
+**Verify deletion (PowerShell/Windows):**
+```powershell
+az group list --output table | Select-String "learning-rg"
 ```
 
 ---

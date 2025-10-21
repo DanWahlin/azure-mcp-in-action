@@ -58,7 +58,6 @@ Create a complete storage architecture:
 - Managed identities for access
 
 Resource group: storage-demo-rg in East US
-Tags: chapter=07, project=storage-demo
 ```
 
 **agent mode will**:
@@ -338,13 +337,28 @@ az group delete --name storage-demo-rg --yes --no-wait
 
 ### Verify Complete Deletion
 
+**Verify resource group is gone (Bash/macOS/Linux):**
 ```bash
-# Verify resource group is gone
 az group list --output table | grep storage-demo
+```
 
-# Check for orphaned storage accounts
+**Verify resource group is gone (PowerShell/Windows):**
+```powershell
+az group list --output table | Select-String "storage-demo"
+```
+
+**Check for orphaned storage accounts (Bash/macOS/Linux):**
+```bash
 az storage account list --query "[].name" -o table | grep storage
+```
 
+**Check for orphaned storage accounts (PowerShell/Windows):**
+```powershell
+az storage account list --query "[].name" -o table | Select-String "storage"
+```
+
+**Check for orphaned SQL servers and Cosmos DB accounts:**
+```bash
 # Check for orphaned SQL servers
 az sql server list --query "[].name" -o table
 

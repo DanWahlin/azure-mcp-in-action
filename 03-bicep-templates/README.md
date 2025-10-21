@@ -165,12 +165,6 @@ az deployment group list \
 Delete resource groups: bicep-demo-rg, bicep-dev-rg, bicep-staging-rg
 ```
 
-OR if you tagged resources:
-```
-List all resources tagged with chapter=03
-Delete all resources tagged with chapter=03
-```
-
 **agent mode will**:
 1. Generate deletion commands → Show "Continue?" → Execute after approval
 2. Delete all specified resource groups
@@ -200,13 +194,14 @@ az group delete --name bicep-staging-rg --yes --no-wait
 
 ### Verify Deletion
 
+**Check resource groups (Bash/macOS/Linux):**
 ```bash
-# Check that resource groups are gone
 az group list --output table | grep bicep
+```
 
-# Verify no Chapter 3 resources remain
-az resource list --tag chapter=03 --output table
-# Should return empty
+**Check resource groups (PowerShell/Windows):**
+```powershell
+az group list --output table | Select-String "bicep"
 ```
 
 **Note**: The Bicep templates you created are stored locally and will NOT be deleted. You may use these templates as references in future chapters.

@@ -118,10 +118,7 @@ Delete all resources created in Chapter 8:
 ### Method 2: Manual Cleanup with Azure CLI
 
 ```bash
-# Step 1: List all resources
-az resource list --tag chapter=08 --output table
-
-# Step 2: Delete App Service and plan
+# Step 1: Delete App Service and plan
 az webapp delete \
   --name slowapp \
   --resource-group diagnostics-demo-rg
@@ -165,14 +162,18 @@ az group delete --name diagnostics-demo-rg --yes --no-wait
 
 ### Verify Complete Deletion
 
+**Verify resource group is gone (Bash/macOS/Linux):**
 ```bash
-# Verify resource group is gone
 az group list --output table | grep diagnostics
+```
 
-# Check for orphaned resources
-az resource list --tag chapter=08 --output table
-# Should return empty
+**Verify resource group is gone (PowerShell/Windows):**
+```powershell
+az group list --output table | Select-String "diagnostics"
+```
 
+**Check for orphaned resources:**
+```bash
 # Check for orphaned App Services
 az webapp list --query "[?name=='slowapp']" -o table
 # Should return empty

@@ -177,9 +177,16 @@ terraform destroy
 
 terraform workspace select prod
 terraform destroy
+```
 
-# Verify all resources are gone
+**Verify all resources are gone (Bash/macOS/Linux):**
+```bash
 az resource list --output table | grep terraform
+```
+
+**Verify all resources are gone (PowerShell/Windows):**
+```powershell
+az resource list --output table | Select-String "terraform"
 ```
 
 ### Method 2: Azure MCP Fallback (if Terraform state is lost/corrupted)
@@ -227,13 +234,15 @@ az storage account delete \
 
 ### Verify Complete Deletion
 
+**Verify resource groups are gone (Bash/macOS/Linux):**
 ```bash
-# Check for any remaining Terraform-managed resources
-az resource list --tag managed_by=terraform --output table
-# Should return empty
-
-# Verify resource groups are gone
 az group list --output table | grep terraform
+# Should return empty
+```
+
+**Verify resource groups are gone (PowerShell/Windows):**
+```powershell
+az group list --output table | Select-String "terraform"
 # Should return empty
 ```
 

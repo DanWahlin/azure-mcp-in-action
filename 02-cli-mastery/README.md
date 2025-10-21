@@ -69,7 +69,6 @@ with [SECURITY_OPTIONS]
 ```
 Create a storage account named learnstg2024 in East US using Standard_LRS
 with blob public access disabled and HTTPS-only enabled.
-Add tags: environment=dev, chapter=02
 ```
 
 **What happens in agent mode**:
@@ -86,7 +85,7 @@ Add tags: environment=dev, chapter=02
 **Prompt to Azure MCP**:
 ```
 Create [RESOURCE] in [REGION] with [DEPENDENCIES].
-Include all prerequisite resources. Use tags: [TAG_LIST]
+Include all prerequisite resources.
 ```
 
 #### Example
@@ -95,7 +94,6 @@ Include all prerequisite resources. Use tags: [TAG_LIST]
 Create an Azure Key Vault named learn-kv-[YOUR-INITIALS] in West US.
 Include resource group learn-kv-rg if it doesn't exist.
 Configure for soft-delete and purge protection.
-Tags: environment=dev, chapter=02, project=onboarding
 ```
 
 **agent mode will**:
@@ -129,7 +127,7 @@ and show the name, SKU, and tags
 **Prompt to Azure MCP**:
 ```
 Check if resource group dev-team-rg exists in my subscription.
-If it doesn't exist, create it in East US with tags environment=dev, chapter=02.
+If it doesn't exist, create it in East US.
 If it exists, tell me its current configuration.
 ```
 
@@ -148,14 +146,13 @@ Create 5 storage accounts for our development team:
 - Location: East US
 - SKU: Standard_LRS
 - Resource group: dev-storage-rg (create if doesn't exist)
-- Tags: environment=dev, chapter=02, team=engineering
 ```
 
 **agent mode will**:
 1. Generate code → Show "Continue?" → Execute after approval
 2. Create the resource group if needed
 3. Create all 5 storage accounts
-4. Apply consistent configuration and tags
+4. Apply consistent configuration
 5. Return summary of created resources
 
 **Verify**: `az storage account list --resource-group dev-storage-rg --output table`
@@ -231,14 +228,13 @@ Create a complete development environment for developer John Doe:
 
 Configure with:
 - All resources in same region
-- Tags: developer=john, environment=dev, chapter=02
 - Secure defaults (HTTPS, private access where possible)
 ```
 
 **agent mode will**:
 1. Generate infrastructure code → Show "Continue?" → Execute after approval
 2. Create all 4 resources in correct order
-3. Configure security settings and apply consistent tagging
+3. Configure security settings
 4. Return summary with connection strings
 
 **Verify**: Navigate to Azure Portal → Resource Groups → john-dev-rg
@@ -293,18 +289,12 @@ Use Azure MCP to complete these tasks:
 
 **List resources first**:
 ```
-List all resource groups tagged with chapter=02
-Show me all resources in my subscription with tag chapter=02
+List all resource groups in my subscription
 ```
 
-**Delete using Azure MCP**:
+**Delete using agent mode**:
 ```
-Delete all resource groups tagged with chapter=02
-```
-
-OR if you created specific resource groups:
-```
-Delete resource groups: john-dev-rg, jane-dev-rg, dev-storage-rg, dev-team-rg
+Delete resource groups: john-dev-rg, jane-dev-rg, dev-storage-rg, dev-team-rg, learn-kv-rg
 ```
 
 **agent mode will**:
@@ -316,28 +306,19 @@ Delete resource groups: john-dev-rg, jane-dev-rg, dev-storage-rg, dev-team-rg
 ### Method 2: Manual Cleanup with Azure CLI
 
 ```bash
-# List resources to be deleted
-az resource list --tag chapter=02 --output table
-
 # Delete resource groups manually
 az group delete --name john-dev-rg --yes --no-wait
 az group delete --name jane-dev-rg --yes --no-wait
 az group delete --name dev-storage-rg --yes --no-wait
 az group delete --name dev-team-rg --yes --no-wait
+az group delete --name learn-kv-rg --yes --no-wait
 ```
 
 ### Verify Deletion
 
-Use Azure MCP:
 ```
 List all resource groups in my subscription
-# Verify chapter=02 resource groups are gone
-```
-
-Or Azure CLI:
-```bash
-az resource list --tag chapter=02 --output table
-# Should return empty
+# Verify Chapter 2 resource groups are gone
 ```
 
 ---

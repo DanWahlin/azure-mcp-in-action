@@ -50,7 +50,6 @@ Deploy a containerized Node.js API to Azure Container Apps:
 6. Set up managed identity for Azure services access
 
 Resource group: containerapp-demo-rg in East US
-Tags: chapter=06, project=containerapp-demo
 ```
 
 **agent mode will**:
@@ -118,7 +117,6 @@ Deploy n8n workflow automation platform:
 - Container Apps environment: n8n-env with Log Analytics
 - PostgreSQL Flexible Server: n8n-postgres-[MYINITIALS] (Burstable B1ms)
 - Database: n8n_db with SSL enabled, firewall allows Container Apps
-- Tags: chapter=06, project=n8n
 ```
 
 **agent mode will**:

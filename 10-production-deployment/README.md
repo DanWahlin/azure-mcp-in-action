@@ -101,7 +101,6 @@ Security:
 - Azure AD B2C for user auth
 
 Resource group: saas-app-prod-rg in East US 2
-Tags: chapter=10, project=capstone, environment=production
 ```
 
 **agent mode will**:
@@ -361,15 +360,24 @@ az group delete --name saas-app-dr-rg --yes --no-wait
 
 ### Verification
 
+**Verify resource groups are gone (Bash/macOS/Linux):**
 ```bash
-# Verify all resource groups are gone
 az group list --output table | grep saas-app
+```
 
-# Check for orphaned resources
-az resource list --tag course=azure-copilot --output table
+**Verify resource groups are gone (PowerShell/Windows):**
+```powershell
+az group list --output table | Select-String "saas-app"
+```
 
-# Verify billing stops
+**Verify billing stops (Bash/macOS/Linux):**
+```bash
 az consumption usage list --start-date $(date +%Y-%m-%d)
+```
+
+**Verify billing stops (PowerShell/Windows):**
+```powershell
+az consumption usage list --start-date (Get-Date -Format "yyyy-MM-dd")
 ```
 
 **Final Cost Impact**:

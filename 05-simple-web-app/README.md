@@ -65,7 +65,6 @@ Create a production-ready Node.js API deployment with:
 
 Include all security best practices.
 Resource group: ecommerce-api-rg in East US
-Tags: environment=production, project=ecommerce, chapter=05
 ```
 
 **agent mode will**:
@@ -164,7 +163,6 @@ Deploy Ghost CMS to Azure with:
 - Configure all environment variables for Ghost
 - Use managed identity for secure connections
 - Enable Application Insights
-- Tags: project=ghost, chapter=05, environment=production
 ```
 
 **agent mode will**:
@@ -331,14 +329,16 @@ az group delete --name ecommerce-api-rg --yes --no-wait
 
 ### Verify Deletion
 
+**Verify resource group is gone (Bash/macOS/Linux):**
 ```bash
-# Verify resource group is gone
 az group list --output table | grep ecommerce
-
-# Check for any orphaned resources
-az resource list --tag chapter=05 --output table
-# Should return empty
 ```
+
+**Verify resource group is gone (PowerShell/Windows):**
+```powershell
+az group list --output table | Select-String "ecommerce"
+```
+
 
 **Cost Impact**:
 - Before deletion: ~$50-100/month
