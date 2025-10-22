@@ -287,6 +287,6 @@ Use Azure MCP to complete these tasks:
 
 ## What's Next?
 
-**[Chapter 2: CLI Command Mastery](../02-cli-mastery/README.md)**
+**[Chapter 2: Advanced Prompt Patterns](../02-cli-mastery/README.md)**
 
 Now that you understand the basic workflow, you'll learn advanced prompt patterns to generate complex multi-step deployments efficiently.

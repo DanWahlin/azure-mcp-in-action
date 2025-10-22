@@ -21,7 +21,7 @@ Deploy a complete production-ready web application with custom domains, SSL, mon
 
 ## Real-World Scenario
 
-> Your team built a Node.js e-commerce API that needs to handle 10,000 requests/day. You need to deploy it to Azure with proper monitoring, auto-scaling, and zero-downtime deployments. You'll use GitHub Copilot agent mode to generate and execute deployment commands for all the necessary infrastructure.
+Your team built a Node.js e-commerce API that needs to handle 10,000 requests/day. You need to deploy it to Azure with proper monitoring, auto-scaling, and zero-downtime deployments. You'll use GitHub Copilot agent mode to generate and execute deployment commands for all the necessary infrastructure.
 
 ---
 

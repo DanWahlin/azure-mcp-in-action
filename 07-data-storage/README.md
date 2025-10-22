@@ -1,6 +1,6 @@
 # Chapter 7: Data Storage Solutions (Metabase)
 
-Master Azure data storage by deploying Metabase, a business intelligence platform that requires multiple storage types. In this chapter, you'll learn to choose and configure the right Azure storage services ([SQL Database](../GLOSSARY.md#azure-sql-database), [Cosmos DB](../GLOSSARY.md#cosmos-db), [Blob Storage](../GLOSSARY.md#blob-storage)) for different data needs, implementing backup strategies and cost optimization.
+Learn Azure data storage by deploying Metabase, a business intelligence platform that requires multiple storage types. In this chapter, you'll learn to choose and configure the right Azure storage services ([SQL Database](../GLOSSARY.md#azure-sql-database), [Cosmos DB](../GLOSSARY.md#cosmos-db), [Blob Storage](../GLOSSARY.md#blob-storage)) for different data needs, implementing backup strategies and cost optimization.
 
 ## Prerequisites
 
@@ -23,7 +23,7 @@ Master Azure data storage by deploying Metabase, a business intelligence platfor
 
 ## Real-World Scenario
 
-> Your application needs three types of storage: relational data (user accounts), document data (product catalog), and file storage (user uploads). You'll use Azure MCP to set up all three storage types with proper security and cost optimization.
+Your application needs three types of storage: relational data (user accounts), document data (product catalog), and file storage (user uploads). You'll use Azure MCP to set up all three storage types with proper security and cost optimization.
 
 ---
 

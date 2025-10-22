@@ -22,7 +22,7 @@
 
 ## Real-World Scenario
 
-> You've been asked to explore Azure for your company's upcoming cloud migration. Management has approved a $100 learning budget, but they're concerned about surprise bills and security issues. You need to set up a safe learning environment where you can experiment with Azure MCP to create resources, but with strict cost controls and the ability to quickly clean up everything if needed.
+You've been asked to explore Azure for your company's upcoming cloud migration. Management has approved a $100 learning budget, but they're concerned about surprise bills and security issues. You need to set up a safe learning environment where you can experiment with Azure MCP to create resources, but with strict cost controls and the ability to quickly clean up everything if needed.
 
 ---
 

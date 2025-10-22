@@ -22,7 +22,7 @@ Deploy containerized applications to [Azure Container Apps](../GLOSSARY.md#azure
 
 ## Real-World Scenario
 
-> Your microservices application has 5 services that need to scale independently. Kubernetes is overkill for your team size, but you need container orchestration. Azure Container Apps provides the right balance—you'll use Azure MCP to deploy your entire microservices architecture.
+Your microservices application has 5 services that need to scale independently. Kubernetes is overkill for your team size, but you need container orchestration. Azure Container Apps provides the right balance—you'll use Azure MCP to deploy your entire microservices architecture.
 
 ---
 
@@ -524,4 +524,4 @@ az group delete --name containerapp-demo-rg --yes --no-wait
 
 **[Chapter 7: Data Storage Solutions (Metabase)](../07-data-storage/README.md)**
 
-Now that you've mastered containers, you'll learn Azure data services by deploying Metabase BI platform connected to multiple data sources.
+Now that you've learned containers, you'll explore Azure data services by deploying Metabase BI platform connected to multiple data sources.

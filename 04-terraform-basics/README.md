@@ -1,6 +1,6 @@
 # Chapter 4: Terraform Basics with AI Assistance
 
-Master AI-generated [Terraform](../GLOSSARY.md#terraform) configurations for multi-cloud [infrastructure-as-code](../GLOSSARY.md#infrastructure-as-code-iac) deployments. In this chapter, you'll learn how to use [agent mode](../GLOSSARY.md#agent-mode) to generate Terraform code, understand when to use Terraform versus [Bicep](../GLOSSARY.md#bicep), and manage infrastructure state across different cloud providers.
+Learn AI-generated [Terraform](../GLOSSARY.md#terraform) configurations for multi-cloud [infrastructure-as-code](../GLOSSARY.md#infrastructure-as-code-iac) deployments. In this chapter, you'll learn how to use [agent mode](../GLOSSARY.md#agent-mode) to generate Terraform code, understand when to use Terraform versus [Bicep](../GLOSSARY.md#bicep), and manage infrastructure state across different cloud providers.
 
 ## Prerequisites
 
@@ -21,7 +21,7 @@ Master AI-generated [Terraform](../GLOSSARY.md#terraform) configurations for mul
 
 ## Real-World Scenario
 
-> Your company might migrate from Azure to AWS or GCP in the future. To maintain flexibility, you're adopting Terraform as your IaC tool. You'll use Azure MCP to generate Terraform configurations while learning Terraform syntax through AI assistance.
+Your company might migrate from Azure to AWS or GCP in the future. To maintain flexibility, you're adopting Terraform as your IaC tool. You'll use Azure MCP to generate Terraform configurations while learning Terraform syntax through AI assistance.
 
 ---
 
@@ -267,4 +267,4 @@ az group list --output table | Select-String "terraform"
 
 **[Chapter 5: Simple Web Application Deployment (Ghost CMS)](../05-simple-web-app/README.md)**
 
-Now that you've mastered both Bicep and Terraform, you'll deploy a complete production-ready web application with a real-world project: Ghost CMS.
+Now that you've learned both Bicep and Terraform, you'll deploy a complete production-ready web application with a real-world project: Ghost CMS.

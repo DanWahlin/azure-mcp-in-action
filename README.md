@@ -5,7 +5,7 @@
 [![GitHub issues](https://img.shields.io/github/issues/YOUR-USERNAME/azure-mcp-in-action.svg)](https://github.com/YOUR-USERNAME/azure-mcp-in-action/issues/)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
-Master Azure deployments using GitHub Copilot for Azure and AI-assisted infrastructure management.
+Learn Azure deployments using GitHub Copilot for Azure and AI-assisted infrastructure management.
 
 ---
 
@@ -27,7 +27,7 @@ By the end of this course, you'll have deployed:
 ### Core Skills
 
 - ✅ **Prompt Engineering for Infrastructure** - Create Azure resources through natural language with agent mode
-- ✅ **Agent mode mastery** - Generate, approve, execute, and verify deployments with AI assistance
+- ✅ **Agent mode proficiency** - Generate, approve, execute, and verify deployments with AI assistance
 - ✅ **[Infrastructure-as-Code](./GLOSSARY.md#infrastructure-as-code-iac)** - [Bicep](./GLOSSARY.md#bicep) and [Terraform](./GLOSSARY.md#terraform) template generation
 - ✅ **Container Orchestration** - [Container Apps](./GLOSSARY.md#azure-container-apps) and [AKS](./GLOSSARY.md#azure-kubernetes-service-aks) deployments
 - ✅ **Data Services** - SQL, [Cosmos DB](./GLOSSARY.md#cosmos-db), [Blob Storage](./GLOSSARY.md#blob-storage), and BI platforms
@@ -66,7 +66,7 @@ This course contains **11 chapters** (setup + 10 chapters), each building on the
 |---|---------|--------------|------------|------|
 | 0 | [Course Setup & Safety](./00-course-setup/README.md) | - | Azure account, safety, cost management | 90 min |
 | 1 | [First Azure Deployment](./01-first-deployment/README.md) | - | Basic resource creation, first [App Service](./GLOSSARY.md#app-service) | 60 min |
-| 2 | [Azure MCP Mastery](./02-cli-mastery/README.md) | - | Advanced prompts, patterns | 75 min |
+| 2 | [Advanced Prompt Patterns](./02-cli-mastery/README.md) | - | Advanced prompts, patterns | 75 min |
 | 3 | [Bicep Templates](./03-bicep-templates/README.md) | - | Infrastructure-as-Code with Bicep | 90 min |
 | 4 | [Terraform Basics](./04-terraform-basics/README.md) | - | Multi-cloud IaC | 90 min |
 | 5 | [Simple Web Application](./05-simple-web-app/README.md) | **Ghost CMS** | Production App Service + MySQL | 120 min |
@@ -229,7 +229,7 @@ Cost management and cleanup are **first-class concerns**, not afterthoughts.
 azure-mcp-in-action/
 ├── 00-course-setup/          # MANDATORY: Safety and setup
 ├── 01-first-deployment/      # Your first App Service
-├── 02-cli-mastery/           # Azure MCP mastery and patterns
+├── 02-cli-mastery/           # Advanced Azure MCP patterns
 ├── 03-bicep-templates/       # Infrastructure-as-Code
 ├── 04-terraform-basics/      # Multi-cloud IaC
 ├── 05-simple-web-app/        # Ghost CMS deployment
@@ -326,7 +326,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🚀 Start Your Journey
 
-Ready to master Azure infrastructure with AI assistance?
+Ready to learn Azure infrastructure with AI assistance?
 
 **[👉 Begin with Chapter 0: Course Setup](./00-course-setup/README.md)**
 

@@ -402,7 +402,7 @@ az consumption usage list --start-date (Get-Date -Format "yyyy-MM-dd")
 ### What You've Accomplished
 
 1. ✅ Deployed **6 production-grade open-source projects** (Ghost, n8n, Superset, Metabase, Supabase, Strapi)
-2. ✅ Mastered **AI-assisted infrastructure deployment** with Azure MCP
+2. ✅ Learned **AI-assisted infrastructure deployment** with Azure MCP
 3. ✅ Learned **Azure CLI, Bicep, and Terraform**
 4. ✅ Deployed to **App Service, Container Apps, and Kubernetes (AKS)**
 5. ✅ Configured **databases, storage, caching, and monitoring**
@@ -473,4 +473,4 @@ Thank you for completing this course. You've learned to leverage AI to accelerat
 
 ---
 
-**Built with ❤️ for developers who want to master Azure with AI assistance**
+**Built with ❤️ for developers who want to learn Azure with AI assistance**

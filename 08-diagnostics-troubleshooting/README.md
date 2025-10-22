@@ -24,7 +24,7 @@ Use [agent mode](../GLOSSARY.md#agent-mode) to diagnose and fix Azure infrastruc
 
 ## Real-World Scenario
 
-> Your production App Service is experiencing high response times and occasional 500 errors. Users are complaining. You need to diagnose and fix the issue quickly. You'll use Azure MCP's diagnostic tools to identify the root cause and generate fixes.
+Your production App Service is experiencing high response times and occasional 500 errors. Users are complaining. You need to diagnose and fix the issue quickly. You'll use Azure MCP's diagnostic tools to identify the root cause and generate fixes.
 
 ---
 

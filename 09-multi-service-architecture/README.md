@@ -25,7 +25,7 @@ Deploy complex applications with multiple interconnected Azure services by setti
 
 ## Real-World Scenario
 
-> Your company is building a video streaming platform that requires: web frontend ([Static Web Apps](../GLOSSARY.md#static-web-apps)), API backend ([Container Apps](../GLOSSARY.md#azure-container-apps)), video processing (Functions), storage ([Blob](../GLOSSARY.md#blob-storage) + [CDN](../GLOSSARY.md#cdn-content-delivery-network)), database ([Cosmos DB](../GLOSSARY.md#cosmos-db)), search (Cognitive Search), and caching ([Redis](../GLOSSARY.md#redis-cache)). You'll use [Azure MCP](../GLOSSARY.md#azure-mcp) to architect and deploy this complex system.
+Your company is building a video streaming platform that requires: web frontend ([Static Web Apps](../GLOSSARY.md#static-web-apps)), API backend ([Container Apps](../GLOSSARY.md#azure-container-apps)), video processing (Functions), storage ([Blob](../GLOSSARY.md#blob-storage) + [CDN](../GLOSSARY.md#cdn-content-delivery-network)), database ([Cosmos DB](../GLOSSARY.md#cosmos-db)), search (Cognitive Search), and caching ([Redis](../GLOSSARY.md#redis-cache)). You'll use [Azure MCP](../GLOSSARY.md#azure-mcp) to architect and deploy this complex system.
 
 ---
 

@@ -19,7 +19,7 @@ Learn how to use [agent mode](../GLOSSARY.md#agent-mode) to generate [Bicep](../
 
 ## Real-World Scenario
 
-> Your team needs to deploy identical staging and production environments across 3 Azure regions. Azure CLI commands would require hundreds of lines and be error-prone. Instead, you'll use Azure MCP to generate a Bicep template that you can deploy to any region with just parameter changes.
+Your team needs to deploy identical staging and production environments across 3 Azure regions. Azure CLI commands would require hundreds of lines and be error-prone. Instead, you'll use Azure MCP to generate a Bicep template that you can deploy to any region with just parameter changes.
 
 ---
 
