@@ -64,7 +64,7 @@ This course contains **11 chapters** (setup + 10 chapters), each building on the
 | # | Chapter | OSS Projects | Key Skills | Time |
 |---|---------|--------------|------------|------|
 | 0 | [Course Setup & Safety](./00-course-setup/README.md) | - | Azure account, safety, cost management | 90 min |
-| 1 | [First Azure Deployment](./01-first-deployment/README.md) | Photo Uploader with Flask | Basic resource creation, first [App Service](./GLOSSARY.md#app-service) | 60 min |
+| 1 | [First Azure Deployment](./01-first-deployment/README.md) | **Photo Uploader with Flask** | Basic resource creation, first [App Service](./GLOSSARY.md#app-service) | 60 min |
 | 2 | [Advanced Prompt Patterns](./02-prompt-patterns/README.md) | - | Advanced prompts, patterns | 75 min |
 | 3 | [Bicep Templates](./03-bicep-templates/README.md) | - | Infrastructure-as-Code with Bicep | 90 min |
 | 4 | [Terraform Basics](./04-terraform-basics/README.md) | - | Multi-cloud IaC | 90 min |
