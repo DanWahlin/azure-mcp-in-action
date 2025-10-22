@@ -1,4 +1,4 @@
-# 🚀 Azure Infrastructure with AI Assistance
+# 🚀 Azure MCP in Action
 
 [![GitHub license](https://img.shields.io/github/license/YOUR-USERNAME/azure-mcp-in-action.svg)](https://github.com/YOUR-USERNAME/azure-mcp-in-action/blob/main/LICENSE)
 [![GitHub contributors](https://img.shields.io/github/contributors/YOUR-USERNAME/azure-mcp-in-action.svg)](https://github.com/YOUR-USERNAME/azure-mcp-in-action/graphs/contributors/)
