@@ -25,31 +25,7 @@ Your team built a Node.js e-commerce API that needs to handle 10,000 requests/da
 
 ---
 
-## Part 1: Architecture Planning
-
-### Ask for Guidance with [ask mode](../GLOSSARY.md#ask-mode)
-
-**Step 1: Switch to ask mode**
-
-In GitHub Copilot Chat, select "Ask" from the mode dropdown
-
-**Step 2: Ask with @azure**
-```
-@azure I need to deploy a Node.js API that:
-- Handles 10,000 req/day
-- Needs auto-scaling
-- Requires 99.9% uptime
-- Uses PostgreSQL database
-- Stores files in blob storage
-
-What Azure services should I use and why?
-```
-
-**What happens**: ask mode provides architectural recommendations with reasoning - no code generation or execution.
-
----
-
-## Part 2: Deploy Complete Infrastructure with Azure MCP
+## Part 1: Deploy Complete Infrastructure with Azure MCP
 
 ### Prompt to Azure MCP
 

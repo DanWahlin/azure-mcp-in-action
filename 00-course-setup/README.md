@@ -141,13 +141,7 @@ The GitHub Copilot for Azure extension provides:
 - Tools for troubleshooting and optimizing resources
 - Automatic tool selection when GitHub Copilot is in [agent mode](../GLOSSARY.md#agent-mode)
 
-**`@azure` Chat Participant for [Ask Mode](../GLOSSARY.md#ask-mode):**
-- Query Microsoft Learn documentation with `@azure`
-- Get architectural guidance and best practices
-- Compare Azure services and pricing
-- Learn Azure concepts and terminology
-
-**What You Can Do:**
+**What You Can Do with Agent Mode:**
 
 When using **GitHub Copilot in [agent mode](../GLOSSARY.md#agent-mode)** with Azure MCP:
 - Create and manage Azure resources with natural language
@@ -158,14 +152,15 @@ When using **GitHub Copilot in [agent mode](../GLOSSARY.md#agent-mode)** with Az
 
 ### Verification
 
-1. Open GitHub Copilot in "Ask" mode (change the drop-down to "Ask" at the bottom of the chat panel if needed)
-2. Try this prompt:
+1. Open GitHub Copilot Chat in VS Code (`Cmd+Shift+I` or `Ctrl+Shift+I`)
+2. Set mode to "Agent" using the dropdown at the bottom of the chat panel
+3. Try this prompt:
 
 ```
-@azure list my subscriptions
+List my Azure subscriptions
 ```
 
-**Expected**: You should see your Azure subscription details
+**Expected**: Agent will list your Azure subscriptions
 
 ### How to Access Azure MCP
 
@@ -177,30 +172,28 @@ Throughout this course, you'll interact with Azure MCP through **GitHub Copilot 
 
 ---
 
-## Part 2a: How to Use GitHub Copilot with Azure - Two Interaction Modes
+## Part 2a: How to Use Agent Mode
 
-GitHub Copilot supports two modes, each optimized for different tasks:
+**Agent mode** is how you'll create, deploy, and manage Azure resources throughout this course.
 
-### Agent Mode (Primary)
+### How to Activate Agent Mode
 
-**When to use**: Creating, deploying, managing, or troubleshooting Azure resources
-
-**How to activate**:
 1. Open GitHub Copilot Chat in VS Code (`Cmd+Shift+I` or `Ctrl+Shift+I`)
 2. Click the mode dropdown at the bottom of the chat panel
 3. Select **Agent**
 
-**How to use**: Type natural language prompts with "Azure" somewhere in the prompt. GitHub Copilot automatically selects the right Azure tools.
+### How to Use Agent Mode
+
+Type natural language prompts with "Azure" somewhere in the prompt. GitHub Copilot automatically selects the right Azure MCP tools.
 
 **Example**:
 ```
-Create a storage account named mystorageacct in East US using Standard_LRS
-with blob public access disabled and HTTPS-only enabled
+Create a storage account named mystorageacct in East US using Standard_LRS with blob public access disabled and HTTPS-only enabled
 ```
 
 **What happens**:
 1. Agent generates infrastructure-as-code (Bicep templates, Azure CLI commands, etc.)
-2. Agent asks for your approval with a "Allow" button
+2. Agent asks for your approval with an "Allow" button
 3. After approval, agent automatically executes terminal commands
 4. Commands create/modify Azure resources in your subscription
 5. Agent reports success and shows what was created
@@ -209,44 +202,7 @@ with blob public access disabled and HTTPS-only enabled
 
 ---
 
-### Ask Mode (For Learning)
-
-**When to use**: Getting Azure guidance, comparing services, learning best practices
-
-**How to activate**:
-1. Open GitHub Copilot Chat in VS Code
-2. Click the mode dropdown at the bottom of the chat panel
-3. Select **Ask**
-
-**How to use**: Start prompts with `@azure` to scope questions to Azure
-
-**Example**:
-```
-@azure What's the difference between Azure Container Apps and Azure Kubernetes Service?
-@azure What App Service tier should I use for 10,000 requests/day?
-@azure How do I choose between SQL Database and Cosmos DB?
-```
-
-**What happens**: Copilot provides explanations, comparisons, and recommendations. No code generation or resource creation.
-
----
-
-### Quick Reference: When to Use Each Mode
-
-| Task | Mode | How to Use |
-|------|------|------------|
-| Create resources | Agent | Natural language prompt with "Azure" |
-| Deploy applications | Agent | Natural language prompt with "Azure" |
-| Update resources | Agent | Natural language prompt with "Azure" |
-| Delete resources | Agent | Natural language prompt with "Azure" |
-| Troubleshoot issues | Agent | Natural language prompt with "Azure" |
-| Get Azure advice | Ask | `@azure What's the difference between...?` |
-| Compare services | Ask | `@azure Should I use X or Y for...?` |
-| Learn best practices | Ask | `@azure What are best practices for...?` |
-
----
-
-### Understanding the agent mode Workflow
+### Understanding the Agent Mode Workflow
 
 **The complete workflow looks like this**:
 
@@ -332,13 +288,6 @@ My web app returns 500 errors - help me troubleshoot
 Investigate high costs in my subscription
 ```
 
-**Learning and Questions** (Switch to ask mode with `@azure` for better results)
-```
-@azure What's the difference between AKS and Container Apps?
-@azure How do I choose the right App Service tier?
-@azure What are best practices for securing storage accounts?
-```
-
 ### Verification Methods
 
 After agent mode creates resources, always verify:
@@ -372,7 +321,6 @@ Show details of storage account mystorageacct
 ### Course Convention
 
 - **All Chapters**: Use agent mode for creating and managing resources
-- **All Chapters**: Use ask mode (with `@azure`) for learning and questions
 - Always verify resources after creation (Portal, CLI, or Agent queries)
 - Always review what an Azure MCP tool will do before clicking "Allow" in agent mode
 - Practice safe approval habits in every chapter
@@ -389,7 +337,6 @@ Model Context Protocol is an open standard for connecting AI systems to tools an
 
 - GitHub Copilot for Azure extension provides Azure MCP tools
 - When you use GitHub Copilot in **agent mode**, it can automatically select Azure MCP tools based on your natural language prompts
-- When you use GitHub Copilot in **ask mode** with @azure, you get Azure-specific guidance and documentation
 - MCP handles the communication between Copilot and Azure APIs
 - This abstraction makes Azure expertise accessible through natural language
 
@@ -465,29 +412,6 @@ What Azure App Services are running in East US?
 
 ---
 
-### Exercise 3: Practice ask mode
-
-Now let's try ask mode for learning and guidance.
-
-#### Step 1: Switch to ask mode
-
-1. In GitHub Copilot Chat, click the mode dropdown
-2. Select "Ask"
-
-#### Step 2: Ask Questions with @azure
-
-```
-@azure What is the difference between a resource group and a subscription?
-
-@azure Should I use AKS or Container Apps for microservices?
-
-@azure What are best practices for securing storage accounts?
-```
-
-**Expected**: Detailed explanations and architectural guidance with no code generation or execution.
-
-**Key Learning**: Ask mode with `@azure` is for learning, not for creating resources.
-
 ---
 
 ## Setup Checklist
@@ -498,17 +422,16 @@ Now let's try ask mode for learning and guidance.
 - [ ] Azure CLI installed and logged in
 - [ ] Course resource group created with proper naming
 - [ ] Successfully used agent mode to query Azure resources
-- [ ] Successfully used ask mode with @azure to get guidance
-- [ ] Understand how to switch between Agent and Ask modes
+- [ ] Understand how to activate and use Agent mode
 
 ---
 
 ## Key Takeaways
 
 1. **Cost Alerts**: Ensure that cost alerts are setup
-2. **Chat Modes**: agent mode for actions, ask mode for learning
+2. **Agent Mode**: Use agent mode for all resource creation and management
 3. **Understand the Workflow**: Generate → Approve ("Allow") → Execute → Verify
-4. **agent mode Auto-Selects Tools**: Just use natural language with "Azure" context
+4. **Agent Mode Auto-Selects Tools**: Just use natural language with "Azure" context
 5. **Review Before Approving**: Always read what the agent will do before clicking "Allow"
 
 ---

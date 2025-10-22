@@ -58,7 +58,7 @@ The default mode in GitHub Copilot that provides answers to your questions in th
 
 **Chat participants**: Use prefixes like `@azure` to scope questions to specific domains. For example, `@azure` directs questions to the Azure chat participant for Azure-specific knowledge and help.
 
-**In this course**: Used for learning about Azure services, understanding pricing, comparing options, and getting architectural guidance without creating resources.
+**In this course**: **This course focuses on agent mode.** Ask mode is optional if you want to learn about Azure services, understand pricing, compare options, or get architectural guidance. See [ask-mode.md](./ask-mode.md) for details.
 
 **Example**: `@azure What is the monthly cost of an F1 App Service plan?`
 

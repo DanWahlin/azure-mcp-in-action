@@ -30,7 +30,7 @@ All patterns in this chapter follow the same workflow:
 3. **You**: Review and approve
 4. **Agent**: Executes commands to create/modify Azure resources
 
-**Reminder**: Use [agent mode](../GLOSSARY.md#agent-mode) for creating/modifying resources. Use [ask mode](../GLOSSARY.md#ask-mode) with `@azure` for questions.
+**Reminder**: Use [agent mode](../GLOSSARY.md#agent-mode) for creating/modifying resources throughout this course.
 
 ---
 

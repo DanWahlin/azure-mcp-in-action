@@ -43,7 +43,7 @@ XX-chapter-name/
 **DO:**
 - Start every chapter with a real-world scenario ("Your team needs...")
 - Include cost estimates upfront (`$0` with cleanup vs `$35/month` if running)
-- Provide examples of both modes: agent mode (for actions), ask mode with `@azure` (for learning)
+- Focus on agent mode for all resource creation and management
 - Add mandatory cleanup section with explicit agent mode prompts
 - Use three verification methods (Portal, CLI, Agent queries) after resource creation
 - Reference specific OSS projects when applicable (chapters 5-9)
@@ -121,25 +121,7 @@ Use resource group: [name] in [region]
 
 **Important**: Always include "Azure" in your prompt so the agent selects Azure tools.
 
-### ask mode (For Learning & Planning)
-
-**Activation**: Select "Ask" from the mode dropdown in GitHub Copilot Chat
-
-**Architecture Guidance**:
-```
-@azure When should I use Azure Container Apps vs AKS?
-Consider: team size, complexity, cost, and management overhead.
-```
-
-**Service Selection**:
-```
-@azure I need to store 10TB of files with occasional access.
-Which Azure storage service should I use and what tier?
-```
-
-**Important**: Use `@azure` prefix in ask mode to scope questions to Azure.
-
-### Troubleshooting in agent mode
+### Troubleshooting in Agent Mode
 
 **Pattern**:
 ```
@@ -260,32 +242,15 @@ with blob public access disabled and HTTPS-only enabled
 - After approval, executes terminal commands
 - Commands create actual Azure resources
 
-### ask mode (For Learning)
-**Purpose**: Architecture questions, service selection, guidance, learning
-**Activation**: Select "Ask" from mode dropdown in Copilot Chat
-**How to use**: Use `@azure` prefix for Azure-scoped questions
-
-**Example**:
-```
-@azure When should I use Azure Container Apps vs AKS?
-Consider: team size, complexity, cost, and management overhead.
-```
-
-**What happens**:
-- Provides explanations and guidance
-- No code generation or execution
-- Pure learning and planning
-
 ## Common Workflows
 
 ### Workflow 1: New Deployment
-1. ask mode (`@azure`): Get architecture advice and service selection guidance
-2. agent mode: Prompt with natural language to create resources
-3. Review: Check generated code when "Continue?" appears
-4. Approve: Click "Continue" to execute commands
-5. Execute: Agent runs terminal commands that create resources
-6. Verify: Confirm in Azure Portal, Azure CLI, and Agent queries
-7. Document: Note what was created and cleanup prompts
+1. Agent mode: Prompt with natural language to create resources
+2. Review: Check generated code when "Continue?" appears
+3. Approve: Click "Continue" to execute commands
+4. Execute: Agent runs terminal commands that create resources
+5. Verify: Confirm in Azure Portal, Azure CLI, and Agent queries
+6. Document: Note what was created and cleanup prompts
 
 ### Workflow 2: Troubleshooting
 1. agent mode: Describe the problem with natural language
@@ -386,7 +351,6 @@ Students should be able to:
 - ✅ Use agent mode to create and manage complex Azure infrastructure
 - ✅ Understand the Generate → Approve → Execute → Verify workflow
 - ✅ Review generated code before approving execution
-- ✅ Switch between agent mode and ask mode as needed
 - ✅ Verify resources using three methods (Portal, CLI, Agent queries)
 - ✅ Deploy 6+ production OSS applications to Azure
 - ✅ Troubleshoot issues using agent mode with natural language

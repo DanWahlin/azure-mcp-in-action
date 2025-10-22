@@ -58,25 +58,9 @@ What storage accounts exist in my Azure subscription?
 
 **What happens**: Agent mode queries your subscription and returns results - no resources are created. Verify the results match what you see in Azure Portal.
 
-### Cost Validation (Ask Questions)
-
-**Step 1: Switch to [ask mode](../GLOSSARY.md#ask-mode)**
-
-In GitHub Copilot Chat, select "Ask" from the mode dropdown
-
-**Step 2: Ask Questions with @azure**
-
-```
-@azure What is the monthly cost of an F1 App Service plan?
-@azure How many free App Services can I have per subscription?
-@azure What's included in the Azure Free tier?
-```
-
-**Expected**: Detailed answers about pricing and limits (F1 is $0/month)
-
 ---
 
-## Part 3: Create Resources with agent mode
+## Part 3: Create Resources with Agent Mode
 
 Now let's use agent mode to generate and execute deployment commands:
 
@@ -279,9 +263,8 @@ Use Azure MCP to complete these tasks:
 1. **Agent mode workflow**: Generate code → Approve with "Continue" → Execute commands → Verify results
 2. **Verification is Critical**: Always verify resources using Portal, Azure CLI, and agent mode queries
 3. **Review Before Approving**: Always read what the agent will do before clicking "Continue"
-4. **Two Modes for Different Tasks**: agent mode for actions, ask mode for learning
-5. **Free Tiers Exist**: Many Azure services have Free tiers for learning (F1 App Service is $0/month)
-6. **Cleanup is Mandatory**: Always delete resources after practicing to avoid charges
+4. **Free Tiers Exist**: Many Azure services have Free tiers for learning (F1 App Service is $0/month)
+5. **Cleanup is Mandatory**: Always delete resources after practicing to avoid charges
 
 ---
 
