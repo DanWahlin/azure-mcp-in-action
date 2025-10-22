@@ -181,7 +181,7 @@ Throughout this course, you'll interact with Azure MCP through **GitHub Copilot 
 
 GitHub Copilot supports two modes, each optimized for different tasks:
 
-### agent mode (Primary)
+### Agent Mode (Primary)
 
 **When to use**: Creating, deploying, managing, or troubleshooting Azure resources
 
@@ -209,7 +209,7 @@ with blob public access disabled and HTTPS-only enabled
 
 ---
 
-### ask mode (For Learning)
+### Ask Mode (For Learning)
 
 **When to use**: Getting Azure guidance, comparing services, learning best practices
 
