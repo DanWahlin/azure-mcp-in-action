@@ -59,16 +59,14 @@ Do you need ADVICE on architecture, service selection, or best practices?
 
 **Prompt to Azure MCP**:
 ```
-Create a [RESOURCE_TYPE] named [NAME] in [REGION] using [SKU/TIER]
-with [SECURITY_OPTIONS]
+Create a [RESOURCE_TYPE] named [NAME] in [REGION] using [SKU/TIER] with [SECURITY_OPTIONS]
 ```
 
 #### Example
 
 **Activate Agent mode**, then use this prompt:
 ```
-Create a storage account named learnstg2024 in East US using Standard_LRS
-with blob public access disabled and HTTPS-only enabled.
+Create a storage account named learnstg in East US using Standard_LRS with blob public access disabled and HTTPS-only enabled.
 ```
 
 **What happens in Agent mode**:
@@ -91,9 +89,7 @@ Include all prerequisite resources.
 #### Example
 
 ```
-Create an Azure Key Vault named learn-kv-[YOUR-INITIALS] in West US.
-Include resource group learn-kv-rg if it doesn't exist.
-Configure for soft-delete and purge protection.
+Create an Azure Key Vault named learn-kv-[YOUR-INITIALS] in West US. Include resource group learn-kv-rg if it doesn't exist. Configure for soft-delete and purge protection.
 ```
 
 **Note**: [Key Vault](../GLOSSARY.md#key-vault) securely stores secrets, keys, and certificates. [Resource groups](../GLOSSARY.md#resource-group) are logical containers for Azure resources.
@@ -114,15 +110,14 @@ List all [RESOURCE_TYPE] in [SCOPE] where [CONDITION]
 #### Example
 
 ```
-List all storage accounts in my subscription where location is East US
-and show the name, SKU, and tags
+List all storage accounts in my subscription where location is East US and show the name, SKU, and tags
 ```
 
 **Agent mode will** query and return filtered results.
 
 ---
 
-## Part 3: Advanced Patterns for Azure MCP
+## Part 3: Additional Patterns for Azure MCP
 
 ### Pattern 4: Conditional Creation
 

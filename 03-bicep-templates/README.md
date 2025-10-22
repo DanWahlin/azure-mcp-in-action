@@ -1,6 +1,6 @@
 # Chapter 3: Infrastructure-as-Code with Bicep
 
-Learn how to use [agent mode](../GLOSSARY.md#agent-mode) to generate [Bicep](../GLOSSARY.md#bicep) templates for reproducible, multi-environment Azure deployments. In this chapter, you'll master AI-generated [infrastructure-as-code](../GLOSSARY.md#infrastructure-as-code-iac), creating reusable templates that can deploy identical environments across multiple regions with just parameter changes.
+Learn how to use [agent mode](../GLOSSARY.md#agent-mode) to generate [Bicep](../GLOSSARY.md#bicep) templates for reproducible, multi-environment Azure deployments. In this chapter, you'll work with AI-generated [infrastructure-as-code](../GLOSSARY.md#infrastructure-as-code-iac), creating reusable templates that can deploy identical environments across multiple regions with just parameter changes.
 
 ## Prerequisites
 
