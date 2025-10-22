@@ -6,7 +6,7 @@ Learn how to use [agent mode](../GLOSSARY.md#agent-mode) to generate [Bicep](../
 
 - Completed [Course Setup](../00-course-setup/README.md)
 - Completed [Chapter 1: First Deployment](../01-first-deployment/README.md)
-- Completed [Chapter 2: Advanced Prompt Patterns](../02-cli-mastery/README.md)
+- Completed [Chapter 2: Advanced Prompt Patterns](../02-prompt-patterns/README.md)
 
 ## 🎯 Learning Objectives
 

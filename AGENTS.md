@@ -342,7 +342,7 @@ Dual notifications: Email + SMS
 - `README.md`: Course overview, prerequisites, quick start
 - `00-course-setup/README.md`: **Start here** - billing protection critical
 - `01-first-deployment/README.md`: Core Generate→Approve→Execute→Verify pattern with agent mode
-- `02-cli-mastery/README.md`: agent mode prompt engineering patterns catalog
+- `02-prompt-patterns/README.md`: agent mode prompt engineering patterns catalog
 - `05-09/README.md`: Real OSS deployments (Ghost, n8n, Superset, Metabase, Supabase, Strapi)
 
 ## When Students Ask For Help

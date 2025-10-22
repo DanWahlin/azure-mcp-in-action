@@ -66,7 +66,7 @@ This course contains **11 chapters** (setup + 10 chapters), each building on the
 |---|---------|--------------|------------|------|
 | 0 | [Course Setup & Safety](./00-course-setup/README.md) | - | Azure account, safety, cost management | 90 min |
 | 1 | [First Azure Deployment](./01-first-deployment/README.md) | - | Basic resource creation, first [App Service](./GLOSSARY.md#app-service) | 60 min |
-| 2 | [Advanced Prompt Patterns](./02-cli-mastery/README.md) | - | Advanced prompts, patterns | 75 min |
+| 2 | [Advanced Prompt Patterns](./02-prompt-patterns/README.md) | - | Advanced prompts, patterns | 75 min |
 | 3 | [Bicep Templates](./03-bicep-templates/README.md) | - | Infrastructure-as-Code with Bicep | 90 min |
 | 4 | [Terraform Basics](./04-terraform-basics/README.md) | - | Multi-cloud IaC | 90 min |
 | 5 | [Simple Web Application](./05-simple-web-app/README.md) | **Ghost CMS** | Production App Service + MySQL | 120 min |
@@ -229,7 +229,7 @@ Cost management and cleanup are **first-class concerns**, not afterthoughts.
 azure-mcp-in-action/
 ├── 00-course-setup/          # MANDATORY: Safety and setup
 ├── 01-first-deployment/      # Your first App Service
-├── 02-cli-mastery/           # Advanced Azure MCP patterns
+├── 02-prompt-patterns/           # Advanced Azure MCP patterns
 ├── 03-bicep-templates/       # Infrastructure-as-Code
 ├── 04-terraform-basics/      # Multi-cloud IaC
 ├── 05-simple-web-app/        # Ghost CMS deployment

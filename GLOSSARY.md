@@ -351,7 +351,7 @@ Azure's service for securely storing and managing secrets (passwords, API keys, 
 
 **Why it matters**: Prevents credential exposure in code, centralizes secret management, provides audit logging.
 
-**See**: [Chapter 2: Advanced Prompt Patterns](./02-cli-mastery/README.md)
+**See**: [Chapter 2: Advanced Prompt Patterns](./02-prompt-patterns/README.md)
 
 ---
 
@@ -405,7 +405,7 @@ An identity in Microsoft Entra ID (formerly Azure AD) automatically managed by A
 
 **Example**: App Service uses managed identity to access Key Vault secrets without storing credentials.
 
-**See**: [Chapter 2: Advanced Prompt Patterns](./02-cli-mastery/README.md)
+**See**: [Chapter 2: Advanced Prompt Patterns](./02-prompt-patterns/README.md)
 
 ---
 

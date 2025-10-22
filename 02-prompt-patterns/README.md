@@ -1,4 +1,4 @@
-# Chapter 2: Advanced Prompt Patterns with Agent mode
+# Chapter 2: Prompt Patterns with Agent mode
 
 Learn [agent mode](../GLOSSARY.md#agent-mode) prompt patterns for complex multi-step deployments, conditional resource creation, and bulk operations.
 

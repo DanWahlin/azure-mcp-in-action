@@ -6,7 +6,7 @@ Learn Azure data storage by deploying Metabase, a business intelligence platform
 
 - Completed [Course Setup](../00-course-setup/README.md)
 - Completed [Chapter 1: First Deployment](../01-first-deployment/README.md)
-- Completed [Chapter 2: Advanced Prompt Patterns](../02-cli-mastery/README.md)
+- Completed [Chapter 2: Advanced Prompt Patterns](../02-prompt-patterns/README.md)
 - Completed [Chapter 3: Infrastructure-as-Code with Bicep](../03-bicep-templates/README.md)
 - Completed [Chapter 4: Terraform Basics](../04-terraform-basics/README.md)
 - Completed [Chapter 5: Production Web Application](../05-simple-web-app/README.md)
