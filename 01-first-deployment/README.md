@@ -1,6 +1,6 @@
 # Chapter 1: Your First AI-Generated Azure Deployment
 
-Welcome to your first hands-on Azure deployment using GitHub Copilot agent mode! In this chapter, you'll learn the fundamental **Generate → Approve → Execute → Verify** workflow that you'll use throughout the course. You'll start by querying your Azure subscription, then deploy a simple Node.js web app to Azure App Service using natural language prompts. Agent mode will generate the infrastructure code, ask for your approval with "Continue" buttons, execute the deployment commands, and you'll verify the results in both the Azure Portal and Azure CLI. This practical introduction shows how AI can accelerate your Azure development while maintaining full control through approval gates.
+Welcome to your first hands-on Azure deployment using GitHub Copilot [agent mode](../GLOSSARY.md#agent-mode)! In this chapter, you'll learn the fundamental **[Generate → Approve → Execute → Verify workflow](../GLOSSARY.md#generate--approve--execute-workflow)** that you'll use throughout the course. You'll start by querying your Azure subscription, then deploy a simple Node.js web app to [Azure App Service](../GLOSSARY.md#app-service) using natural language prompts. Agent mode will generate the [infrastructure code](../GLOSSARY.md#infrastructure-as-code-iac), ask for your approval with "Allow" buttons, execute the deployment commands, and you'll verify the results in both the [Azure Portal](../GLOSSARY.md#azure-portal) and [Azure CLI](../GLOSSARY.md#azure-cli). This practical introduction shows how AI can accelerate your Azure development while maintaining full control through approval gates.
 
 ## Prerequisites
 
@@ -32,7 +32,7 @@ Azure App Service (Node.js LTS)
 └── HTTPS enabled by default
 ```
 
-**Cost Estimate**: $0 (using Free tier)
+**Cost Estimate**: $0 (using [Free tier](../GLOSSARY.md#free-tier-f1))
 
 ---
 
@@ -60,7 +60,7 @@ What storage accounts exist in my Azure subscription?
 
 ### Cost Validation (Ask Questions)
 
-**Step 1: Switch to ask mode**
+**Step 1: Switch to [ask mode](../GLOSSARY.md#ask-mode)**
 
 In GitHub Copilot Chat, select "Ask" from the mode dropdown
 
@@ -93,9 +93,11 @@ Create the following Azure resources:
 3. Node.js LTS web app named demo-app-[YOUR-INITIALS]-[DATE]
 
 Requirements:
-- Use secure defaults (HTTPS only)
+- Use secure defaults (HTTPS-only)
 - Ensure all prerequisites are created in correct order
 ```
+
+**Note**: A [resource group](../GLOSSARY.md#resource-group) is a container that holds related Azure resources. An [App Service plan](../GLOSSARY.md#app-service-plan) defines the compute resources for your app.
 
 ### What Happens in agent mode
 

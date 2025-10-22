@@ -1,6 +1,6 @@
 # Chapter 3: Infrastructure-as-Code with Bicep
 
-Learn how to use agent mode to generate Bicep templates for reproducible, multi-environment Azure deployments. In this chapter, you'll master AI-generated infrastructure-as-code, creating reusable templates that can deploy identical environments across multiple regions with just parameter changes.
+Learn how to use [agent mode](../GLOSSARY.md#agent-mode) to generate [Bicep](../GLOSSARY.md#bicep) templates for reproducible, multi-environment Azure deployments. In this chapter, you'll master AI-generated [infrastructure-as-code](../GLOSSARY.md#infrastructure-as-code-iac), creating reusable templates that can deploy identical environments across multiple regions with just parameter changes.
 
 ## Prerequisites
 
@@ -10,8 +10,8 @@ Learn how to use agent mode to generate Bicep templates for reproducible, multi-
 
 ## 🎯 Learning Objectives
 
-- ✅ Understand Bicep vs Azure CLI commands
-- ✅ Generate Bicep templates using Azure MCP
+- ✅ Understand [Bicep](../GLOSSARY.md#bicep) vs [Azure CLI](../GLOSSARY.md#azure-cli) commands
+- ✅ Generate Bicep templates using [Azure MCP](../GLOSSARY.md#azure-mcp)
 - ✅ Validate Bicep syntax automatically
 - ✅ Deploy resources using Bicep templates
 - ✅ Parameterize templates for reusability
@@ -56,6 +56,8 @@ Generate a Bicep template that creates:
 Use parameters for app name and location.
 Include outputs for app URL and instrumentation key.
 ```
+
+**Note**: An [App Service plan](../GLOSSARY.md#app-service-plan) defines compute resources. [Application Insights](../GLOSSARY.md#application-insights) monitors application performance.
 
 ### Expected Output (abbreviated)
 
@@ -165,7 +167,7 @@ az deployment group list \
 Delete resource groups: bicep-demo-rg, bicep-dev-rg, bicep-staging-rg
 ```
 
-**agent mode will**:
+**Agent mode will**:
 1. Generate deletion commands → Show "Continue?" → Execute after approval
 2. Delete all specified resource groups
 3. Remove all contained resources

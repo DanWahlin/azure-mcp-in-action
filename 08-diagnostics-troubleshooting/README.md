@@ -1,6 +1,6 @@
 # Chapter 8: Diagnostics and Troubleshooting
 
-Use agent mode to diagnose and fix Azure infrastructure issues quickly. In this chapter, you'll learn AI-assisted troubleshooting techniques to identify performance bottlenecks, analyze Application Insights telemetry, resolve deployment failures, and optimize resource performance.
+Use [agent mode](../GLOSSARY.md#agent-mode) to diagnose and fix Azure infrastructure issues quickly. In this chapter, you'll learn AI-assisted troubleshooting techniques to identify performance bottlenecks, analyze [Application Insights](../GLOSSARY.md#application-insights) telemetry, resolve deployment failures, and optimize resource performance.
 
 ## Prerequisites
 
@@ -17,7 +17,7 @@ Use agent mode to diagnose and fix Azure infrastructure issues quickly. In this 
 
 - ✅ Use agent mode for troubleshooting Azure resources
 - ✅ Query Azure Monitor logs effectively
-- ✅ Analyze Application Insights telemetry
+- ✅ Analyze [Application Insights](../GLOSSARY.md#application-insights) telemetry
 - ✅ Identify performance bottlenecks
 - ✅ Resolve common deployment failures
 - ✅ Optimize resource performance
@@ -63,7 +63,9 @@ perform these optimizations:
 4. Enable caching with Azure Cache for Redis Basic tier
 ```
 
-**agent mode will**:
+**Note**: [Auto-scaling](../GLOSSARY.md#auto-scaling) adjusts resources based on demand. [CDN](../GLOSSARY.md#cdn-content-delivery-network) caches content globally. [Redis Cache](../GLOSSARY.md#redis-cache) improves performance with in-memory caching.
+
+**Agent mode will**:
 1. Generate scaling/optimization code → Show "Continue?" → Execute after approval
 2. Scale up the App Service Plan
 3. Configure auto-scaling rules
@@ -109,7 +111,7 @@ Delete all resources created in Chapter 8:
 - Resource group: diagnostics-demo-rg
 ```
 
-**agent mode will**:
+**Agent mode will**:
 1. Generate deletion commands → Show "Continue?" → Execute after approval
 2. Delete all diagnostics test resources
 3. Remove resource group and contained resources

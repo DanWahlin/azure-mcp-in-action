@@ -1,6 +1,6 @@
-# Chapter 2: Advanced Prompt Patterns with agent mode
+# Chapter 2: Advanced Prompt Patterns with Agent mode
 
-Mastering agent mode for complex multi-step deployments, conditional resource creation, and bulk operations. In this chapter, you'll learn advanced prompt engineering patterns that let you efficiently create multiple resources with dependencies, handle conditional logic, and perform bulk operations - all using natural language prompts with GitHub Copilot agent mode.
+Mastering [agent mode](../GLOSSARY.md#agent-mode) for complex multi-step deployments, conditional resource creation, and bulk operations. In this chapter, you'll learn advanced prompt engineering patterns that let you efficiently create multiple resources with dependencies, handle conditional logic, and perform bulk operations - all using natural language prompts with GitHub Copilot agent mode.
 
 ## Prerequisites
 
@@ -9,7 +9,7 @@ Mastering agent mode for complex multi-step deployments, conditional resource cr
 
 ## 🎯 Learning Objectives
 
-- ✅ Master prompt engineering patterns for Azure MCP resource creation
+- ✅ Master prompt engineering patterns for [Azure MCP](../GLOSSARY.md#azure-mcp) resource creation
 - ✅ Use Azure MCP for complex multi-step deployments
 - ✅ Handle conditional logic and error handling with Azure MCP
 - ✅ Create bulk resources efficiently
@@ -18,13 +18,13 @@ Mastering agent mode for complex multi-step deployments, conditional resource cr
 
 ## Real-World Scenario
 
-> Your company is onboarding 10 new developers who each need identical development environments: storage account, key vault, and container registry. Instead of manually creating each environment or writing scripts, you'll use Azure MCP to directly provision all resources with natural language prompts.
+> Your company is onboarding 10 new developers who each need identical development environments: [storage account](../GLOSSARY.md#storage-account), [key vault](../GLOSSARY.md#key-vault), and container registry. Instead of manually creating each environment or writing scripts, you'll use [Azure MCP](../GLOSSARY.md#azure-mcp) to directly provision all resources with natural language prompts.
 
 ---
 
 ## Part 1: Choosing the Right Mode
 
-Before diving into patterns, let's clarify when to use agent mode versus ask mode.
+Before diving into patterns, let's clarify when to use [agent mode](../GLOSSARY.md#agent-mode) versus [ask mode](../GLOSSARY.md#ask-mode).
 
 ### Mode Selection Decision Tree
 
@@ -32,7 +32,7 @@ Before diving into patterns, let's clarify when to use agent mode versus ask mod
 Do you need to CREATE, UPDATE, or DELETE Azure resources?
   └─> YES → Use agent mode (80% of use)
       Example: "Create a storage account named mystorageacct..."
-      What happens: Generates code → Shows "Continue?" → Executes after approval
+      What happens: Generates code → Shows "Allow?" → Executes after approval
 
 Do you need ADVICE on architecture, service selection, or best practices?
   └─> YES → Use ask mode with @azure
@@ -49,7 +49,7 @@ Do you need ADVICE on architecture, service selection, or best practices?
 | Update existing resource | agent mode | "Update app service plan..." | Generates code → Approve → Executes |
 | Learn best practices | ask mode | "@azure What are best practices..." | Provides recommendations |
 
-**This chapter focuses on agent mode** - the primary way you'll create and manage Azure resources.
+**This chapter focuses on Agent mode** - the primary way you'll create and manage Azure resources.
 
 ---
 
@@ -65,20 +65,20 @@ with [SECURITY_OPTIONS]
 
 #### Example
 
-**Activate agent mode**, then use this prompt:
+**Activate Agent mode**, then use this prompt:
 ```
 Create a storage account named learnstg2024 in East US using Standard_LRS
 with blob public access disabled and HTTPS-only enabled.
 ```
 
-**What happens in agent mode**:
-1. Generates infrastructure code (Bicep or CLI commands)
-2. Shows "Continue?" button for you to review
+**What happens in Agent mode**:
+1. Generates [infrastructure code](../GLOSSARY.md#infrastructure-as-code-iac) ([Bicep](../GLOSSARY.md#bicep) or CLI commands)
+2. Shows "Allow?" button for you to review
 3. After approval, executes commands in terminal
 4. Commands create the storage account with your settings
 5. Returns confirmation with account details
 
-**Verify**: Check Azure Portal or use `az storage account show --name learnstg2024`
+**Verify**: Check [Azure Portal](../GLOSSARY.md#azure-portal) or use `az storage account show --name learnstg2024`
 
 ### Pattern 2: Resource with Dependencies
 
@@ -96,8 +96,10 @@ Include resource group learn-kv-rg if it doesn't exist.
 Configure for soft-delete and purge protection.
 ```
 
-**agent mode will**:
-1. Generate code → Show "Continue?" → Execute after approval
+**Note**: [Key Vault](../GLOSSARY.md#key-vault) securely stores secrets, keys, and certificates. [Resource groups](../GLOSSARY.md#resource-group) are logical containers for Azure resources.
+
+**Agent mode will**:
+1. Generate code → Show "Allow?" → Execute after approval
 2. Create resource group if needed
 3. Create Key Vault with specified configuration
 4. Apply security settings and tag all resources
@@ -116,7 +118,7 @@ List all storage accounts in my subscription where location is East US
 and show the name, SKU, and tags
 ```
 
-**agent mode will** query and return filtered results.
+**Agent mode will** query and return filtered results.
 
 ---
 
@@ -131,7 +133,7 @@ If it doesn't exist, create it in East US.
 If it exists, tell me its current configuration.
 ```
 
-**agent mode will**:
+**Agent mode will**:
 1. Generate code → Show "Continue?" → Execute after approval
 2. Query for the resource group
 3. Create it if missing, or return details if it exists
@@ -148,7 +150,7 @@ Create 5 storage accounts for our development team:
 - Resource group: dev-storage-rg (create if doesn't exist)
 ```
 
-**agent mode will**:
+**Agent mode will**:
 1. Generate code → Show "Continue?" → Execute after approval
 2. Create the resource group if needed
 3. Create all 5 storage accounts
@@ -168,7 +170,7 @@ Update my existing web app demo-app-[YOUR-INITIALS] with:
 - HTTPS only enforced
 ```
 
-**agent mode will**:
+**Agent mode will**:
 1. Generate code → Show "Continue?" → Execute after approval
 2. Update the web app configuration
 3. Apply all settings and restart the app if needed
@@ -192,7 +194,7 @@ Before creating an AKS cluster in East US, verify:
 If any check fails, tell me how to fix it.
 ```
 
-**agent mode will**:
+**Agent mode will**:
 1. Generate diagnostic queries → Show "Continue?" → Execute after approval
 2. Run all validation checks
 3. Report on quota availability and verify provider registration
@@ -207,7 +209,7 @@ and their dependencies on each other.
 Which resources depend on the storage account devstg01?
 ```
 
-**agent mode will**:
+**Agent mode will**:
 1. Generate analysis queries → Show "Continue?" → Execute after approval
 2. List all resources in the group
 3. Identify dependencies and help you understand deletion order
@@ -231,7 +233,7 @@ Configure with:
 - Secure defaults (HTTPS, private access where possible)
 ```
 
-**agent mode will**:
+**Agent mode will**:
 1. Generate infrastructure code → Show "Continue?" → Execute after approval
 2. Create all 4 resources in correct order
 3. Configure security settings
@@ -250,7 +252,7 @@ Create an identical environment for Jane Doe:
 - Update developer tag to jane
 ```
 
-**agent mode will**:
+**Agent mode will**:
 1. Generate replication code → Show "Continue?" → Execute after approval
 2. Replicate the environment structure
 3. Update names and tags appropriately
@@ -292,12 +294,12 @@ Use Azure MCP to complete these tasks:
 List all resource groups in my subscription
 ```
 
-**Delete using agent mode**:
+**Delete using Agent mode**:
 ```
 Delete resource groups: john-dev-rg, jane-dev-rg, dev-storage-rg, dev-team-rg, learn-kv-rg
 ```
 
-**agent mode will**:
+**Agent mode will**:
 1. Generate deletion commands → Show "Continue?" → Execute after approval
 2. Delete all specified resource groups
 3. Remove all contained resources

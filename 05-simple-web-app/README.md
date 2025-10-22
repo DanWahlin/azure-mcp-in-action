@@ -1,6 +1,6 @@
 # Chapter 5: Production Web Application Deployment (Ghost CMS)
 
-Deploy a complete production-ready web application with custom domains, SSL, monitoring, and auto-scaling. In this chapter, you'll move beyond Hello World and deploy Ghost CMS (a real-world Node.js application) with all the infrastructure needed for production use, including database, storage, and deployment slots.
+Deploy a complete production-ready web application with custom domains, SSL, monitoring, and [auto-scaling](../GLOSSARY.md#auto-scaling). In this chapter, you'll move beyond Hello World and deploy Ghost CMS (a real-world Node.js application) with all the infrastructure needed for production use, including database, storage, and [deployment slots](../GLOSSARY.md#deployment-slot).
 
 ## Prerequisites
 
@@ -16,8 +16,8 @@ Deploy a complete production-ready web application with custom domains, SSL, mon
 - ✅ Configure custom domains and SSL
 - ✅ Set up application settings and secrets
 - ✅ Implement monitoring and logging
-- ✅ Configure auto-scaling
-- ✅ Set up deployment slots (staging/production)
+- ✅ Configure [auto-scaling](../GLOSSARY.md#auto-scaling)
+- ✅ Set up [deployment slots](../GLOSSARY.md#deployment-slot) (staging/production)
 
 ## Real-World Scenario
 
@@ -27,7 +27,7 @@ Deploy a complete production-ready web application with custom domains, SSL, mon
 
 ## Part 1: Architecture Planning
 
-### Ask for Guidance with ask mode
+### Ask for Guidance with [ask mode](../GLOSSARY.md#ask-mode)
 
 **Step 1: Switch to ask mode**
 
@@ -67,7 +67,9 @@ Include all security best practices.
 Resource group: ecommerce-api-rg in East US
 ```
 
-**agent mode will**:
+**Note**: [App Service](../GLOSSARY.md#app-service) hosts web applications. [PostgreSQL Flexible Server](../GLOSSARY.md#postgresql-flexible-server) provides managed database. [Key Vault](../GLOSSARY.md#key-vault) stores secrets. [Managed identities](../GLOSSARY.md#managed-identity) eliminate credentials in code. [Application Insights](../GLOSSARY.md#application-insights) monitors performance.
+
+**Agent mode will**:
 1. Generate infrastructure code → Show "Continue?" → Execute after approval
 2. Create all resources in the correct order
 3. Configure dependencies automatically
@@ -97,7 +99,7 @@ Configure Application Insights alerts for my App Service [APP-NAME]:
 Send alerts to: alerts@company.com
 ```
 
-**agent mode will**:
+**Agent mode will**:
 1. Generate configuration code → Show "Continue?" → Execute after approval
 2. Create alert rules in Application Insights
 3. Configure action groups for email notifications
@@ -165,7 +167,7 @@ Deploy Ghost CMS to Azure with:
 - Enable Application Insights
 ```
 
-**agent mode will**:
+**Agent mode will**:
 1. Generate infrastructure code → Show "Continue?" → Execute after approval
 2. Create all infrastructure resources
 3. Configure MySQL database with Ghost schema
@@ -187,7 +189,7 @@ Configure app settings for ghost-app-[MYINITIALS]:
 - url=https://ghost-app-[MYINITIALS].azurewebsites.net
 ```
 
-**agent mode will** generate config updates → ask "Continue?" → execute to update the App Service configuration with all Ghost settings.
+**Agent mode will** generate config updates → ask "Continue?" → execute to update the App Service configuration with all Ghost settings.
 
 #### Step 3: Deploy Ghost Container
 
@@ -199,7 +201,7 @@ Deploy Ghost 5 to App Service ghost-app-[MYINITIALS]:
 - Enable continuous deployment
 ```
 
-**agent mode will** generate deployment config → ask "Continue?" → execute to configure the App Service to run the Ghost container.
+**Agent mode will** generate deployment config → ask "Continue?" → execute to configure the App Service to run the Ghost container.
 
 #### Step 4: Configure Custom Domain (Optional)
 
@@ -287,7 +289,7 @@ Show all resources in ecommerce-api-rg
 Delete resource groups: ghost-rg-[MYINITIALS], ecommerce-api-rg
 ```
 
-**agent mode will**:
+**Agent mode will**:
 1. Generate deletion commands → Show "Continue?" → Execute after approval
 2. Delete all resource groups
 3. Remove all contained resources (App Service, databases, storage)

@@ -1,6 +1,6 @@
 # Chapter 6: Containerized Applications (n8n, Apache Superset)
 
-Deploy containerized applications to Azure Container Apps and Azure Kubernetes Service (AKS). In this chapter, you'll learn container orchestration without Kubernetes complexity by deploying n8n (workflow automation) and Apache Superset (data visualization) using agent mode to handle all the infrastructure setup.
+Deploy containerized applications to [Azure Container Apps](../GLOSSARY.md#azure-container-apps) and [Azure Kubernetes Service (AKS)](../GLOSSARY.md#azure-kubernetes-service-aks). In this chapter, you'll learn container orchestration without Kubernetes complexity by deploying n8n (workflow automation) and Apache Superset (data visualization) using [agent mode](../GLOSSARY.md#agent-mode) to handle all the infrastructure setup.
 
 ## Prerequisites
 
@@ -15,10 +15,10 @@ Deploy containerized applications to Azure Container Apps and Azure Kubernetes S
 
 - ✅ Containerize applications with Docker
 - ✅ Deploy to Azure Container Registry
-- ✅ Run containers on Azure Container Apps
+- ✅ Run containers on [Azure Container Apps](../GLOSSARY.md#azure-container-apps)
 - ✅ Configure service-to-service communication
-- ✅ Implement auto-scaling for containers
-- ✅ Manage secrets with Key Vault integration
+- ✅ Implement [auto-scaling](../GLOSSARY.md#auto-scaling) for containers
+- ✅ Manage secrets with [Key Vault](../GLOSSARY.md#key-vault) integration
 
 ## Real-World Scenario
 
@@ -52,7 +52,7 @@ Deploy a containerized Node.js API to Azure Container Apps:
 Resource group: containerapp-demo-rg in East US
 ```
 
-**agent mode will**:
+**Agent mode will**:
 1. Generate infrastructure code → Show "Continue?" → Execute after approval
 2. Create Container Apps environment with Log Analytics
 3. Deploy the container with specified configuration
@@ -119,7 +119,9 @@ Deploy n8n workflow automation platform:
 - Database: n8n_db with SSL enabled, firewall allows Container Apps
 ```
 
-**agent mode will**:
+**Note**: [PostgreSQL Flexible Server](../GLOSSARY.md#postgresql-flexible-server) provides managed database services.
+
+**Agent mode will**:
 1. Generate infrastructure code → Show "Continue?" → Execute after approval
 2. Create all infrastructure resources
 3. Configure PostgreSQL with proper firewall rules
@@ -146,7 +148,7 @@ Deploy n8n to Container Apps:
   - DB_POSTGRESDB_PASSWORD=[SECURE-PASSWORD]
 ```
 
-**agent mode will**:
+**Agent mode will**:
 1. Generate deployment code → Show "Continue?" → Execute after approval
 2. Deploy n8n container
 3. Configure all environment variables and set up auto-scaling
@@ -219,7 +221,7 @@ Use Azure MCP to:
 Delete resource group n8n-automation-rg and all resources inside it
 ```
 
-**agent mode will** generate deletion commands → ask "Continue?" → execute to delete all n8n resources including Container Apps environment, PostgreSQL, and storage.
+**Agent mode will** generate deletion commands → ask "Continue?" → execute to delete all n8n resources including Container Apps environment, PostgreSQL, and storage.
 
 **Manual alternative**:
 ```bash
@@ -267,6 +269,8 @@ Install tools:
 # Install kubectl
 az aks install-cli
 ```
+
+**Note**: [Helm](../GLOSSARY.md#helm) is a package manager for Kubernetes that simplifies deploying applications.
 
 ---
 
@@ -475,7 +479,7 @@ Delete resource groups: containerapp-demo-rg, n8n-automation-rg, superset-aks-rg
 List all resources in each group first, then delete all groups
 ```
 
-**agent mode will**:
+**Agent mode will**:
 1. Generate deletion commands → Show "Continue?" → Execute after approval
 2. List all resources in each group
 3. Delete all container apps, environments, AKS clusters, databases

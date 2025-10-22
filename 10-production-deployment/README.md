@@ -1,6 +1,6 @@
 # Chapter 10: Production-Ready Deployment (Capstone)
 
-Apply everything you've learned to deploy a complete production-ready SaaS application with all best practices. In this capstone project, you'll combine all course knowledge to build a multi-tenant application with enterprise-grade security, comprehensive monitoring, disaster recovery, CI/CD pipelines, and cost optimization.
+Apply everything you've learned to deploy a complete production-ready SaaS application with all best practices. In this capstone project, you'll combine all course knowledge to build a multi-tenant application with enterprise-grade security, comprehensive monitoring, disaster recovery, CI/CD pipelines, and cost optimization using [Bicep](../GLOSSARY.md#bicep) and [Terraform](../GLOSSARY.md#terraform).
 
 ## Prerequisites
 
@@ -103,7 +103,9 @@ Security:
 Resource group: saas-app-prod-rg in East US 2
 ```
 
-**agent mode will**:
+**Note**: [Virtual Network (VNet)](../GLOSSARY.md#virtual-network-vnet) isolates resources. [Key Vault](../GLOSSARY.md#key-vault) secures secrets. [Managed identities](../GLOSSARY.md#managed-identity) eliminate credentials in code.
+
+**Agent mode will**:
 1. Generate infrastructure code → Show "Continue?" → Execute after approval
 2. Create complete production infrastructure
 3. Configure all networking and security
@@ -144,6 +146,8 @@ Dashboards:
 Send alerts to: PagerDuty integration
 ```
 
+**Note**: [Application Insights](../GLOSSARY.md#application-insights) monitors app performance. [Log Analytics](../GLOSSARY.md#log-analytics) centralizes logging and querying.
+
 ---
 
 ### Phase 3: Disaster Recovery
@@ -167,6 +171,8 @@ Recovery:
 - RPO: 1 hour
 - Documented recovery procedures
 ```
+
+**Note**: [RTO (Recovery Time Objective)](../GLOSSARY.md#rto-recovery-time-objective) is maximum downtime. [RPO (Recovery Point Objective)](../GLOSSARY.md#rpo-recovery-point-objective) is maximum data loss.
 
 ---
 
@@ -218,7 +224,9 @@ Harden security for production:
 Implement all recommendations for saas-app-prod-rg
 ```
 
-**agent mode will**:
+**Note**: [Web Application Firewall (WAF)](../GLOSSARY.md#web-application-firewall-waf) protects against common web exploits and vulnerabilities.
+
+**Agent mode will**:
 1. Generate security configuration code → Show "Continue?" → Execute after approval
 2. Configure all security hardening measures
 3. Apply least-privilege security policies
@@ -304,7 +312,7 @@ Scale down saas-app-prod-rg resources to minimal tiers:
 Target cost: $20-30/month for portfolio showcase
 ```
 
-**agent mode will** generate downgrade commands → ask "Continue?" → downgrade all resources to minimal tiers while keeping the application functional.
+**Agent mode will** generate downgrade commands → ask "Continue?" → downgrade all resources to minimal tiers while keeping the application functional.
 
 #### Option B: Complete Deletion
 
@@ -318,7 +326,7 @@ BEFORE deleting, help me:
 Then delete all resources in saas-app-prod-rg and saas-app-dr-rg
 ```
 
-**agent mode will**:
+**Agent mode will**:
 1. Generate deletion plan → Show "Continue?" → Execute after approval
 2. Guide you through data export
 3. Help document what to preserve

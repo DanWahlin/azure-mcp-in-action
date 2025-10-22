@@ -11,7 +11,7 @@ Master Azure deployments using GitHub Copilot for Azure and AI-assisted infrastr
 
 ## 🎯 What You'll Learn
 
-This course teaches you to deploy Azure infrastructure using **GitHub Copilot for Azure in agent mode**. agent mode **generates infrastructure code and executes deployment commands** through natural language prompts with approval gates - you review the code, approve execution, and verify results. You'll leverage AI to accelerate your Azure development from hours to minutes.
+This course teaches you to deploy Azure infrastructure using **GitHub Copilot in [agent mode](./GLOSSARY.md#agent-mode) with [Azure MCP](./GLOSSARY.md#azure-mcp)**. Agent mode **generates infrastructure code and executes deployment commands** through natural language prompts with approval gates. You review the code, approve execution, and verify results. You'll leverage AI to accelerate your Azure development from hours to minutes.
 
 ### Real-World Projects You'll Deploy
 
@@ -27,10 +27,10 @@ By the end of this course, you'll have deployed:
 ### Core Skills
 
 - ✅ **Prompt Engineering for Infrastructure** - Create Azure resources through natural language with agent mode
-- ✅ **agent mode Mastery** - Generate, approve, execute, and verify deployments with AI assistance
-- ✅ **Infrastructure-as-Code** - Bicep and Terraform template generation
-- ✅ **Container Orchestration** - Container Apps and AKS deployments
-- ✅ **Data Services** - SQL, Cosmos DB, Blob Storage, and BI platforms
+- ✅ **Agent mode mastery** - Generate, approve, execute, and verify deployments with AI assistance
+- ✅ **[Infrastructure-as-Code](./GLOSSARY.md#infrastructure-as-code-iac)** - [Bicep](./GLOSSARY.md#bicep) and [Terraform](./GLOSSARY.md#terraform) template generation
+- ✅ **Container Orchestration** - [Container Apps](./GLOSSARY.md#azure-container-apps) and [AKS](./GLOSSARY.md#azure-kubernetes-service-aks) deployments
+- ✅ **Data Services** - SQL, [Cosmos DB](./GLOSSARY.md#cosmos-db), [Blob Storage](./GLOSSARY.md#blob-storage), and BI platforms
 - ✅ **Production Deployments** - Security, monitoring, cost optimization
 
 ---
@@ -43,9 +43,9 @@ Most Azure courses teach services in isolation. This course teaches **production
 
 ### AI-Assisted Learning
 
-- **Generate → Approve → Execute → Verify** workflow for rapid deployment
-- agent mode generates code and executes commands with approval checkpoints
-- Two interaction modes: agent mode (for actions), ask mode (for learning)
+- **[Generate → Approve → Execute Workflow](./GLOSSARY.md#generate--approve--execute-workflow)** for rapid deployment
+- Agent mode generates code and executes commands with approval checkpoints
+- Two interaction modes: agent mode (for actions), [ask mode](./GLOSSARY.md#ask-mode) (for learning)
 - Accelerate learning by 10x with AI assistance
 - Focus on understanding, not memorization
 
@@ -56,8 +56,6 @@ Every chapter includes deployments you can showcase:
 - "Architected Supabase BaaS platform on Azure"
 - "Implemented production Ghost CMS with MySQL and CDN"
 
-These are **interview-worthy** credentials that set you apart.
-
 ---
 
 ## 📚 Course Structure
@@ -67,7 +65,7 @@ This course contains **11 chapters** (setup + 10 chapters), each building on the
 | # | Chapter | OSS Projects | Key Skills | Time |
 |---|---------|--------------|------------|------|
 | 0 | [Course Setup & Safety](./00-course-setup/README.md) | - | Azure account, safety, cost management | 90 min |
-| 1 | [First Azure Deployment](./01-first-deployment/README.md) | - | Basic resource creation, first App Service | 60 min |
+| 1 | [First Azure Deployment](./01-first-deployment/README.md) | - | Basic resource creation, first [App Service](./GLOSSARY.md#app-service) | 60 min |
 | 2 | [Azure MCP Mastery](./02-cli-mastery/README.md) | - | Advanced prompts, patterns | 75 min |
 | 3 | [Bicep Templates](./03-bicep-templates/README.md) | - | Infrastructure-as-Code with Bicep | 90 min |
 | 4 | [Terraform Basics](./04-terraform-basics/README.md) | - | Multi-cloud IaC | 90 min |
@@ -97,9 +95,9 @@ Each chapter includes:
 
 ### Required Tools
 
-- [Azure CLI](https://learn.microsoft.com/cli/azure/install-azure-cli) - Latest version
+- [Azure CLI](https://learn.microsoft.com/cli/azure/install-azure-cli) - Latest version (see [glossary](./GLOSSARY.md#azure-cli))
 - [VS Code](https://code.visualstudio.com/) - Code editor
-- [GitHub Copilot for Azure](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azure-github-copilot) - VS Code extension
+- [GitHub Copilot for Azure](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azure-github-copilot) - VS Code extension (see [glossary](./GLOSSARY.md#github-copilot-for-azure))
 - [Git](https://git-scm.com/) - Version control
 
 ### Azure Account

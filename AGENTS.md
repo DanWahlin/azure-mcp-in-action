@@ -11,7 +11,7 @@ Educational course repository teaching Azure deployment via Azure MCP and AI-fir
 1. **Generate → Approve → Execute → Verify**: GitHub Copilot agent mode generates infrastructure code, gets approval, executes commands, then students verify
 2. **Cost-Aware**: Every deployment includes cost estimates and mandatory cleanup instructions
 3. **Real-World Projects**: Deploy production OSS apps (Ghost, n8n, Superset, Metabase, Supabase, Strapi), not toy examples
-4. **AI-First Interface**: Students use agent mode in GitHub Copilot for Azure to generate and execute deployment commands with approval gates
+4. **AI-First Interface**: Students use GitHub Copilot in agent mode with Azure MCP to generate and execute deployment commands with approval gates
 5. **Portfolio-Driven**: Each chapter provides resume-worthy credentials
 
 ## Repository Structure

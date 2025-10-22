@@ -9,16 +9,16 @@
 ## Learning Objectives
 
 - ✅ Create an Azure free account with $200 credit and billing protection
-- ✅ Install and configure GitHub Copilot for Azure extension (provides Azure MCP and more)
+- ✅ Install and configure [GitHub Copilot for Azure](../GLOSSARY.md#github-copilot-for-azure) extension (provides [Azure MCP](../GLOSSARY.md#azure-mcp) and more)
 - ✅ Set up cost alerts and spending limits
 - ✅ Establish security baseline with least-privilege principles
-- ✅ Understand Azure MCP interaction modes and when to use each
+- ✅ Understand [Azure MCP](../GLOSSARY.md#azure-mcp) interaction modes and when to use each
 - ✅ Test your setup with first AI-generated commands
 - ✅ Create emergency cleanup procedures
 
 ## Why This Chapter Matters
 
-> Before writing a single line of infrastructure code, you need guardrails. This chapter sets up financial protection (cost alerts), security defaults (managed identities), and emergency procedures (cleanup scripts).
+> Before writing a single line of infrastructure code, you need guardrails. This chapter sets up financial protection (cost alerts), security defaults ([managed identities](../GLOSSARY.md#managed-identity)), and emergency procedures (cleanup scripts).
 
 ## Real-World Scenario
 
@@ -77,7 +77,7 @@ Why this matters:
 
 ### Create Course Resource Group
 
-Create a dedicated resource group to keep all your course resources organized and easy to clean up.
+Create a dedicated [resource group](../GLOSSARY.md#resource-group) to keep all your course resources organized and easy to clean up.
 
 **Naming Convention**: `azure-copilot-course-[your-initials]`
 **Region**: Choose closest to you (e.g., eastus, westus, westeurope)
@@ -94,7 +94,7 @@ Create a dedicated resource group to keep all your course resources organized an
 5. Click **Review + create**
 6. Click **Create**
 
-#### Method 2: Azure CLI (Command Line)
+#### Method 2: [Azure CLI](../GLOSSARY.md#azure-cli) (Command Line)
 
 ```bash
 # Login to Azure (if not already logged in)
@@ -135,24 +135,26 @@ az group show --name azure-copilot-course-[your-initials]
 
 The GitHub Copilot for Azure extension provides:
 
-**agent mode Capabilities:**
-- Create and manage Azure resources with natural language
-- Deploy applications and infrastructure
-- Configure security and networking
-- Troubleshoot issues and optimize resources
-- Automatic tool selection based on your prompts
-- Generate and execute Azure CLI commands, Bicep, and Terraform templates
+**[Azure MCP](../GLOSSARY.md#azure-mcp) Tools:**
+- Tools for creating and managing Azure resources
+- Tools for deploying applications and infrastructure
+- Tools for troubleshooting and optimizing resources
+- Automatic tool selection when GitHub Copilot is in [agent mode](../GLOSSARY.md#agent-mode)
 
-**ask mode Capabilities:**
+**`@azure` Chat Participant for [Ask Mode](../GLOSSARY.md#ask-mode):**
 - Query Microsoft Learn documentation with `@azure`
 - Get architectural guidance and best practices
 - Compare Azure services and pricing
 - Learn Azure concepts and terminology
 
-**Behind the Scenes:**
-- Azure MCP (Model Context Protocol) tools automatically selected by GitHub Copilot agent mode
-- No need to memorize specific tool commands
-- Use natural language with "Azure" in your prompts
+**What You Can Do:**
+
+When using **GitHub Copilot in [agent mode](../GLOSSARY.md#agent-mode)** with Azure MCP:
+- Create and manage Azure resources with natural language
+- Deploy applications and infrastructure
+- Configure security and networking
+- Generate and execute [Azure CLI](../GLOSSARY.md#azure-cli) commands, [Bicep](../GLOSSARY.md#bicep), and [Terraform](../GLOSSARY.md#terraform) templates
+- No need to memorize specific tool commands - use natural language with "Azure" in your prompts
 
 ### Verification
 
@@ -175,9 +177,9 @@ Throughout this course, you'll interact with Azure MCP through **GitHub Copilot 
 
 ---
 
-## Part 2a: How to Use GitHub Copilot for Azure - Two Interaction Modes
+## Part 2a: How to Use GitHub Copilot with Azure - Two Interaction Modes
 
-GitHub Copilot for Azure supports two modes, each optimized for different tasks:
+GitHub Copilot supports two modes, each optimized for different tasks:
 
 ### agent mode (Primary)
 
@@ -271,13 +273,13 @@ Agent: Reports success, shows resource details
 
 ---
 
-## Part 3: Understanding How GitHub Copilot for Azure Works
+## Part 3: Understanding How GitHub Copilot Agent Mode Works with Azure
 
-### How agent mode Creates Resources
+### How Agent Mode Creates Resources
 
-GitHub Copilot for Azure in **agent mode** creates Azure resources through a **Generate → Approve → Execute** workflow:
+GitHub Copilot in **agent mode** uses **[Azure MCP](../GLOSSARY.md#azure-mcp)** tools to create Azure resources through a **[Generate → Approve → Execute Workflow](../GLOSSARY.md#generate--approve--execute-workflow)**:
 
-1. **Generate**: Agent creates infrastructure-as-code (Bicep, Terraform, CLI commands)
+1. **Generate**: Agent creates [infrastructure-as-code](../GLOSSARY.md#infrastructure-as-code-iac) ([Bicep](../GLOSSARY.md#bicep), [Terraform](../GLOSSARY.md#terraform), CLI commands)
 2. **Approve**: You review and click "Allow" buttons to approve actions
 3. **Execute**: Agent runs terminal commands that create resources in Azure
 4. **Verify**: You confirm resources were created correctly
@@ -385,9 +387,9 @@ Model Context Protocol is an open standard for connecting AI systems to tools an
 
 ### MCP in GitHub Copilot for Azure
 
-- GitHub Copilot for Azure implements MCP under the hood
-- You interact primarily through **agent mode** with direct natural language prompts
-- You can also use **ask mode** with @azure for questions and architectural guidance
+- GitHub Copilot for Azure extension provides Azure MCP tools
+- When you use GitHub Copilot in **agent mode**, it can automatically select Azure MCP tools based on your natural language prompts
+- When you use GitHub Copilot in **ask mode** with @azure, you get Azure-specific guidance and documentation
 - MCP handles the communication between Copilot and Azure APIs
 - This abstraction makes Azure expertise accessible through natural language
 

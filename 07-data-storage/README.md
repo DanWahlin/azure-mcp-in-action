@@ -1,6 +1,6 @@
 # Chapter 7: Data Storage Solutions (Metabase)
 
-Master Azure data storage by deploying Metabase, a business intelligence platform that requires multiple storage types. In this chapter, you'll learn to choose and configure the right Azure storage services (SQL Database, Cosmos DB, Blob Storage) for different data needs, implementing backup strategies and cost optimization.
+Master Azure data storage by deploying Metabase, a business intelligence platform that requires multiple storage types. In this chapter, you'll learn to choose and configure the right Azure storage services ([SQL Database](../GLOSSARY.md#azure-sql-database), [Cosmos DB](../GLOSSARY.md#cosmos-db), [Blob Storage](../GLOSSARY.md#blob-storage)) for different data needs, implementing backup strategies and cost optimization.
 
 ## Prerequisites
 
@@ -15,9 +15,9 @@ Master Azure data storage by deploying Metabase, a business intelligence platfor
 ## 🎯 Learning Objectives
 
 - ✅ Choose appropriate Azure storage service for use case
-- ✅ Deploy and configure Azure SQL Database
-- ✅ Set up Cosmos DB for NoSQL needs
-- ✅ Configure Blob Storage with lifecycle policies
+- ✅ Deploy and configure [Azure SQL Database](../GLOSSARY.md#azure-sql-database)
+- ✅ Set up [Cosmos DB](../GLOSSARY.md#cosmos-db) for NoSQL needs
+- ✅ Configure [Blob Storage](../GLOSSARY.md#blob-storage) with [lifecycle policies](../GLOSSARY.md#lifecycle-policy)
 - ✅ Implement backup and disaster recovery
 - ✅ Optimize storage costs
 
@@ -60,7 +60,9 @@ Create a complete storage architecture:
 Resource group: storage-demo-rg in East US
 ```
 
-**agent mode will**:
+**Note**: A [storage account](../GLOSSARY.md#storage-account) provides access to Azure storage services. [Private endpoints](../GLOSSARY.md#private-endpoint) secure network access. [Managed identities](../GLOSSARY.md#managed-identity) eliminate credential management.
+
+**Agent mode will**:
 1. Generate infrastructure code → Show "Continue?" → Execute after approval
 2. Create all storage resources in the correct order
 3. Configure backup policies for databases
@@ -129,7 +131,7 @@ Deploy Metabase BI platform:
 - Tag resources with chapter=07 project=metabase
 ```
 
-**agent mode will**:
+**Agent mode will**:
 1. Generate infrastructure code → Show "Continue?" → Execute after approval
 2. Create App Service and App Service Plan
 3. Create PostgreSQL Flexible Server with database
@@ -154,7 +156,7 @@ Configure App Service metabase-app-[MYINITIALS] for Metabase:
 - Enable HTTPS only
 ```
 
-**agent mode will**:
+**Agent mode will**:
 1. Generate configuration code → Show "Continue?" → Execute after approval
 2. Configure App Service to run Metabase container
 3. Set all environment variables
@@ -228,7 +230,7 @@ Check: firewall rules, connection strings, SSL requirements
 Diagnose connectivity issues
 ```
 
-**agent mode will** generate diagnostic queries → ask "Continue?" → analyze firewall rules, connection strings, and provide diagnostic steps.
+**Agent mode will** generate diagnostic queries → ask "Continue?" → analyze firewall rules, connection strings, and provide diagnostic steps.
 
 ---
 
@@ -252,7 +254,7 @@ Use Azure MCP and Metabase to:
 Delete resource group metabase-bi-rg and all resources inside it
 ```
 
-**agent mode will** generate deletion commands → ask "Continue?" → delete Metabase App Service, PostgreSQL, and all related resources.
+**Agent mode will** generate deletion commands → ask "Continue?" → delete Metabase App Service, PostgreSQL, and all related resources.
 
 **Manual alternative**:
 ```bash

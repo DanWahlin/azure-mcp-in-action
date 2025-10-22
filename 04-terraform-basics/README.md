@@ -1,6 +1,6 @@
 # Chapter 4: Terraform Basics with AI Assistance
 
-Master AI-generated Terraform configurations for multi-cloud infrastructure deployments. In this chapter, you'll learn how to use agent mode to generate Terraform code, understand when to use Terraform versus Bicep, and manage infrastructure state across different cloud providers.
+Master AI-generated [Terraform](../GLOSSARY.md#terraform) configurations for multi-cloud [infrastructure-as-code](../GLOSSARY.md#infrastructure-as-code-iac) deployments. In this chapter, you'll learn how to use [agent mode](../GLOSSARY.md#agent-mode) to generate Terraform code, understand when to use Terraform versus [Bicep](../GLOSSARY.md#bicep), and manage infrastructure state across different cloud providers.
 
 ## Prerequisites
 
@@ -11,8 +11,8 @@ Master AI-generated Terraform configurations for multi-cloud infrastructure depl
 
 ## 🎯 Learning Objectives
 
-- ✅ Understand Terraform vs Bicep vs Azure CLI
-- ✅ Generate Terraform configurations using Azure MCP
+- ✅ Understand [Terraform](../GLOSSARY.md#terraform) vs [Bicep](../GLOSSARY.md#bicep) vs [Azure CLI](../GLOSSARY.md#azure-cli)
+- ✅ Generate Terraform configurations using [Azure MCP](../GLOSSARY.md#azure-mcp)
 - ✅ Initialize and validate Terraform projects
 - ✅ Plan Terraform deployments
 - ✅ Apply Terraform configurations safely
@@ -58,6 +58,8 @@ Generate Terraform configuration for Azure that creates:
 Include provider configuration, variables, and outputs.
 Use Terraform 1.5+ syntax with AzureRM provider 3.0+
 ```
+
+**Note**: A [resource group](../GLOSSARY.md#resource-group) holds related resources. A [private endpoint](../GLOSSARY.md#private-endpoint) provides secure network access.
 
 ### Expected Output
 
@@ -197,7 +199,7 @@ Delete all resource groups with tag managed_by=terraform
 List them first, then delete: terraform-demo-rg, terraform-dev-rg, terraform-staging-rg, terraform-prod-rg
 ```
 
-**agent mode will**:
+**Agent mode will**:
 1. Generate deletion commands → Show "Continue?" → Execute after approval
 2. List all Terraform-managed resource groups
 3. Delete each resource group
