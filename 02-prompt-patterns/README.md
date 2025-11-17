@@ -219,6 +219,6 @@ List all resource groups in my subscription
 
 ## What's Next?
 
-**[Chapter 3: Infrastructure-as-Code with Bicep](../03-bicep-templates/README.md)**
+**[Chapter 3: Automating n8n Deployments with Copilot Agents](../03-n8n/README.md)**
 
-Now that you've learned Azure MCP for direct resource creation, you'll learn how to generate Bicep templates for repeatable, version-controlled infrastructure deployments.
+You've mastered Azure MCP prompt patterns—next you'll apply them with specialized Bicep and Terraform agents to ship a production-ready n8n automation platform on Azure Container Apps.

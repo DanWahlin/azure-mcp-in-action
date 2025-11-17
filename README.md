@@ -15,14 +15,7 @@ This course teaches you to deploy Azure infrastructure using **GitHub Copilot in
 
 ### Real-World Projects You'll Deploy
 
-By the end of this course, you'll have deployed:
-
-- 🗄️ **Ghost CMS** - Production publishing platform
-- 🔄 **n8n** - Workflow automation platform
-- 📊 **Apache Superset** - Data visualization on Kubernetes
-- 📈 **Metabase** - Business intelligence platform
-- 🔥 **Supabase** - Complete BaaS platform
-- 📝 **Strapi** - Headless CMS
+The active chapters (0-3) focus on foundational skills plus the n8n automation scenario. Legacy chapters (Ghost, Superset, Metabase, Supabase, Strapi, etc.) are preserved under the `old/` directory while content is refreshed. Feel free to explore them, but the primary guided path currently covers Chapters 0-3.
 
 ### Core Skills
 
@@ -59,21 +52,16 @@ Every chapter includes deployments you can showcase:
 
 ## 📚 Course Structure
 
-This course contains **11 chapters** (setup + 10 chapters), each building on the previous:
+The active track currently includes **4 chapters** (setup + three hands-on chapters). Archived chapters live under [`old/`](./old) until they are updated.
 
 | # | Chapter | OSS Projects | Key Skills | Time |
 |---|---------|--------------|------------|------|
 | 0 | [Course Setup & Safety](./00-course-setup/README.md) | - | Azure account, safety, cost management | 90 min |
 | 1 | [First Azure Deployment](./01-first-deployment/README.md) | **Photo Uploader with Flask** | Basic resource creation, first [App Service](./GLOSSARY.md#app-service) | 60 min |
 | 2 | [Advanced Prompt Patterns](./02-prompt-patterns/README.md) | - | Advanced prompts, patterns | 75 min |
-| 3 | [Bicep Templates](./03-bicep-templates/README.md) | - | Infrastructure-as-Code with Bicep | 90 min |
-| 4 | [Terraform Basics](./04-terraform-basics/README.md) | - | Multi-cloud IaC | 90 min |
-| 5 | [Simple Web Application](./05-simple-web-app/README.md) | **Ghost CMS** | Production App Service + MySQL | 120 min |
-| 6 | [Containerized Applications](./06-containerized-apps/README.md) | **n8n, Superset (AKS)** | Container Apps, Kubernetes | 120 min |
-| 7 | [Data Storage Solutions](./07-data-storage/README.md) | **Metabase** | Databases, BI platforms | 120 min |
-| 8 | [Diagnostics & Troubleshooting](./08-diagnostics-troubleshooting/README.md) | - | AI-assisted debugging | 90 min |
-| 9 | [Multi-Service Architecture](./09-multi-service-architecture/README.md) | **Supabase, Strapi** | Complex applications | 180 min |
-| 10 | [Production Deployment](./10-production-deployment/README.md) | - | Capstone project | 240 min |
+| 3 | [n8n Automation Agents](./03-n8n/README.md) | **n8n (Bicep + Terraform)** | Specialized Copilot agents, Container Apps, PostgreSQL | 90 min |
+
+> Looking for the previous chapters (Terraform basics, Ghost, Superset, etc.)? Check the `old/` folder while we migrate that content into the new agent-focused approach.
 
 Each chapter includes:
 - 📖 **Conceptual explanations** with real-world scenarios
@@ -143,18 +131,12 @@ Begin with [Chapter 0](./00-course-setup/README.md) to set up your environment s
 
 ### Cost Estimates by Chapter
 
-| Chapter | Cost if Running | Cost with Cleanup |
-|---------|----------------|-------------------|
-| 0-4 | $0-20/month | $0 |
-| 5 (Ghost) | $35/month | $0 |
-| 6 (n8n) | $20-30/month | $0 |
-| 6 (Superset) | $70-100/month | $0 |
-| 7 (Metabase) | $40-50/month | $0 |
-| 9 (Supabase) | $60-80/month | $0 |
-| 9 (Strapi) | $40-55/month | $0 |
-
-**Total if left running**: $265-370/month
-**Total with cleanup**: **$0/month**
+| Chapter | Scenario | Cost if Running | Cost with Cleanup |
+|---------|----------|----------------|-------------------|
+| 0 | Course setup + billing safeguards | $0 | $0 |
+| 1 | First App Service deployment (F1 tier) | $0 | $0 |
+| 2 | Prompt practice & queries (no resources) | $0 | $0 |
+| 3 | n8n on Container Apps + PostgreSQL (scale-to-zero) | $20-30/month | $0 |
 
 ### Safety Features
 
@@ -170,27 +152,22 @@ Begin with [Chapter 0](./00-course-setup/README.md) to set up your environment s
 
 ### For Complete Beginners
 
-1. Start with [Chapter 0](./00-course-setup/README.md) (mandatory)
-2. Complete chapters 1-4 to build foundation
-3. Deploy OSS projects in chapters 5-9
-4. Complete capstone in chapter 10
+1. Start with [Chapter 0](./00-course-setup/README.md) (mandatory).
+2. Work through Chapters 1-3 to practice App Service basics, advanced prompt patterns, and the n8n deployment.
+3. Explore the `old/` directory when you want previews of upcoming refreshed chapters.
 
-**Timeline**: 2-3 weeks (1 hour/day)
+**Timeline**: ~1 week (1 hour/day)
 
 ### For Experienced Azure Users
 
-1. Skim [Chapter 0](./00-course-setup/README.md) for safety setup
-2. Jump to chapters 5-9 for OSS deployments
-3. Focus on AI-assisted prompt patterns
-4. Complete capstone in chapter 10
-
-**Timeline**: 1 week (2-3 hours/day)
+1. Review Chapter 0 quickly (or skip if you already have the safety setup).
+2. Jump straight to Chapter 3 to compare the Bicep vs Terraform agents.
+3. Dip into `old/` for deeper OSS case studies as needed.
 
 ### For Kubernetes Learners
 
-1. Complete chapters 0-5 for foundation
-2. **Focus on Chapter 6 (Superset on AKS)** - This is your Kubernetes credential!
-3. Apply AKS skills in chapters 9-10
+1. Finish Chapters 0-3 now to learn the agent workflows.
+2. Until the refreshed AKS content ships, explore `old/06-containerized-apps` for the Superset-on-AKS walkthrough.
 
 ---
 
@@ -228,21 +205,14 @@ Cost management and cleanup are **first-class concerns**, not afterthoughts.
 azure-mcp-in-action/
 ├── 00-course-setup/          # MANDATORY: Safety and setup
 ├── 01-first-deployment/      # Your first App Service
-├── 02-prompt-patterns/           # Advanced Azure MCP patterns
-├── 03-bicep-templates/       # Infrastructure-as-Code
-├── 04-terraform-basics/      # Multi-cloud IaC
-├── 05-simple-web-app/        # Ghost CMS deployment
-├── 06-containerized-apps/    # n8n + Superset on AKS
-├── 07-data-storage/          # Metabase BI platform
-├── 08-diagnostics-troubleshooting/ # AI-assisted debugging
-├── 09-multi-service-architecture/  # Supabase + Strapi
-├── 10-production-deployment/ # Capstone project
+├── 02-prompt-patterns/       # Advanced Azure MCP patterns
+├── 03-n8n/                   # Copilot agents for n8n (Bicep & Terraform)
+├── old/                      # Archived chapters (Ghost, Superset, etc.)
 ├── scripts/                  # Validation and helper scripts
 ├── prompts/                  # Reusable prompt patterns
-├── data/                     # Reference materials
-├── GLOSSARY.md              # Comprehensive terminology
-├── README.md                # This file
-└── package.json             # Course metadata
+├── GLOSSARY.md               # Comprehensive terminology
+├── README.md                 # This file
+└── package.json              # Course metadata
 ```
 
 ---
