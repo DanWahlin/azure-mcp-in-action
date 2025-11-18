@@ -31,6 +31,62 @@ Your automation team wants a managed n8n instance in Azure so business users can
 
 > **Cost Note**: This chapter deploys paid services. Clean up resources immediately after completing the exercises to minimize costs.
 
+## Architecture Overview
+
+This deployment creates a production-ready n8n environment on Azure with the following components:
+
+```mermaid
+graph TB
+    subgraph Internet["🌐 Internet / External Users"]
+        Users["Users & Webhooks"]
+    end
+
+    subgraph AzureCloud["Azure"]
+        subgraph CAE["Container Apps Environment"]
+            N8N["🐳 n8n Container App<br/>CPU: 1.0, Memory: 2Gi<br/>Replicas: 0-3<br/>Port: 5678"]
+        end
+
+        PG["🗄️ PostgreSQL Flexible Server<br/>B_Standard_B1ms, 32GB"]
+
+        LA["📊 Log Analytics<br/>PerGB2018, 30d"]
+    end
+
+    Users -->|HTTPS| N8N
+    N8N -->|SSL Connection| PG
+    N8N -.->|Logs| LA
+    CAE -.->|Logs| LA
+
+    classDef azureService fill:#0078D4,stroke:#004578,stroke-width:2px,color:#fff
+    classDef container fill:#68217A,stroke:#3E1746,stroke-width:2px,color:#fff
+    classDef external fill:#107C10,stroke:#0B5A0B,stroke-width:2px,color:#fff
+
+    class N8N container
+    class PG,LA,CAE azureService
+    class Users external
+```
+
+### Why This Architecture?
+
+**Why Container Apps instead of App Service?**
+- **Scale to zero**: Container Apps can scale down to 0 replicas when not in use, eliminating compute costs
+- **Better for workflows**: n8n runs background tasks that benefit from container orchestration
+- **Built-in health probes**: Native support for startup, liveness, and readiness probes
+- **Microservices-ready**: Easy to add additional services later (webhooks, workers, etc.)
+
+**Why PostgreSQL Flexible Server instead of containerized database?**
+- **Managed backups**: Automatic daily backups with point-in-time restore
+- **High availability**: Built-in redundancy and failover capabilities
+- **Performance**: Optimized for Azure with better I/O than container storage
+- **Separation of concerns**: Database lifecycle independent of application containers
+- **Production-ready**: Meets compliance and security requirements out of the box
+
+**Why Azure Developer CLI (azd)?**
+- **Simplified workflow**: Single command (`azd up`) handles resource dependencies automatically
+- **Environment management**: Easy to create dev/staging/prod environments with different configs
+- **IaC agnostic**: Works identically with Bicep or Terraform
+- **Post-provision hooks**: Automates configuration steps that require runtime values (like WEBHOOK_URL)
+- **Repeatable deployments**: Same commands work across team members and CI/CD pipelines
+
 ---
 
 ## Part 1: Meet the Specialized Agents
