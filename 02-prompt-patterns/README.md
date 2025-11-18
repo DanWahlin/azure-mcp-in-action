@@ -40,27 +40,43 @@ All patterns in this chapter follow the **[Generate → Approve → Execute Work
 
 ### Pattern 1: Single Resource Creation
 
+**When to use**: Creating a single Azure resource with specific configuration requirements.
+
+**Example prompt**:
 ```
 Create a storage account named learnstg in East US using Standard_LRS with blob public access disabled and HTTPS-only enabled.
 ```
 
-**Verify**: `az storage account show --name learnstg`
+**What happens**: Agent mode generates the infrastructure code, shows you the "Continue?" approval prompt, then executes the commands to create the storage account.
+
+**Verify**:
+```bash
+az storage account show --name learnstg
+```
 
 ### Pattern 2: Resource with Dependencies
 
+**When to use**: Creating resources that depend on other resources (like a Key Vault that needs a resource group).
+
+**Example prompt**:
 ```
 Create an Azure Key Vault named learn-kv-[YOUR-INITIALS] in West US. Include resource group learn-kv-rg if it doesn't exist. Configure for soft-delete and purge protection.
 ```
 
-**Note**: Agent automatically creates prerequisite resources ([resource groups](../GLOSSARY.md#resource-group)) before the main resource.
+**What happens**: Following the Generate → Approve → Execute workflow, the agent automatically creates prerequisite resources ([resource groups](../GLOSSARY.md#resource-group)) before the main resource.
 
-> **Azure MCP in Action**: The agent automatically calls Azure MCP tools to check if the resource group exists, creates it if needed, then creates the Key Vault. All done with one natural language prompt.
+> **Azure MCP in Action**: The agent automatically calls Azure MCP tools to check if the resource group exists, creates it if needed, then creates the Key Vault. All done with one natural language prompt and one approval step.
 
 ### Pattern 3: Query and Filter
 
+**When to use**: Retrieving information about existing Azure resources with specific criteria.
+
+**Example prompt**:
 ```
 List all storage accounts in my subscription where location is East US and show the name, SKU, and tags
 ```
+
+**What happens**: Agent mode queries your Azure subscription and returns filtered results. No resources are created or modified - this is a read-only operation.
 
 ### Pattern 4: Conditional Creation
 

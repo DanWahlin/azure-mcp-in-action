@@ -239,26 +239,34 @@ az group list --output table | Select-String "learning-rg"
 
 ## Assignment
 
-Use Azure MCP to complete these tasks:
+Practice the skills you've learned by completing this independent exercise:
 
-1. Create a Python 3.14 web app using the same workflow
-2. Use a different region (West US or your closest region)
-3. Deploy sample Python code from Azure samples
-4. Verify the deployment using all three methods (Portal, CLI, agent mode query)
-5. Calculate total deployment time
-6. Clean up all resources using agent mode
+**Objective**: Deploy a Python web app to Azure using the same workflow you just learned.
+
+**Requirements**:
+1. Create a Python 3.11 web app using the same workflow as the Node.js example
+2. Use a different region (West US, West Europe, or your closest region)
+3. Deploy a sample Python "Hello World" application
+4. Verify the deployment using all three verification methods:
+   - Azure Portal (visual confirmation)
+   - Azure CLI (programmatic verification)
+   - Agent mode query (AI-assisted verification)
+5. Document your deployment time from prompt to working application
+6. Clean up all resources using agent mode when finished
+
+**Hint**: Your prompt to agent mode should be similar to the Node.js deployment, but specify Python 3.11 runtime instead of Node.js LTS.
 
 ### Success Criteria
 
-- ✅ Activated agent mode in GitHub Copilot Chat
+- ✅ Activated [agent mode](../GLOSSARY.md#agent-mode) in GitHub Copilot Chat
 - ✅ Used agent mode to generate and execute deployment commands
 - ✅ Reviewed code before clicking "Continue" buttons
-- ✅ Successfully deployed Python web app
+- ✅ Successfully deployed Python web app to [Azure App Service](../GLOSSARY.md#app-service)
 - ✅ App accessible via HTTPS URL
-- ✅ Verified deployment using Portal, CLI, and agent mode queries
+- ✅ Verified deployment using [Azure Portal](../GLOSSARY.md#azure-portal), [Azure CLI](../GLOSSARY.md#azure-cli), and agent mode queries
 - ✅ Cleaned up all resources using agent mode
-- ✅ Used Free tier (F1 SKU)
-- ✅ Understand the Generate → Approve → Execute → Verify workflow
+- ✅ Used [Free tier (F1 SKU)](../GLOSSARY.md#free-tier-f1)
+- ✅ Understand the [Generate → Approve → Execute → Verify workflow](../GLOSSARY.md#generate--approve--execute-workflow)
 
 ---
 

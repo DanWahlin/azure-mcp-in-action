@@ -191,7 +191,7 @@ Create a storage account named mystorageacct in East US using Standard_LRS with 
 
 **What happens**:
 1. Agent generates infrastructure-as-code (Bicep templates, Azure CLI commands, etc.)
-2. Agent asks for your approval with an "Allow" button
+2. Agent asks for your approval with a "Allow" button
 3. After approval, agent automatically executes terminal commands
 4. Commands create/modify Azure resources in your subscription
 5. Agent reports success and shows what was created
@@ -320,7 +320,7 @@ Show details of storage account mystorageacct
 
 - **All Chapters**: Use agent mode for creating and managing resources
 - Always verify resources after creation (Portal, CLI, or Agent queries)
-- Always review what an Azure MCP tool will do before clicking "Allow" in agent mode
+- Always review what an Azure MCP tool will do before clicking "Continue" in agent mode
 - Practice safe approval habits in every chapter
 
 ---
@@ -375,7 +375,7 @@ List all resource groups in my Azure subscription
 
 **What happens**: Agent mode will query your Azure subscription and return the results.
 
-**Tool limit exceeded error?**: If you see a message about tool limits, select the `tools` icon at the bottom of the chat panel and deselect any unnecessary tools.
+**Tool limit exceeded error?**: If you see a message about tool limits, look for the tools icon (looks like a wrench or toolbox) in the GitHub Copilot Chat panel's bottom toolbar and click it to deselect any unnecessary tools that aren't related to Azure.
 
 #### Step 3: Review the Results
 
@@ -426,11 +426,11 @@ What Azure App Services are running in East US?
 
 ## Key Takeaways
 
-1. **Cost Alerts**: Ensure that cost alerts are setup
-2. **Agent Mode**: Use agent mode for all resource creation and management
-3. **Understand the Workflow**: Generate → Approve ("Allow") → Execute → Verify
-4. **Agent Mode Auto-Selects Tools**: Just use natural language with "Azure" context
-5. **Review Before Approving**: Always read what the agent will do before clicking "Allow"
+1. **Cost Alerts**: Ensure that cost alerts are setup to protect against unexpected charges
+2. **Agent Mode**: Use agent mode for all resource creation and management throughout this course
+3. **Understand the Workflow**: Generate → Approve ("Continue") → Execute → Verify
+4. **Agent Mode Auto-Selects Tools**: Just use natural language with "Azure" context - no special syntax needed
+5. **Review Before Approving**: Always read what the agent will do before clicking "Continue"
 
 ---
 

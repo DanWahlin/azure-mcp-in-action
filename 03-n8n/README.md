@@ -67,25 +67,27 @@ graph TB
 
 ### Why This Architecture?
 
+This architecture demonstrates production-ready patterns you'll use in real-world Azure deployments:
+
 **Why Container Apps instead of App Service?**
-- **Scale to zero**: Container Apps can scale down to 0 replicas when not in use, eliminating compute costs
-- **Better for workflows**: n8n runs background tasks that benefit from container orchestration
-- **Built-in health probes**: Native support for startup, liveness, and readiness probes
-- **Microservices-ready**: Easy to add additional services later (webhooks, workers, etc.)
+- **Scale to zero**: Automatically scales down to 0 replicas when not in use, eliminating compute costs during idle periods
+- **Better for workflows**: n8n runs background tasks that benefit from container orchestration and isolation
+- **Built-in health probes**: Native support for startup, liveness, and readiness probes prevents premature container termination
+- **Microservices-ready**: Easy to add additional services later (webhooks, workers, etc.) in the same environment
 
 **Why PostgreSQL Flexible Server instead of containerized database?**
-- **Managed backups**: Automatic daily backups with point-in-time restore
-- **High availability**: Built-in redundancy and failover capabilities
-- **Performance**: Optimized for Azure with better I/O than container storage
-- **Separation of concerns**: Database lifecycle independent of application containers
-- **Production-ready**: Meets compliance and security requirements out of the box
+- **Managed backups**: Automatic daily backups with point-in-time restore up to 35 days
+- **High availability**: Built-in redundancy and automatic failover capabilities
+- **Performance**: Optimized for Azure with better I/O throughput than container storage volumes
+- **Separation of concerns**: Database lifecycle is independent of application containers
+- **Production-ready**: Meets compliance and security requirements out of the box (encryption at rest, SSL connections)
 
 **Why Azure Developer CLI (azd)?**
-- **Simplified workflow**: Single command (`azd up`) handles resource dependencies automatically
-- **Environment management**: Easy to create dev/staging/prod environments with different configs
-- **IaC agnostic**: Works identically with Bicep or Terraform
-- **Post-provision hooks**: Automates configuration steps that require runtime values (like WEBHOOK_URL)
-- **Repeatable deployments**: Same commands work across team members and CI/CD pipelines
+- **Simplified workflow**: Single command (`azd up`) handles resource dependencies and deployment order automatically
+- **Environment management**: Easy to create multiple environments (dev/staging/prod) with different configurations
+- **IaC agnostic**: Works identically with Bicep or Terraform - same workflow, different tools
+- **Post-provision hooks**: Automates configuration steps that require runtime values (like WEBHOOK_URL after FQDN is assigned)
+- **Repeatable deployments**: Same commands work across team members and CI/CD pipelines - no "works on my machine" issues
 
 ---
 
@@ -160,9 +162,18 @@ These specialized agents handle:
 ### 2.2 Critical Technical Details (Bicep)
 
 **Health Probes (MOST IMPORTANT - Common Failure Point)**
-- **Liveness probe**: `initialDelaySeconds: 60` - n8n requires at least 60 seconds to initialize
-- **Startup probe**: `failureThreshold: 30` - allows up to 5 minutes for first startup
-- **Why critical**: Without these settings, [Azure Container Apps](../GLOSSARY.md#azure-container-apps) will kill the container before n8n finishes starting, causing "CrashLoopBackOff" errors
+
+n8n is a complex Node.js application that requires time to initialize. Incorrect health probe settings are the #1 cause of failed deployments:
+
+- **Liveness probe**: `initialDelaySeconds: 60`
+  - **Why**: n8n requires at least 60 seconds to start its web server after the container launches
+  - **What happens if wrong**: Container Apps kills the container thinking it's unhealthy
+
+- **Startup probe**: `failureThreshold: 30` with 10-second intervals
+  - **Why**: Allows up to 5 minutes (30 × 10s = 300s) for the first startup
+  - **What happens if wrong**: Container never becomes ready, stuck in "CrashLoopBackOff" state
+
+- **Why this matters**: Without these settings, [Azure Container Apps](../GLOSSARY.md#azure-container-apps) will terminate the container before n8n finishes initializing, resulting in an endless restart loop
 
 **Database Connection Requirements**
 - MUST use [PostgreSQL](../GLOSSARY.md#postgresql) server FQDN (fully qualified domain name), not short name
@@ -182,7 +193,14 @@ These specialized agents handle:
 - Hook retrieves FQDN and updates environment variable without manual steps
 
 ### 2.3 Kickoff Prompt
-With the **n8n Bicep** agent selected in GitHub Copilot, run the following prompt:
+
+**Step 1**: Select the **n8n Bicep agent** in GitHub Copilot Chat:
+1. Open GitHub Copilot Chat (`Cmd+Shift+I` / `Ctrl+Shift+I`)
+2. Set mode to **Agent** using the dropdown at the bottom
+3. From the same dropdown, select `n8n-deployment.bicep.agent.md`
+4. Verify the agent name appears in your chat input area
+
+**Step 2**: Run this prompt:
 ```
 Create a deployment for n8n to Azure using Bicep and azd
 - Region westus, environment name n8n
@@ -190,10 +208,16 @@ Create a deployment for n8n to Azure using Bicep and azd
 - Include required tags: environment=learning course=azure-copilot chapter=03
 ```
 
-**Behind the scenes** the agent will:
-- Call `mcp_azure_mcp_get_bestpractices` (general/code-generation) and summarize guidance.
-- Fetch Bicep schema tips via `mcp_azure_mcp_bicepschema`.
-- Generate `infra/main.bicep`, parameters, `azure.yaml`, `infra/hooks/postprovision.*`, and `.gitignore` entries.
+**What the agent does** (following the Generate → Approve → Execute workflow):
+1. **Generate**: Calls Azure MCP tools to get best practices and Bicep schema guidance
+2. **Generate**: Creates complete project structure:
+   - `infra/main.bicep` - Main infrastructure template
+   - `infra/main.parameters.json` - Configuration values
+   - `azure.yaml` - Azure Developer CLI configuration
+   - `infra/hooks/postprovision.*` - Post-deployment automation scripts
+   - `.gitignore` - Git ignore patterns
+3. **Approve**: Shows you all the generated code and commands for review
+4. **Execute**: After you click "Continue", runs the deployment commands
 
 ### 2.4 Approve the Plan
 - GitHub Copilot posts a diff + command list (resource group, azd init, az provider register, etc.).
