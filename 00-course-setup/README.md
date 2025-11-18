@@ -1,10 +1,8 @@
 # Chapter 0: Course Setup and Safety Fundamentals
 
-**Title**: Setting Up for Safe, Cost-Effective Azure Learning
-**Focus**: Installation, configuration, cost management, and security baseline
-**Prerequisites**: Computer with VS Code, valid email for Azure account
+Before diving into AI-assisted deployments, this foundational chapter ensures you have a safe, cost-controlled learning environment. You'll create your Azure account, install GitHub Copilot for Azure, configure billing alerts, and understand how agent mode works with Azure MCP tools. This setup is mandatory—it protects you from unexpected charges and establishes the workflow patterns you'll use throughout the course.
 
----
+**Prerequisites**: Computer with VS Code, valid email for Azure account
 
 ## Learning Objectives
 

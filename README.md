@@ -57,7 +57,7 @@ The active track currently includes **4 chapters** (setup + three hands-on chapt
 | # | Chapter | OSS Projects | Key Skills | Time |
 |---|---------|--------------|------------|------|
 | 0 | [Course Setup & Safety](./00-course-setup/README.md) | - | Azure account, safety, cost management | 90 min |
-| 1 | [First Azure Deployment](./01-first-deployment/README.md) | **Photo Uploader with Flask** | Basic resource creation, first [App Service](./GLOSSARY.md#app-service) | 60 min |
+| 1 | [First Azure Deployment](./01-first-deployment/README.md) | **Node.js Hello World** | Generate → Approve → Execute workflow, first [App Service](./GLOSSARY.md#app-service) | 60 min |
 | 2 | [Advanced Prompt Patterns](./02-prompt-patterns/README.md) | - | Advanced prompts, patterns | 75 min |
 | 3 | [n8n Automation Agents](./03-n8n/README.md) | **n8n (Bicep + Terraform)** | Specialized Copilot agents, Container Apps, PostgreSQL | 90 min |
 
@@ -92,9 +92,9 @@ Each chapter includes:
 You'll need ONE of the following:
 
 - ✅ **Existing Azure subscription** (recommended if you have one)
-- ✅ **Free Azure account** ($200 credit) - [Sign up here](https://azure.microsoft.com/free/)
+- ✅ **Free Azure account** (free credits available) - [Sign up here](https://azure.microsoft.com/free/)
 
-**Estimated Cost**: $0-50 for entire course with proper cleanup
+**Cost Management**: Chapter 0 sets up billing alerts and teaches cleanup practices to minimize costs
 
 ---
 
@@ -131,12 +131,12 @@ Begin with [Chapter 0](./00-course-setup/README.md) to set up your environment s
 
 ### Cost Estimates by Chapter
 
-| Chapter | Scenario | Cost if Running | Cost with Cleanup |
-|---------|----------|----------------|-------------------|
-| 0 | Course setup + billing safeguards | $0 | $0 |
-| 1 | First App Service deployment (F1 tier) | $0 | $0 |
-| 2 | Prompt practice & queries (no resources) | $0 | $0 |
-| 3 | n8n on Container Apps + PostgreSQL (scale-to-zero) | $20-30/month | $0 |
+| Chapter | Scenario | Tier/SKU | Cleanup Required |
+|---------|----------|----------|------------------|
+| 0 | Course setup + billing safeguards | Free tier | N/A |
+| 1 | First App Service deployment | F1 (Free) | Yes |
+| 2 | Prompt practice & queries (no resources) | N/A | Yes |
+| 3 | n8n on Container Apps + PostgreSQL | Paid (consumption/burstable) | Yes (immediate) |
 
 ### Safety Features
 

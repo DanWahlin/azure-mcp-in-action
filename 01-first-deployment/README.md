@@ -1,6 +1,6 @@
 # Chapter 1: Your First AI-Generated Azure Deployment
 
-Welcome to your first hands-on Azure deployment using GitHub Copilot [agent mode](../GLOSSARY.md#agent-mode)! In this chapter, you'll learn the fundamental **[Generate → Approve → Execute → Verify workflow](../GLOSSARY.md#generate--approve--execute-workflow)** that you'll use throughout the course. You'll start by querying your Azure subscription, then deploy a simple Node.js web app to [Azure App Service](../GLOSSARY.md#app-service) using natural language prompts. Agent mode will generate the [infrastructure code](../GLOSSARY.md#infrastructure-as-code-iac), ask for your approval with "Allow" buttons, execute the deployment commands, and you'll verify the results in both the [Azure Portal](../GLOSSARY.md#azure-portal) and [Azure CLI](../GLOSSARY.md#azure-cli). This practical introduction shows how AI can accelerate your Azure development while maintaining full control through approval gates.
+In this chapter, you'll learn the fundamental **[Generate → Approve → Execute → Verify workflow](../GLOSSARY.md#generate--approve--execute-workflow)** that you'll use throughout the course. You'll start by querying your Azure subscription, then deploy a simple Node.js web app to [Azure App Service](../GLOSSARY.md#app-service) using natural language prompts. Agent mode will generate the [infrastructure code](../GLOSSARY.md#infrastructure-as-code-iac), ask for your approval with "Allow" buttons, execute the deployment commands, and you'll verify the results in both the [Azure Portal](../GLOSSARY.md#azure-portal) and [Azure CLI](../GLOSSARY.md#azure-cli). This practical introduction shows how AI can accelerate your Azure development while maintaining full control through approval gates.
 
 ## Prerequisites
 
@@ -18,6 +18,10 @@ By the end of this chapter, you'll be able to:
 - ✅ Clean up resources using agent mode
 - ✅ Understand cost implications before deployment
 
+## Real-World Scenario
+
+Your manager asks you to quickly prototype a Node.js API for a customer demo tomorrow. Instead of spending hours reading Azure documentation and writing deployment scripts, you'll use GitHub Copilot agent mode to generate the infrastructure code, review it, approve it, and deploy it in minutes. You need to use the free tier and be able to tear everything down after the demo.
+
 ---
 
 ## Part 1: Understanding What You're Building
@@ -26,13 +30,13 @@ By the end of this chapter, you'll be able to:
 
 ```
 Azure App Service (Node.js LTS)
-├── Free tier (F1 SKU) - $0/month
+├── Free tier (F1 SKU)
 ├── Linux-based runtime
 ├── Sample Hello World app
 └── HTTPS enabled by default
 ```
 
-**Cost Estimate**: $0 (using [Free tier](../GLOSSARY.md#free-tier-f1))
+**Cost**: Uses [Free tier](../GLOSSARY.md#free-tier-f1) (F1 SKU)
 
 ---
 
@@ -174,7 +178,7 @@ az webapp log tail \
 
 ---
 
-## Part 7: Cleanup (CRITICAL)
+## Part 6: Cleanup (CRITICAL)
 
 > [!IMPORTANT]
 > Complete this cleanup to avoid unexpected Azure charges (even though F1 is free, it's good practice!)
@@ -253,7 +257,7 @@ Use Azure MCP to complete these tasks:
 - ✅ App accessible via HTTPS URL
 - ✅ Verified deployment using Portal, CLI, and agent mode queries
 - ✅ Cleaned up all resources using agent mode
-- ✅ Cost remained $0 (Free tier)
+- ✅ Used Free tier (F1 SKU)
 - ✅ Understand the Generate → Approve → Execute → Verify workflow
 
 ---
@@ -263,8 +267,8 @@ Use Azure MCP to complete these tasks:
 1. **Agent mode workflow**: Generate code → Approve with "Continue" → Execute commands → Verify results
 2. **Verification is Critical**: Always verify resources using Portal, Azure CLI, and agent mode queries
 3. **Review Before Approving**: Always read what the agent will do before clicking "Continue"
-4. **Free Tiers Exist**: Many Azure services have Free tiers for learning (F1 App Service is $0/month)
-5. **Cleanup is Mandatory**: Always delete resources after practicing to avoid charges
+4. **Free Tiers Exist**: Many Azure services have Free tiers for learning (F1 App Service, etc.)
+5. **Cleanup is Mandatory**: Always delete resources after practicing to minimize costs
 
 ---
 

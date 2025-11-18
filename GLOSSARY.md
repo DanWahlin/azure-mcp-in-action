@@ -35,12 +35,51 @@ Azure's fully managed platform for building, deploying, and scaling web applicat
 The compute resources (CPU, memory, storage) that power your App Service. Multiple apps can share the same plan to reduce costs. Plans have different SKUs (Free, Basic, Standard, Premium) with varying capabilities and pricing.
 
 **Pricing tiers**:
-- **F1 (Free)**: $0/month, limited resources, good for learning
-- **B1 (Basic)**: ~$13/month, custom domains, SSL
-- **S1 (Standard)**: ~$70/month, auto-scaling, deployment slots
-- **P1V2 (Premium)**: ~$146/month, better performance, more scaling
+- **F1 (Free)**: Free tier, limited resources, good for learning
+- **B1 (Basic)**: Basic tier, custom domains, SSL
+- **S1 (Standard)**: Standard tier, auto-scaling, deployment slots
+- **P1V2 (Premium)**: Premium tier, better performance, more scaling
 
 **See**: [Chapter 1: First Deployment](./01-first-deployment/README.md)
+
+### Azure CLI
+
+The Azure Command-Line Interface (CLI) is a cross-platform command-line tool for managing Azure resources. Provides commands to create, configure, and delete Azure resources from the terminal.
+
+**Key features**:
+- Cross-platform (Windows, macOS, Linux)
+- Interactive and scriptable
+- Consistent command structure (`az <service> <operation>`)
+- JSON output for programmatic processing
+
+**Common commands**:
+- `az login` - Authenticate to Azure
+- `az group create` - Create a resource group
+- `az webapp create` - Create a web app
+- `az resource list` - List all resources
+
+**See**: [Chapter 0: Course Setup](./00-course-setup/README.md), [Chapter 1: First Deployment](./01-first-deployment/README.md)
+
+### Azure Developer CLI
+
+A command-line tool (azd) that simplifies Azure application deployment through templates and conventions. Azure Developer CLI provides a unified workflow for provisioning infrastructure, deploying code, and managing environments across multiple Azure services.
+
+**Key features**:
+- Infrastructure provisioning with Bicep or Terraform
+- Environment management (dev, staging, production)
+- Local state management
+- Post-provision hooks for automation
+- GitHub Actions integration
+
+**Common commands**:
+- `azd init` - Initialize a new project
+- `azd up` - Provision infrastructure and deploy code
+- `azd down` - Delete all Azure resources
+- `azd env get-value` - Retrieve deployment outputs
+
+**Why it matters**: azd eliminates the need to manually manage resource dependencies, parameter files, and deployment order. It provides a consistent deployment experience whether using Bicep or Terraform.
+
+**See**: [Chapter 3: n8n Deployment](./03-n8n/README.md)
 
 ### Application Insights
 

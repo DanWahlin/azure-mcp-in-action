@@ -1,8 +1,8 @@
 # Chapter 2: Prompt Patterns with Agent mode
 
-Learn [agent mode](../GLOSSARY.md#agent-mode) prompt patterns for complex multi-step deployments, conditional resource creation, and bulk operations.
+Now that you've completed your first deployment, this chapter teaches you reusable prompt patterns that unlock Azure MCP's full power. You'll learn how to create multiple resources in bulk, handle conditional logic, query and filter resources, and manage complex multi-step deployments—all through natural language prompts. By the end, you'll have a library of proven patterns for common Azure scenarios.
 
-## Prerequisites
+**Prerequisites**:
 
 - Completed [Course Setup](../00-course-setup/README.md)
 - Completed [Chapter 1: First Deployment](../01-first-deployment/README.md)
@@ -21,16 +21,18 @@ Your company is onboarding 10 new developers who each need identical development
 
 ---
 
-## How Patterns Work
+## How Patterns Work with Azure MCP
 
-All patterns in this chapter follow the same workflow:
+All patterns in this chapter follow the **[Generate → Approve → Execute Workflow](../GLOSSARY.md#generate--approve--execute-workflow)** using [Azure MCP](../GLOSSARY.md#azure-mcp) in agent mode:
 
-1. **You**: Write natural language prompt in Agent mode
-2. **Agent**: Generates [infrastructure code](../GLOSSARY.md#infrastructure-as-code-iac) ([Bicep](../GLOSSARY.md#bicep)/CLI) and shows "Allow?"
-3. **You**: Review and approve
-4. **Agent**: Executes commands to create/modify Azure resources
+1. **Generate**: You write natural language prompt in Agent mode with "Azure" context
+2. **Approve**: Azure MCP generates [infrastructure code](../GLOSSARY.md#infrastructure-as-code-iac) ([Bicep](../GLOSSARY.md#bicep)/CLI) and shows "Continue?"
+3. **Execute**: You review and click "Continue"
+4. **Verify**: Agent executes commands to create/modify Azure resources
 
-**Reminder**: Use [agent mode](../GLOSSARY.md#agent-mode) for creating/modifying resources throughout this course.
+**Azure MCP Tools**: GitHub Copilot automatically selects Azure MCP tools when you mention "Azure" in your prompts. These tools handle resource creation, querying, and management.
+
+**Reminder**: Use [agent mode](../GLOSSARY.md#agent-mode) with Azure MCP throughout this course.
 
 ---
 
@@ -51,6 +53,8 @@ Create an Azure Key Vault named learn-kv-[YOUR-INITIALS] in West US. Include res
 ```
 
 **Note**: Agent automatically creates prerequisite resources ([resource groups](../GLOSSARY.md#resource-group)) before the main resource.
+
+> **Azure MCP in Action**: The agent automatically calls Azure MCP tools to check if the resource group exists, creates it if needed, then creates the Key Vault. All done with one natural language prompt.
 
 ### Pattern 3: Query and Filter
 
@@ -80,6 +84,8 @@ Create 5 storage accounts for our development team:
 
 **Verify**: `az storage account list --resource-group dev-storage-rg --output table`
 
+> **Azure MCP in Action**: Azure MCP tools handle the loop logic automatically - you don't need to write scripts or repeat commands. The agent creates all 5 storage accounts in sequence after you approve the plan.
+
 ### Pattern 6: Configuration Updates
 
 ```
@@ -100,6 +106,8 @@ Before creating an AKS cluster in East US, verify:
 
 If any check fails, tell me how to fix it.
 ```
+
+> **Azure MCP in Action**: Azure MCP's pre-validation tools check quota limits, region availability, and provider registration before attempting deployment. This prevents failed deployments and saves time.
 
 ### Pattern 8: Resource Dependency Mapping
 
@@ -162,12 +170,14 @@ Use the patterns above to complete these tasks:
 
 ---
 
-## Cleanup Using Azure MCP
+## Cleanup Using Agent Mode with Azure MCP
 
 > [!IMPORTANT]
 > Complete this cleanup to avoid unexpected Azure charges. This chapter had you create multiple resource groups and resources. Clean them all up before proceeding to Chapter 3.
 
-### Method 1: Use Azure MCP (RECOMMENDED)
+### Method 1: Use Agent Mode with Azure MCP (RECOMMENDED)
+
+This demonstrates the **Generate → Approve → Execute workflow** for cleanup operations.
 
 **List resources first**:
 ```
@@ -179,11 +189,11 @@ List all resource groups in my subscription
 Delete resource groups: john-dev-rg, jane-dev-rg, dev-storage-rg, dev-team-rg, learn-kv-rg, alice-dev-rg, bob-dev-rg, carol-dev-rg
 ```
 
-**Agent mode will**:
-1. Generate deletion commands → Show "Continue?" → Execute after approval
-2. Delete all specified resource groups
-3. Remove all contained resources
-4. Confirm deletion completion
+**Agent mode with Azure MCP will**:
+1. **Generate**: Azure MCP creates deletion plan with commands
+2. **Approve**: Shows "Continue?" with preview of what will be deleted
+3. **Execute**: Runs deletion commands after you approve
+4. **Verify**: Confirms all resource groups and contained resources are removed
 
 ### Method 2: Manual Cleanup with Azure CLI
 
