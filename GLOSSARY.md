@@ -205,7 +205,35 @@ Azure's domain-specific language for declarative infrastructure-as-code. Simpler
 
 **Example use**: Define an entire application infrastructure (App Service, database, storage) in one .bicep file.
 
-**See**: [Chapter 3: Infrastructure-as-Code with Bicep](./03-bicep-templates/README.md)
+**See**: [Chapter 3: n8n Deployment](./03-n8n/README.md)
+
+### Bicep vs. Terraform
+
+When deploying Azure infrastructure, you can use either Bicep (Azure-native) or Terraform (multi-cloud). If you don't already have a strong preference for Terraform, **use Bicep**—it's simpler for Azure-only deployments and has better Azure tooling integration.
+
+**Choose Bicep when**:
+- Your team is focused exclusively on Azure
+- You want simpler syntax and lower learning curve
+- You prefer native Azure Resource Manager integration
+- Your organization standardizes on Azure-native tools
+
+**Choose Terraform when**:
+- Your team manages infrastructure across multiple cloud providers (AWS, GCP, Azure)
+- You already have existing Terraform modules and workflows
+- You need skills that transfer to other cloud platforms
+- Your organization has standardized on Terraform
+
+**Key Technical Differences**:
+
+Both use Azure Developer CLI (azd) for deployment and local state management, but differ in implementation:
+
+- **Syntax**: Bicep uses declarative, Azure-focused syntax; Terraform uses HCL (HashiCorp Configuration Language)
+- **Encryption keys**: Bicep uses `newGuid()` as parameter default; Terraform uses `random_password` resource
+- **Provider setup**: Bicep uses native Azure Resource Manager; Terraform requires `resource_provider_registrations = "none"` setting
+- **Variable files**: Bicep uses `main.parameters.json`; Terraform uses `main.tfvars.json` (not `terraform.tfvars.json`)
+- **Output retrieval**: Bicep post-provision hooks use `azd env get-value`; Terraform uses `terraform output -raw`
+
+**See**: [Chapter 3: n8n Deployment](./03-n8n/README.md)
 
 ### Blob Storage
 
@@ -460,6 +488,30 @@ Azure's managed PostgreSQL database service with flexible configuration options.
 - **Memory Optimized**: Highest performance for demanding workloads
 
 **See**: [Chapter 6: n8n Deployment](./06-containerized-apps/README.md)
+
+### Post-Provision Hooks
+
+Scripts that run automatically after Azure Developer CLI (azd) provisions your infrastructure. These hooks execute custom automation tasks that depend on runtime values from newly created resources.
+
+**Common use cases**:
+- Configure settings that require resource identifiers (like FQDNs or connection strings)
+- Initialize databases with schemas or seed data
+- Update environment variables with deployment outputs
+- Validate resource readiness before application deployment
+
+**How they work**: Defined in `azure.yaml`, post-provision hooks run after `azd up` completes infrastructure provisioning but before deployment finishes. They have access to Azure environment variables and deployment outputs.
+
+**Example**: Configuring `WEBHOOK_URL` for an application after the Container App receives its FQDN—something that can't be known until after deployment.
+
+**Configuration**:
+```yaml
+hooks:
+  postprovision:
+    shell: sh
+    run: ./infra/hooks/postprovision.sh
+```
+
+**See**: [Chapter 3: n8n Deployment](./03-n8n/README.md), [Azure Developer CLI Extensibility](https://learn.microsoft.com/en-us/azure/developer/azure-developer-cli/azd-extensibility)
 
 ### Private Endpoint
 
