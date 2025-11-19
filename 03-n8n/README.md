@@ -140,7 +140,7 @@ n8n is a complex Node.js application that requires time to initialize. Incorrect
 Create a deployment for n8n to Azure using Bicep and azd
 - Region westus, environment name n8n
 - Show generated Bicep code and azd commands for approval
-- Include required tags: environment=learning course=azure-copilot chapter=03
+- Include required tags: environment=learning course=azure-mcp chapter=03
 ```
 
 **What the agent does** (following the Generate → Approve → Execute workflow):
@@ -152,7 +152,7 @@ Create a deployment for n8n to Azure using Bicep and azd
    - `infra/hooks/postprovision.*` - Post-deployment automation scripts
    - `.gitignore` - Git ignore patterns
 3. **Approve**: Shows you all the generated code and commands for review
-4. **Execute**: After you click "Continue", runs the deployment commands
+4. **Execute**: After you click "Allow", runs the deployment commands
 
 ### 2.4 Review and Approve
 
