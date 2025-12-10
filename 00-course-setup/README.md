@@ -73,41 +73,6 @@ Why this matters:
 - Helps track course spending vs other Azure usage
 ```
 
-### Create Course Resource Group
-
-Create a dedicated [resource group](../GLOSSARY.md#resource-group) to keep all your course resources organized and easy to clean up.
-
-**Naming Convention**: `azure-copilot-course-[your-initials]`
-**Region**: Choose closest to you (e.g., eastus, westus, westeurope)
-
-#### Method 1: Azure Portal
-
-1. Go to [portal.azure.com](https://portal.azure.com)
-2. Click **Resource groups** in the left menu (or search for it)
-3. Click **+ Create** at the top
-4. Fill in the form:
-   - **Subscription**: Select your subscription
-   - **Resource group name**: `azure-copilot-course-[YOUR-INITIALS]`
-   - **Region**: Select your closest region (e.g., East US, West Europe)
-5. Click **Review + create**
-6. Click **Create**
-
-#### Method 2: [Azure CLI](../GLOSSARY.md#azure-cli) (Command Line)
-
-```bash
-# Login to Azure (if not already logged in)
-az login
-
-# Create the resource group
-az group create \
-  --name azure-copilot-course-[your-initials] \
-  --location eastus
-
-# Verify it was created
-az group show --name azure-copilot-course-[your-initials]
-```
-
-**Tip**: Use the same region throughout the course for better performance and lower data transfer costs.
 
 ---
 

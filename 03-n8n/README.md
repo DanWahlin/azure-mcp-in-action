@@ -119,9 +119,13 @@ n8n is a Node.js application that requires time to initialize. Incorrect health 
 2. Set the agent selection mode to **n8n-deployment.bicep** using the dropdown at the bottom
 
 **Step 2**: Run this prompt:
+
 ```
-Deploy n8n to Azure
+Deploy n8n to Azure in the [your-region] region using resource group "azure-mcp-course-n8n-rg"
 ```
+
+Replace [your-region] with the Azure region you prefer e.g. eastus | westus | westeurope | eastasia, etc.
+
 
 **What the agent does** (following the Generate → Approve → Execute workflow):
 1. **Generate**: Calls [Azure MCP](../GLOSSARY.md#azure-mcp) tools to get best practices and Bicep schema guidance
@@ -185,9 +189,12 @@ n8n is a Node.js application that requires time to initialize. Incorrect health 
 2. Set the agent selection mode to **n8n-deployment.terraform** using the dropdown at the bottom
 
 **Step 2**: Run this prompt:
+
 ```
-Deploy n8n to Azure
+Deploy n8n to Azure in the [your-region] region using resource group "azure-mcp-course-n8n-rg"
 ```
+
+Replace [your-region] with the Azure region you prefer e.g. eastus | westus | westeurope | eastasia, etc.
 
 ### Access n8n
 
