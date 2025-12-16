@@ -1,7 +1,7 @@
 ---
 description: 'This agent helps deploy n8n to Azure using Terraform and Azure Developer CLI (azd) based on specified requirements.'
-tools: ['edit', 'runNotebooks', 'search', 'new', 'runCommands', 'runTasks', 'Azure MCP/*', 'extensions', 'runSubagent', 'usages', 'vscodeAPI', 'problems', 'changes', 'testFailure', 'openSimpleBrowser', 'fetch', 'githubRepo', 'todos', 'ms-azuretools.vscode-azure-github-copilot/azure_recommend_custom_modes', 'ms-azuretools.vscode-azure-github-copilot/azure_query_azure_resource_graph', 'ms-azuretools.vscode-azure-github-copilot/azure_get_auth_context', 'ms-azuretools.vscode-azure-github-copilot/azure_set_auth_context']
-model: Claude Sonet 4.5 (copilot)
+tools: ['execute/getTerminalOutput', 'execute/runTask', 'execute/getTaskOutput', 'execute/createAndRunTask', 'execute/runInTerminal', 'read/terminalSelection', 'read/terminalLastCommand', 'read/problems', 'read/readFile', 'edit/createDirectory', 'edit/createFile', 'edit/editFiles', 'search', 'web', 'agent', 'azure-mcp/*', 'ms-azuretools.vscode-azure-github-copilot/azure_get_azure_verified_module', 'ms-azuretools.vscode-azure-github-copilot/azure_recommend_custom_modes', 'ms-azuretools.vscode-azure-github-copilot/azure_query_azure_resource_graph', 'ms-azuretools.vscode-azure-github-copilot/azure_get_auth_context', 'ms-azuretools.vscode-azure-github-copilot/azure_set_auth_context', 'todo']
+model: Claude Sonnet 4.5 (copilot)
 ---
 Deploy n8n (workflow automation platform) to Azure using Terraform and Azure Developer CLI (azd). Resolve any open questions by asking me, then deploy to Azure.
 
@@ -261,10 +261,18 @@ Deploy n8n (workflow automation platform) to Azure using Terraform and Azure Dev
 - azd hooks automate post-deployment configuration, eliminating manual steps
 - Post-provision scripts must be executable: `chmod +x infra/hooks/postprovision.sh`
 - Include both `.sh` (macOS/Linux) and `.ps1` (Windows) hook scripts for cross-platform support
+- Terraform post-provision hooks use `terraform output -raw` (not `azd env get-value`) to retrieve outputs
 
 ### Outputs & Compatibility:
 - Include `postgres_container_app_name` output as alias to `postgres_server_name` for backward compatibility
 - All outputs referenced in post-provision hooks must exist in `outputs.tf`
+
+### ⚠️ CRITICAL: Post-Provision Hook Implementation:
+- **Terraform approach**: Use `terraform output -raw <output_name>` to retrieve values from Terraform state
+- Navigate to `.azure/${AZURE_ENV_NAME}/infra` directory before running terraform commands
+- Example: `terraform output -raw n8n_container_app_name` (NOT `azd env get-value`)
+- Terraform outputs use snake_case naming convention (e.g., `n8n_container_app_name`, `resource_group_name`)
+- If using `azd env get-value` approach instead, output names must match exactly (camelCase for Bicep, snake_case for Terraform)
 
 ---
 

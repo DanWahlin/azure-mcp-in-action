@@ -121,7 +121,7 @@ n8n is a Node.js application that requires time to initialize. Incorrect health 
 **Step 2**: Run this prompt:
 
 ```
-Deploy n8n to Azure in the [your-region] region using resource group "azure-mcp-course-n8n-rg"
+Deploy n8n to Azure in the [your-region] region using resource group "azure-mcp-course-n8n-rg".
 ```
 
 Replace [your-region] with the Azure region you prefer e.g. eastus | westus | westeurope | eastasia, etc.

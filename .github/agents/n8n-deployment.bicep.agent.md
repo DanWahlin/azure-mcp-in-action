@@ -1,7 +1,7 @@
 ---
 description: 'This agent helps deploy n8n to Azure using Bicep and Azure Developer CLI (azd) based on specified requirements.'
-tools: ['edit', 'runNotebooks', 'search', 'new', 'runCommands', 'runTasks', 'Azure MCP/*', 'extensions', 'runSubagent', 'usages', 'vscodeAPI', 'problems', 'changes', 'testFailure', 'openSimpleBrowser', 'fetch', 'githubRepo', 'todos', 'ms-azuretools.vscode-azure-github-copilot/azure_recommend_custom_modes', 'ms-azuretools.vscode-azure-github-copilot/azure_query_azure_resource_graph', 'ms-azuretools.vscode-azure-github-copilot/azure_get_auth_context', 'ms-azuretools.vscode-azure-github-copilot/azure_set_auth_context']
-model: Claude Sonet 4.5 (copilot)
+tools: ['execute/getTerminalOutput', 'execute/runTask', 'execute/getTaskOutput', 'execute/createAndRunTask', 'execute/runInTerminal', 'read/terminalSelection', 'read/terminalLastCommand', 'read/problems', 'read/readFile', 'edit/createDirectory', 'edit/createFile', 'edit/editFiles', 'search', 'web', 'agent', 'azure-mcp/*', 'ms-azuretools.vscode-azure-github-copilot/azure_get_azure_verified_module', 'ms-azuretools.vscode-azure-github-copilot/azure_recommend_custom_modes', 'ms-azuretools.vscode-azure-github-copilot/azure_query_azure_resource_graph', 'ms-azuretools.vscode-azure-github-copilot/azure_get_auth_context', 'ms-azuretools.vscode-azure-github-copilot/azure_set_auth_context', 'todo']
+model: Claude Sonnet 4.5 (copilot)
 ---
 Deploy n8n (workflow automation platform) to Azure using Bicep and Azure Developer CLI (azd). Resolve any open questions by asking me, then deploy to Azure.
 
@@ -54,6 +54,9 @@ Deploy n8n (workflow automation platform) to Azure using Bicep and Azure Develop
   - The container image is specified directly in the Bicep files (main.bicep parameter `n8nImage`)
 
 # REQUIREMENTS
+
+## GENERATED CODE LOCATION:
+- Add all generated code from this agent into the `./03-n8n` directory.
 
 ## DEPLOYMENT CONFIGURATION:
 - Environment: Development (cost-optimized but production-ready)
@@ -280,6 +283,14 @@ Deploy n8n (workflow automation platform) to Azure using Bicep and Azure Develop
 - Include `postgresContainerAppName` output as alias to `postgresServerName` for backward compatibility
 - All outputs referenced in post-provision hooks must exist in main.bicep outputs
 
+### ⚠️ CRITICAL: AZD Environment Variable Naming Convention:
+- **MUST use exact output names from main.bicep in post-provision hooks**
+- azd does NOT convert output names to uppercase or snake_case
+- Example: If output is `n8nContainerAppName`, use `azd env get-value n8nContainerAppName` (NOT `N8N_CONTAINER_APP_NAME`)
+- Example: If output is `resourceGroupName`, use `azd env get-value resourceGroupName` (NOT `RESOURCE_GROUP_NAME`)
+- **Incorrect naming causes post-provision hook failures** - this is the most common deployment error
+- Always match the **exact camelCase** output names defined in your main.bicep outputs section
+
 ---
 
 ## POST-PROVISION SCRIPT IMPLEMENTATIONS
@@ -295,9 +306,10 @@ set -e
 
 echo "🔧 Configuring n8n post-deployment setup..."
 
-# Retrieve deployment outputs using azd
-N8N_APP_NAME=$(azd env get-value N8N_CONTAINER_APP_NAME)
-RG_NAME=$(azd env get-value RESOURCE_GROUP_NAME)
+# Retrieve deployment outputs from azd environment
+# CRITICAL: Use exact camelCase output names from main.bicep
+N8N_APP_NAME=$(azd env get-value n8nContainerAppName)
+RG_NAME=$(azd env get-value resourceGroupName)
 
 echo "📡 Retrieving n8n Container App URL..."
 N8N_FQDN=$(az containerapp show \
@@ -326,8 +338,9 @@ echo "🎉 n8n deployment complete!"
 echo "🌐 Access n8n at: https://$N8N_FQDN"
 echo ""
 echo "🔑 Login credentials:"
-echo "   Username: $(azd env get-value N8N_BASIC_AUTH_USER)"
-echo "   Password: (from your main.parameters.json)"
+N8N_USER=$(azd env get-value n8nBasicAuthUser)
+echo "   Username: $N8N_USER"
+echo "   Password: (from your environment variables)"
 echo ""
 ```
 
@@ -341,9 +354,10 @@ $ErrorActionPreference = "Stop"
 
 Write-Host "🔧 Configuring n8n post-deployment setup..." -ForegroundColor Cyan
 
-# Retrieve deployment outputs using azd
-$N8N_APP_NAME = azd env get-value N8N_CONTAINER_APP_NAME
-$RG_NAME = azd env get-value RESOURCE_GROUP_NAME
+# Retrieve deployment outputs from azd environment
+# CRITICAL: Use exact camelCase output names from main.bicep
+$N8N_APP_NAME = azd env get-value n8nContainerAppName
+$RG_NAME = azd env get-value resourceGroupName
 
 # Get the Container App FQDN
 Write-Host "📡 Retrieving n8n Container App URL..." -ForegroundColor Cyan
@@ -374,9 +388,9 @@ Write-Host "🎉 n8n deployment complete!" -ForegroundColor Green
 Write-Host "🌐 Access n8n at: https://$N8N_FQDN" -ForegroundColor Cyan
 Write-Host ""
 Write-Host "🔑 Login credentials:" -ForegroundColor Yellow
-$N8N_USER = azd env get-value N8N_BASIC_AUTH_USER
+$N8N_USER = azd env get-value n8nBasicAuthUser
 Write-Host "   Username: $N8N_USER" -ForegroundColor White
-Write-Host "   Password: (from your main.parameters.json)" -ForegroundColor White
+Write-Host "   Password: (from your environment variables)" -ForegroundColor White
 Write-Host ""
 ```
 
