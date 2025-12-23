@@ -74,11 +74,11 @@ We'll use Azure Developer CLI (azd) to simplify the deployment workflow. Running
 
 ---
 
-## Part 1: Using Specialized Deployment Agents
+## Part 1: Meet the Specialized Agents
 
 This chapter provides two specialized GitHub Copilot agents: one for [Bicep](../GLOSSARY.md#bicep) and one for [Terraform](../GLOSSARY.md#terraform). **If you don't already have a preference for Terraform, use the Bicep agent**—it's simpler for Azure-only deployments. Use the Terraform agent if your organization already uses Terraform workflows or manages multi-cloud infrastructure. See [Bicep vs. Terraform](../GLOSSARY.md#bicep-vs-terraform) in the glossary for detailed comparison.
 
-To select an agent, open GitHub Copilot Chat (`Cmd+Shift+I` / `Ctrl+Shift+I`), in the agent mode selector, select either `n8n-deployment.bicep` or `n8n.deployment.terraform` from the dropdown. Verify the agent name appears in your chat input area before proceeding.
+To select an agent, open GitHub Copilot Chat (`Cmd+Shift+I` / `Ctrl+Shift+I`), in the agent mode selector, select either `n8n-deployment.bicep` or `n8n-deployment.terraform` from the dropdown. Verify the agent name appears in your chat input area before proceeding.
 
 ### What These Agents Do
 
@@ -86,7 +86,7 @@ Both specialized agents validate your deployment against Azure best practices be
 
 The [post-provision hooks](../GLOSSARY.md#post-provision-hooks) configure settings like `WEBHOOK_URL` after your Container App receives its fully qualified domain name. All critical configurations are embedded, including proper health probe timeouts and PostgreSQL SSL settings, following security best practices like managed identities and HTTPS-only access.
 
-> ⚠️ **Safety Reminder**: After you click **Continue**, the agents will run actual deployments. Always review the generated code and commands first.
+> ⚠️ **Safety Reminder**: As you select **Allow**, the agents will generate code and run actual deployments. Always review the generated code and commands first.
 
 ---
 
@@ -118,13 +118,15 @@ n8n is a Node.js application that requires time to initialize. Incorrect health 
 1. Open GitHub Copilot Chat (`Cmd+Shift+I` / `Ctrl+Shift+I`)
 2. Set the agent selection mode to **n8n-deployment.bicep** using the dropdown at the bottom
 
+> **Note**: The Bicep agent file is named `n8n-deployment.bicep.agent.md` in the `.github/agents/` directory.
+
 **Step 2**: Run this prompt:
 
 ```
 Deploy n8n to Azure in the [your-region] region using resource group "azure-mcp-course-n8n-rg".
 ```
 
-Replace [your-region] with the Azure region you prefer e.g. eastus | westus | westeurope | eastasia, etc.
+Replace [your-region] with the Azure region you prefer e.g. westus | eastus | westeurope | eastasia
 
 
 **What the agent does** (following the Generate → Approve → Execute workflow):
@@ -140,15 +142,26 @@ Replace [your-region] with the Azure region you prefer e.g. eastus | westus | we
 
 ### Review and Approve
 
-[TODO: Validate this is accurate]
+GitHub Copilot will show you a complete diff with all generated files and commands: resource group creation, provider registration, and the full `azd up` deployment. Review the resource naming patterns before clicking **Continue**:
 
-GitHub Copilot will show you a complete diff with all commands: resource group creation, provider registration, and the full `azd up` deployment. Review the resource naming (expect `n8n-<suffix>` patterns) before clicking **Continue**.
+- Container App: `ca-n8n-<suffix>`
+- PostgreSQL Server: `psql-<suffix>`
+- Log Analytics: `log-<suffix>`
+- Container Apps Environment: `cae-<suffix>`
+- Managed Identity: `id-<suffix>`
 
 ### Deployment Process
 
-[ TODO: Add screeenshot of output here]
+Running `azd up` provisions resources in dependency order:
 
-Running `azd up` provisions resources in dependency order: Resource Group, [Log Analytics](../GLOSSARY.md#log-analytics), Container Apps Environment, Managed Identity, PostgreSQL Flexible Server, and finally the n8n Container App. The [post-provision hook](../GLOSSARY.md#post-provision-hooks) automatically updates the `WEBHOOK_URL` environment variable once the Container App receives its FQDN. Watch the terminal output to confirm health probe configurations are applied.
+1. **Resource Group** - Container for all resources
+2. **Log Analytics Workspace** - Monitoring and logging infrastructure
+3. **Container Apps Environment** - Managed Kubernetes environment
+4. **Managed Identity** - Secure access to Azure resources
+5. **PostgreSQL Flexible Server** - Database with firewall rules
+6. **n8n Container App** - The workflow automation platform
+
+The [post-provision hook](../GLOSSARY.md#post-provision-hooks) automatically updates the `WEBHOOK_URL` environment variable once the Container App receives its FQDN. Watch the terminal output to confirm health probe configurations are applied—you should see the container start successfully after approximately 60-90 seconds.
 
 ### Access n8n
 
@@ -188,6 +201,8 @@ n8n is a Node.js application that requires time to initialize. Incorrect health 
 1. Open GitHub Copilot Chat (`Cmd+Shift+I` / `Ctrl+Shift+I`)
 2. Set the agent selection mode to **n8n-deployment.terraform** using the dropdown at the bottom
 
+> **Note**: The Terraform agent file is named `n8n-deployment.terraform.agent.md` in the `.github/agents/` directory.
+
 **Step 2**: Run this prompt:
 
 ```
@@ -195,6 +210,42 @@ Deploy n8n to Azure in the [your-region] region using resource group "azure-mcp-
 ```
 
 Replace [your-region] with the Azure region you prefer e.g. eastus | westus | westeurope | eastasia, etc.
+
+**What the agent does** (following the Generate → Approve → Execute workflow):
+1. **Generate**: Calls [Azure MCP](../GLOSSARY.md#azure-mcp) tools to get best practices and Terraform guidance
+2. **Generate**: Creates complete project structure:
+   - `infra/main.tf` - Main infrastructure definitions
+   - `infra/variables.tf` - Input variable declarations
+   - `infra/outputs.tf` - Output values
+   - `infra/providers.tf` - Provider configuration
+   - `azure.yaml` - Azure Developer CLI configuration
+   - `infra/hooks/postprovision.*` - Post-deployment automation scripts
+   - `.gitignore` - Git ignore patterns
+3. **Approve**: Shows you all the generated code and commands for review
+4. **Execute**: After you click "Allow", runs the deployment commands
+
+### Review and Approve
+
+GitHub Copilot will show you a complete diff with all generated Terraform files and commands: resource group creation, provider registration, and the full `azd up` deployment. Review the resource naming patterns before clicking **Continue**:
+
+- Container App: `ca-n8n-<suffix>`
+- PostgreSQL Server: `psql-<suffix>`
+- Log Analytics: `log-<suffix>`
+- Container Apps Environment: `cae-<suffix>`
+- Managed Identity: `id-<suffix>`
+
+### Deployment Process
+
+Running `azd up` provisions resources in dependency order:
+
+1. **Resource Group** - Container for all resources
+2. **Log Analytics Workspace** - Monitoring and logging infrastructure
+3. **Container Apps Environment** - Managed Kubernetes environment
+4. **User Assigned Managed Identity** - Secure access to Azure resources
+5. **PostgreSQL Flexible Server** - Database with firewall rules
+6. **n8n Container App** - The workflow automation platform
+
+The [post-provision hook](../GLOSSARY.md#post-provision-hooks) automatically updates the `WEBHOOK_URL` environment variable once the Container App receives its FQDN. Watch the terminal output to confirm health probe configurations are applied—you should see the container start successfully after approximately 60-90 seconds.
 
 ### Access n8n
 

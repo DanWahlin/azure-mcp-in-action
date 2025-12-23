@@ -34,6 +34,12 @@ Deploy n8n (workflow automation platform) to Azure using Bicep and Azure Develop
   - https://docs.n8n.io/hosting/installation/docker/#prerequisites
 
 ## BICEP INFRASTRUCTURE CONFIGURATION
+
+  **CRITICAL**: Use `targetScope = 'resourceGroup'` (NOT 'subscription')
+  - azd creates and manages resource groups automatically
+  - Do NOT define a resource group resource in main.bicep
+  - azd prompts for resource group selection/creation during `azd provision`
+  
   - Use the following to configure Bicep in `azure.yaml`:
     ```yaml
     infra:
@@ -52,6 +58,167 @@ Deploy n8n (workflow automation platform) to Azure using Bicep and Azure Develop
   - **IMPORTANT**: We are using the pre-built n8n Docker image from Docker Hub (`n8nio/n8n:latest`)
   - Do NOT include a `services:` section in `azure.yaml` - no local Docker build required
   - The container image is specified directly in the Bicep files (main.bicep parameter `n8nImage`)
+
+## BICEP RESOURCE IMPLEMENTATION STRATEGY
+
+**PREFERRED APPROACH**: Use Azure Verified Modules (AVM) from the public registry where available. Use direct Bicep resources only when AVM modules don't exist or cause errors.
+
+### Verified AVM Modules to Use:
+
+Use these exact module references (registry path + version):
+
+1. **Log Analytics Workspace**: 
+   ```bicep
+   module logAnalytics 'br/public:avm/res/operational-insights/workspace:0.9.1' = {
+     name: 'log-analytics'
+     params: {
+       name: 'log-${resourceToken}'
+       location: location
+       tags: tags
+       skuName: 'PerGB2018'
+       dataRetention: 30
+     }
+   }
+   ```
+   - **IMPORTANT**: Do NOT include `scope: rg` parameter when using `targetScope = 'resourceGroup'`
+   - Access outputs: `logAnalytics.outputs.resourceId`, `logAnalytics.outputs.name`
+
+2. **Managed Identity**:
+   ```bicep
+   module managedIdentity 'br/public:avm/res/managed-identity/user-assigned-identity:0.4.0' = {
+     name: 'managed-identity'
+     params: {
+       name: 'id-${resourceToken}'
+       location: location
+       tags: tags
+     }
+   }
+   ```
+   - **IMPORTANT**: Do NOT include `scope: rg` parameter when using `targetScope = 'resourceGroup'`
+   - Access outputs: `managedIdentity.outputs.resourceId`, `managedIdentity.outputs.principalId`
+
+3. **Container Apps Environment**:
+   ```bicep
+   module containerAppsEnvironment 'br/public:avm/res/app/managed-environment:0.8.1' = {
+     name: 'container-apps-environment'
+     params: {
+       name: 'cae-${resourceToken}'
+       location: location
+       tags: tags
+       logAnalyticsWorkspaceResourceId: logAnalytics.outputs.resourceId
+       zoneRedundant: false
+     }
+   }
+   ```
+   - **IMPORTANT**: Do NOT include `scope: rg` parameter when using `targetScope = 'resourceGroup'`
+   - Access outputs: `containerAppsEnvironment.outputs.resourceId`
+
+4. **Container App**:
+   ```bicep
+   module n8nApp 'br/public:avm/res/app/container-app:0.11.0' = {
+     name: 'n8n-container-app'
+     params: {
+       name: 'ca-n8n-${resourceToken}'
+       location: location
+       tags: tags
+       environmentResourceId: containerAppsEnvironment.outputs.resourceId
+       managedIdentities: {
+         userAssignedResourceIds: [managedIdentity.outputs.resourceId]
+       }
+       containers: [ /* see full example below */ ]
+       secrets: { /* see full example below */ }
+       scaleMinReplicas: 0
+       scaleMaxReplicas: 3
+       ingressExternal: true
+       ingressTargetPort: 5678
+     }
+   }
+   ```
+   - **IMPORTANT**: Do NOT include `scope: rg` parameter when using `targetScope = 'resourceGroup'`
+   - Access outputs: `n8nApp.outputs.name`, `n8nApp.outputs.fqdn`, `n8nApp.outputs.resourceId`
+
+### Direct Bicep Resources (No AVM Module Available):
+
+**PostgreSQL Flexible Server** - Use direct resource definitions (AVM modules don't exist for PostgreSQL):
+
+```bicep
+resource postgresServer 'Microsoft.DBforPostgreSQL/flexibleServers@2023-03-01-preview' = {
+  name: 'psql-${resourceToken}'
+  location: location
+  tags: tags
+  sku: {
+    name: 'Standard_B1ms'
+    tier: 'Burstable'
+  }
+  properties: {
+    administratorLogin: postgresUser
+    administratorLoginPassword: postgresPassword
+    version: '16'
+    storage: {
+      storageSizeGB: 32
+    }
+    backup: {
+      backupRetentionDays: 7
+      geoRedundantBackup: 'Disabled'
+    }
+    highAvailability: {
+      mode: 'Disabled'
+    }
+    authConfig: {
+      activeDirectoryAuth: 'Enabled'
+      passwordAuth: 'Enabled'
+    }
+  }
+}
+
+resource postgresFirewall 'Microsoft.DBforPostgreSQL/flexibleServers/firewallRules@2023-03-01-preview' = {
+  parent: postgresServer
+  name: 'AllowAllAzureServicesAndResourcesWithinAzureIps'
+  properties: {
+    startIpAddress: '0.0.0.0'
+    endIpAddress: '0.0.0.0'
+  }
+}
+
+resource postgresDatabase 'Microsoft.DBforPostgreSQL/flexibleServers/databases@2023-03-01-preview' = {
+  parent: postgresServer
+  name: postgresDb
+  properties: {
+    charset: 'UTF8'
+    collation: 'en_US.utf8'
+  }
+}
+```
+- Access properties: `postgresServer.properties.fullyQualifiedDomainName`, `postgresServer.name`, `postgresDatabase.name`
+
+### CRITICAL: Property Access Patterns
+
+**AVM Modules** use `.outputs.`:
+- ✅ `logAnalytics.outputs.resourceId`
+- ✅ `containerAppsEnvironment.outputs.resourceId`
+- ✅ `n8nApp.outputs.name`
+- ✅ `n8nApp.outputs.fqdn`
+- ❌ NOT: `logAnalytics.properties.customerId` (this won't work with modules)
+
+**Direct Resources** use `.properties.`, `.name`, `.id`:
+- ✅ `postgresServer.properties.fullyQualifiedDomainName`
+- ✅ `postgresServer.name`
+- ✅ `postgresServer.id`
+- ❌ NOT: `postgresServer.outputs.fqdn` (direct resources don't have .outputs)
+
+### Common Pitfalls to Avoid:
+
+1. ❌ **WRONG**: `br:mcr.microsoft.com/bicep/avm/res/...` (incorrect registry path)
+   - ✅ **CORRECT**: `br/public:avm/res/...`
+
+2. ❌ **WRONG**: `br/public:avm/res/db-for-postgre-sql/flexible-server:0.4.1` (module doesn't exist)
+   - ✅ **CORRECT**: Use direct resource `Microsoft.DBforPostgreSQL/flexibleServers@2023-03-01-preview`
+
+3. ❌ **WRONG**: Using `.outputs.` on direct resources or `.properties.` on modules
+   - ✅ **CORRECT**: Match the access pattern to resource type (module vs direct)
+
+4. ❌ **WRONG**: Leaving unused parameters like `principalId`
+   - ✅ **CORRECT**: Remove all unused parameters to avoid Bicep warnings
 
 # REQUIREMENTS
 
@@ -181,26 +348,35 @@ Deploy n8n (workflow automation platform) to Azure using Bicep and Azure Develop
      }
      periodSeconds: 10
      timeoutSeconds: 5
-     failureThreshold: 30           # Allows up to 5 minutes for startup
+     failureThreshold: 10           # CRITICAL: Maximum allowed is 10 (allows ~100s startup)
    }
    ```
-   **Why Critical**: Without proper health probe configuration, Azure Container Apps may kill the n8n container before it completes initialization, causing deployment failures. The `initialDelaySeconds: 60` on liveness probe and `failureThreshold: 30` on startup probe are essential.
+   **Why Critical**: 
+   - Without proper health probe configuration, Azure Container Apps may kill the n8n container before it completes initialization
+   - The `initialDelaySeconds: 60` on liveness probe is essential
+   - **IMPORTANT**: `failureThreshold` for startup probe has a maximum value of 10 (Azure limitation)
+   - With `periodSeconds: 10` and `failureThreshold: 10`, startup probe allows ~100 seconds for initialization
 
 6. **Bicep Outputs (main.bicep)**:
    Include these outputs for post-provision hooks and user reference:
    ```bicep
    output resourceGroupName string = resourceGroup().name
-   output n8nContainerAppName string = n8nApp.name
-   output n8nUrl string = 'https://${n8nApp.properties.configuration.ingress.fqdn}'
-   output n8nFqdn string = n8nApp.properties.configuration.ingress.fqdn
+   output n8nContainerAppName string = n8nApp.outputs.name
+   output n8nUrl string = 'https://${n8nApp.outputs.fqdn}'
+   output n8nFqdn string = n8nApp.outputs.fqdn
    output postgresServerName string = postgresServer.name
    output postgresContainerAppName string = postgresServer.name  // Alias for compatibility
    output postgresFqdn string = postgresServer.properties.fullyQualifiedDomainName
    output postgresDatabaseName string = postgresDatabase.name
-   output managedIdentityName string = managedIdentity.name
+   output managedIdentityName string = managedIdentity.outputs.name
+   output managedIdentityPrincipalId string = managedIdentity.outputs.principalId
    output n8nBasicAuthUser string = n8nBasicAuthUser
    ```
-   **Note**: Include `postgresContainerAppName` as an alias to `postgresServerName` for backward compatibility with existing scripts.
+   **Note**: 
+   - Use `.outputs.` for AVM modules: `n8nApp.outputs.name`, `n8nApp.outputs.fqdn`, `managedIdentity.outputs.name`
+   - Use `.properties.` or `.name` for direct resources: `postgresServer.properties.fullyQualifiedDomainName`, `postgresServer.name`
+   - Include `postgresContainerAppName` as an alias to `postgresServerName` for backward compatibility with existing scripts
+   - **SECURITY**: Do NOT output `n8nEncryptionKey` - it's a security risk to expose secrets in outputs
 
 7. **Post-Provision Hooks (AUTOMATED)**:
    Create platform-specific scripts to automatically configure the WEBHOOK_URL after deployment:
@@ -218,16 +394,43 @@ Deploy n8n (workflow automation platform) to Azure using Bicep and Azure Develop
    **Why Required**: WEBHOOK_URL cannot be set during initial creation due to circular dependency with container app FQDN. Post-provision hook automatically configures this after `azd up` completes.
 
 8. **Configuration Files**:
-   - Create `infra/main.parameters.json` with parameter values:
-     ```json
-     {
-       "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
-       "contentVersion": "1.0.0.0",
-       "parameters": {
-         "postgresPassword": { "value": "REPLACE_WITH_STRONG_PASSWORD" },
-         "n8nBasicAuthPassword": { "value": "REPLACE_WITH_STRONG_PASSWORD" }
-       }
+   
+   **RECOMMENDED APPROACH**: Use `.bicepparam` file with environment variables (more secure):
+   ```bicep
+   // infra/main.bicepparam
+   using './main.bicep'
+
+   param environmentName = readEnvironmentVariable('AZURE_ENV_NAME', 'n8n')
+   param location = readEnvironmentVariable('AZURE_LOCATION', 'westus')
+   param postgresPassword = readEnvironmentVariable('POSTGRES_PASSWORD')
+   param n8nBasicAuthPassword = readEnvironmentVariable('N8N_BASIC_AUTH_PASSWORD')
+   ```
+   
+   Set environment variables via azd:
+   ```bash
+   azd env set POSTGRES_PASSWORD "$(openssl rand -base64 32)"
+   azd env set N8N_BASIC_AUTH_PASSWORD "$(openssl rand -base64 32)"
+   ```
+   
+   **ALTERNATIVE**: Use `main.parameters.json` (less secure, easier for testing):
+   ```json
+   {
+     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+     "contentVersion": "1.0.0.0",
+     "parameters": {
+       "postgresPassword": { "value": "REPLACE_WITH_STRONG_PASSWORD" },
+       "n8nBasicAuthPassword": { "value": "REPLACE_WITH_STRONG_PASSWORD" }
      }
+   }
+   ```
+   
+   - **Password Generation**: Generate secure passwords using:
+     ```bash
+     # macOS/Linux
+     openssl rand -base64 32
+
+     # PowerShell
+     [Convert]::ToBase64String((1..32 | ForEach-Object { Get-Random -Maximum 256 }) -as [byte[]])
      ```
    - azd automatically manages parameter files and state
    - Add `.gitignore` for `.azure/`, `*.parameters.json` (but keep example files)
@@ -260,18 +463,27 @@ Deploy n8n (workflow automation platform) to Azure using Bicep and Azure Develop
 - Post-provision hooks run automatically after `azd up` completes
 
 ### Azure & Bicep Configuration:
+- **CRITICAL**: Use `targetScope = 'resourceGroup'` in main.bicep (NOT 'subscription')
+- azd creates and manages resource groups - do NOT define resource group resource in Bicep
+- Do NOT use `scope: rg` parameter on modules when using `targetScope = 'resourceGroup'`
 - Resource provider registration prevents 409 conflicts during deployment
 - Azure providers must be registered manually **before** running `azd up`
-- azd manages Bicep deployment history and parameter files locally
+- **Use AVM modules** (`br/public:avm/res/...`) for Log Analytics, Managed Identity, Container Apps Environment, and Container App
+- **Use direct resources** for PostgreSQL (no stable AVM module exists) - `Microsoft.DBforPostgreSQL/flexibleServers@2023-03-01-preview`
+- PostgreSQL server does NOT require Managed Identity parameter (Entra ID auth is enabled via server properties)
+- AVM modules expose properties via `.outputs.` (e.g., `.outputs.resourceId`, `.outputs.name`, `.outputs.fqdn`)
+- Direct resources expose properties via `.properties.`, `.name`, `.id` (e.g., `.properties.fullyQualifiedDomainName`)
 - **CRITICAL**: `newGuid()` can ONLY be used as a parameter default value, never in variable declarations or expressions
 - The n8n encryption key is auto-generated via parameter default: `param n8nEncryptionKey string = newGuid()`
-- PostgreSQL server does NOT require Managed Identity parameter (Entra ID auth is enabled via server properties)
+- **SECURITY**: Never output secure parameters like `n8nEncryptionKey` - this triggers security warnings
+- **CRITICAL**: Startup probe `failureThreshold` maximum value is 10 (Azure Container Apps limitation)
 
 ### Security & Access Management:
 - Use Managed Identity for secure access to Azure resources
 - Enable Entra ID authentication on PostgreSQL Flexible Server
 - n8n encryption key is stored as a container app secret
 - n8n still requires password authentication (no native Managed Identity support)
+- **Production Note**: For enhanced security, consider implementing VNet integration to restrict database access to the Container Apps Environment subnet only
 
 ### Deployment Automation:
 - azd hooks automate post-deployment configuration, eliminating manual steps
@@ -283,6 +495,41 @@ Deploy n8n (workflow automation platform) to Azure using Bicep and Azure Develop
 - Include `postgresContainerAppName` output as alias to `postgresServerName` for backward compatibility
 - All outputs referenced in post-provision hooks must exist in main.bicep outputs
 
+
+### ⚠️ CRITICAL: AVM Module vs Direct Resource Errors:
+
+**Common Error**: `Error BCP192: Unable to restore the artifact with reference "br:mcr.microsoft.com/bicep/avm/..."`
+- **Cause**: Using wrong registry path format
+- **Fix**: Use `br/public:avm/res/...` NOT `br:mcr.microsoft.com/bicep/avm/...`
+
+**Common Error**: `Error BCP192: Unable to restore the artifact` for PostgreSQL modules
+- **Cause**: PostgreSQL AVM modules don't exist in the public registry
+- **Fix**: Use direct Bicep resources `Microsoft.DBforPostgreSQL/flexibleServers@2023-03-01-preview`
+
+**Common Error**: `Error BCP062: The referenced declaration with name "postgresServer" is not valid`
+- **Cause**: Trying to use `.outputs.` on a direct resource or wrong property access
+- **Fix**: Use `postgresServer.properties.fullyQualifiedDomainName` not `postgresServer.outputs.fqdn`
+
+**Common Error**: `Warning no-unused-params: Parameter "principalId" is declared but never used`
+- **Cause**: Declaring parameters that aren't needed
+- **Fix**: Remove the `principalId` parameter declaration entirely
+
+### Validation Checklist Before `azd up`:
+- [ ] `targetScope = 'resourceGroup'` in main.bicep (NOT 'subscription')
+- [ ] No resource group resource defined in Bicep (azd creates it)
+- [ ] No `scope: rg` parameter on any modules
+- [ ] AVM modules use `br/public:avm/res/...` format (NOT `br:mcr.microsoft.com/bicep/avm/...`)
+- [ ] PostgreSQL uses direct resource `Microsoft.DBforPostgreSQL/flexibleServers@2023-03-01-preview`
+- [ ] AVM module outputs accessed with `.outputs.` (e.g., `n8nApp.outputs.fqdn`)
+- [ ] Direct resource properties accessed with `.properties.` or `.name` (e.g., `postgresServer.properties.fullyQualifiedDomainName`)
+- [ ] Container App database host uses `postgresServer.properties.fullyQualifiedDomainName`
+- [ ] No unused parameters in main.bicep
+- [ ] Health probes configured (liveness: 60s initial, startup: failureThreshold max 10)
+- [ ] No secure outputs (e.g., encryption keys) in main.bicep outputs
+- [ ] Post-provision hooks use exact camelCase output names
+- [ ] Resource providers registered before deployment
+- [ ] Using `.bicepparam` with environment variables OR secure `main.parameters.json`
+- [ ] Post-provision shell script is executable (`chmod +x`)
 ### ⚠️ CRITICAL: AZD Environment Variable Naming Convention:
 - **MUST use exact output names from main.bicep in post-provision hooks**
 - azd does NOT convert output names to uppercase or snake_case
